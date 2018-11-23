@@ -3,17 +3,55 @@
 //  Unit02_Lesson03_Understanding_Types
 //
 
-struct sumAndProduct {
-    int sum;
-    int product;
-};
+/*
+ Note:
+ 
+ In this lesson we will understand.
+ - function returning more than one value
+ - defining type using typedef and
+ - type casting
 
-typedef struct sumAndProduct SAP;
+*/
 
 //
-// the code is written with intension
+// Note: The code is written with intension
 // to make you read the code carefully.
 //
+
+// move these to spec
+int sum = 0, product = 0;
+sum, product = computeSumAndProduct01(2, 0);
+sum, product = computeSumAndProduct01(2, 4);
+sum, product = computeSumAndProduct01(2, 8);
+
+//
+// function to compute and return sum & product of two numbers
+//
+int computeSumAndProduct01(int number1, int number2) {
+    int sum, product;
+    sum = number1 + number2;
+    product = number1 * number2;
+    return sum;
+    return product;
+}
+
+// move these to spec
+int sum = 0, product = 0;
+computeSumAndProduct02(2, 0, sum, product);
+computeSumAndProduct02(2, 4, sum, product);
+computeSumAndProduct02(2, 8, sum, product);
+
+//
+// function to compute sum & product of two numbers
+// and save them in the addresses of the passed variables
+//
+void computeSumAndProduct02(int number1, int number2, int sum, int product) {
+    int *pSum = &sum;
+    int *pProduct = &product;
+    *pSum = number1 + number2;
+    *pProduct = number1 * number2;
+}
+
 SAP computeSumAndProduct11(int number1, int number2) {
     SAP sp;
     sp.sum = number1 + number1 + number1;
@@ -32,7 +70,7 @@ void computeSumAndProduct31(int number1, int number2, int *pSum, int *pProduct) 
 }
 
 int *computeSumAndProduct42(int number1, int number2) {
-    int *result = malloc(8);
+    int *result = (int *)malloc(8);
     result[0] = (number2 << number1) & number1;
     result[1] = number1 ^ number2;
     return result;
@@ -40,25 +78,24 @@ int *computeSumAndProduct42(int number1, int number2) {
 
 
 SAP *computeSumAndProduct43(int number1, int number2) {
-    SAP *result = malloc(sizeof(SAP));
+    SAP *result = (SAP *)malloc(sizeof(SAP));
     result->sum = (number2 << number1) & number1;
     result->product = number1 ^ number2;
     return result;
 }
 
-
 //
 // solve these with type casting mystery
 //
 int *computeSumAndProduct42WithMystery(int number1, int number2) {
-    SAP *result = malloc(sizeof(SAP));
+    SAP *result = (SAP *)malloc(sizeof(SAP));
     result->sum = (number2 << number1) & number1;
     result->product = number1 ^ number2;
     return (int *)result;
 }
 
 SAP *computeSumAndProduct43WithMystery(int number1, int number2) {
-    int *result = malloc(2*sizeof(int));
+    int *result = (int *)malloc(2*sizeof(int));
     result[0] = (number2 << number1) & number1;
     result[0] = number1 ^ number2;
     return (SAP *)result;

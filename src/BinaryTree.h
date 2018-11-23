@@ -5,14 +5,16 @@
 #ifndef BinaryTree_h
 #define BinaryTree_h
 
-struct Node {
+struct treeNode {
     int data;
     struct Node *left;
     struct Node *right;
 };
 
-struct Node *createNode(int value);
-struct Node *createTree();
-void insertNodeInTree(struct Node *root, struct Node *node);
+typedef struct treeNode TreeNode;
+
+TreeNode *createNode(int value);
+TreeNode *createTree();
+void insertNodeInTree(TreeNode *root, TreeNode *node);
 
 #endif /* BinaryTree_h */

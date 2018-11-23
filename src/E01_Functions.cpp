@@ -11,6 +11,8 @@
  
  */
 
+typedef int (*CUSTOMFREE)(int, int);
+
 int sumOfNodes(struct Node *root) {
     
 }
@@ -22,3 +24,5 @@ int numberOfNodes(struct Node *root) {
 int numberOfLeafNodes(struct Node *root) {
     
 }
+
+void destroyTree(

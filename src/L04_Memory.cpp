@@ -5,14 +5,14 @@
 
 // local variable
 void makeItNoMystery(char *mystery) {
-    mystery = malloc(3);
+    mystery = (char *)malloc(3);
     mystery[0] = 'N';
     mystery[1] = 'O';
     mystery[2] = '\0';
 }
 
 char *makeMystery() {
-    char *mystery = malloc(4);
+    char *mystery = (char *)malloc(4);
     mystery[0] = 'm';
     mystery[1] = 'y';
     mystery[2] = 's';

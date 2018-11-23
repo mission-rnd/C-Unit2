@@ -31,3 +31,7 @@ bool checkBits(int ans, int bits[32]){
 		a = (a * 2) + bits[i];
 	return a == ans;
 }
+
+
+// TODO: strigifyArray
+

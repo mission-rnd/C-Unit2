@@ -6,6 +6,8 @@
 #ifndef E01_Functions_h
 #define E01_Functions_h
 
+#include "BinaryTree.h"
+
 int sumOfNodes(struct Node *root);
 int numberOfNodes(struct Node *root);
 int numberOfLeafNodes(struct Node *root);

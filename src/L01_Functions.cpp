@@ -7,10 +7,10 @@
  Note:
 
  In this lesson we will understand.
- - functions with variable number of arguments
+ - functions calling itself
  - functions calling each other
- - functions calling itself 
- - function returning more than one value 
+ - passing function as argument
+ - functions with variable number of arguments
 
  Understand the behaviour by seeing the code (in this file)
  in excution using debugger.
@@ -33,32 +33,7 @@
 */
 
 
-// move these to spec
-int sum = 0, product = 0;
-sum, product = computeSumAndProduct01(2, 0);
-sum, product = computeSumAndProduct01(2, 4);
-sum, product = computeSumAndProduct01(2, 8);
-
-int computeSumAndProduct01(int number1, int number2) {
-    int sum, product;
-    sum = number1 + number2;
-    product = number1 * number2;
-    return sum;
-    return product;
-}
-
-// move these to spec
-int sum = 0, product = 0;
-computeSumAndProduct02(2, 0, sum, product);
-computeSumAndProduct02(2, 4, sum, product);
-computeSumAndProduct02(2, 8, sum, product);
-void computeSumAndProduct02(int number1, int number2, int sum, int product) {
-    int *pSum = &sum;
-    int *pProduct = &product;
-    *pSum = number1 + number2;
-    *pProduct = number1 * number2;
-}
-
+#include "L01_Functions.h"
 
 
 //
@@ -90,7 +65,7 @@ void computeSumAndProduct02(int number1, int number2, int sum, int product) {
 // To understand the basic concept and notation of Binary Trees
 // check: https://github.com/rohinibarla/FOC/raw/master/Lecture%2038.pdf
 //
-int heightOfTree(struct node *root) {
+int heightOfTree(struct treeNode *root) {
     
     // terminating condition
     if (root == NULL) {
@@ -119,12 +94,12 @@ int heightOfTree(struct node *root) {
 // we cannot use the data inside it
 // mainly the head->next value
 //
-// so first release the next node
+// so first release the remaining linked list
 // before releasing the current node.
 //
 
 
-void destroyLinkedListV1(struct ListNode *head, void freeMethod) {
+void destroyLinkedListV1(struct listNode *head, void freeMethod) {
     //
     // 1. terminating condition
     //
@@ -153,10 +128,10 @@ void destroyLinkedListV1(struct ListNode *head, void freeMethod) {
 // so first save the next node
 // before releasing the current node.
 //
-void destroyLinkedListV2(struct ListNode *head) {
+void destroyLinkedListV2(struct listNode *head) {
     
-    struct ListNode *currentNode;
-    struct ListNode *nextNode;
+    struct listNode *currentNode;
+    struct listNode *nextNode;
     
     currentNode = head;
     while (currentNode != NULL) {
@@ -166,6 +141,76 @@ void destroyLinkedListV2(struct ListNode *head) {
     }
 }
 
+
+//
+// functions calling each other
+//
+
+
+//
+// passing function as argument
+//
+
+//
+// returns
+// 1 - in correct order, no need to change
+// 0 - in reverse order, need to change
+//
+typedef int (*COMPARE)(int, int);
+
+int isGreater(int a, int b) {
+    if(a > b) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+int isLesser(int a, int b) {
+    if(a < b) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+//
+// assumption: size > 1
+//
+void sort(int *numbers, int size, COMPARE isInOrder) {
+    for (int i = 0; i < size-1; i++) {
+        if (isInOrder(numbers[i], numbers[i+1]) == 0) {
+            // swap numbers
+            numbers[i]   = numbers[i] ^ numbers[i+1];
+            numbers[i+1] = numbers[i] ^ numbers[i+1];
+            numbers[i]   = numbers[i] ^ numbers[i+1];
+        }
+    }
+}
+
+
+//
+// What is the difference between
+// Non-Descending Vs Ascending order?
+//
+void sortNonDescending(int *numbers, int size) {
+    sort(numbers, size, isGreater);
+}
+
+//
+// What is the difference between
+// Non-Ascending Vs Descending order?
+//
+// Ref: https://stackoverflow.com/questions/42444024/why-do-we-use-the-term-non-descending-instead-of-ascending-in-sorting-algori
+//
+void sortNonAscending(int *numbers, int size) {
+    sort(numbers, size, isLesser);
+}
+
+
+//
+// functions with variable number of arguments
+//
 
 static void three_things_i_learnt() {
     /*
