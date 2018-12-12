@@ -54,37 +54,37 @@
       <ClCompile Include="Main.cpp">
           <Filter>Source Files</Filter>
       </ClCompile>
-      <ClInclude Include="L01_Functions.cpp">
+      <ClCompile Include="L01_Functions.cpp">
           <Filter>Source Files</Filter>
       </ClCompile>
-      <ClInclude Include="L02_Strings.cpp">
+      <ClCompile Include="L02_Strings.cpp">
           <Filter>Source Files</Filter>
       </ClCompile>
-      <ClInclude Include="L03_Types.cpp">
+      <ClCompile Include="L03_Types.cpp">
           <Filter>Source Files</Filter>
       </ClCompile>
-      <ClInclude Include="L04_Memory.cpp">
+      <ClCompile Include="L04_Memory.cpp">
           <Filter>Source Files</Filter>
       </ClCompile>
-      <ClInclude Include="L05_Compiler.cpp">
+      <ClCompile Include="L05_Compiler.cpp">
           <Filter>Source Files</Filter>
       </ClCompile>
-      <ClInclude Include="E01_Functions.cpp">
+      <ClCompile Include="E01_Functions.cpp">
           <Filter>Source Files</Filter>
       </ClCompile>
-      <ClInclude Include="E02_Strings.cpp">
+      <ClCompile Include="E02_Strings.cpp">
           <Filter>Source Files</Filter>
       </ClCompile>
-      <ClInclude Include="E03_Types.cpp">
+      <ClCompile Include="E03_Types.cpp">
           <Filter>Source Files</Filter>
       </ClCompile>
-      <ClInclude Include="E04_Memory.cpp">
+      <ClCompile Include="E04_Memory.cpp">
           <Filter>Source Files</Filter>
       </ClCompile>
-      <ClInclude Include="E05_Compiler.cpp">
+      <ClCompile Include="E05_Compiler.cpp">
           <Filter>Source Files</Filter>
       </ClCompile>
-      <ClInclude Include="BinaryTree.cpp">
+      <ClCompile Include="BinaryTree.cpp">
           <Filter>Source Files</Filter>
       </ClCompile>
   </ItemGroup>
