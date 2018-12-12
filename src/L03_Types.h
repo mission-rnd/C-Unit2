@@ -7,6 +7,8 @@
 #ifndef L03_Types_h
 #define L03_Types_h
 
+#include <stdlib.h>
+
 struct sumAndProduct {
     int sum;
     int product;
