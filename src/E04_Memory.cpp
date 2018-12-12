@@ -8,6 +8,6 @@
 //
 
 // return an array of prime factors
-DynamicList *primeFactors(int n) {
-    
-}
+//DynamicList *primeFactors(int n) {
+//    
+//}

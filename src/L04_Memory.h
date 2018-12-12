@@ -6,4 +6,6 @@
 #ifndef L04_Memory_h
 #define L04_Memory_h
 
+#include <stdlib.h>
+
 #endif /* L04_Memory_h */

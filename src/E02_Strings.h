@@ -6,4 +6,6 @@
 #ifndef E02_Strings_h
 #define E02_Strings_h
 
+#include <stdlib.h>
+
 #endif /* E02_Strings_h */

@@ -34,7 +34,7 @@
     <ClInclude Include="E01_Functions.h">
         <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="E02_String.h">
+    <ClInclude Include="E02_Strings.h">
         <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="E03_Types.h">
@@ -72,7 +72,7 @@
       <ClInclude Include="E01_Functions.cpp">
           <Filter>Source Files</Filter>
       </ClCompile>
-      <ClInclude Include="E02_String.cpp">
+      <ClInclude Include="E02_Strings.cpp">
           <Filter>Source Files</Filter>
       </ClCompile>
       <ClInclude Include="E03_Types.cpp">

@@ -3,6 +3,8 @@
 //  Unit02_Lesson04_Understanding_Memory
 //
 
+#include "L04_Memory.h"
+
 // local variable
 void makeItNoMystery(char *mystery) {
     mystery = (char *)malloc(3);

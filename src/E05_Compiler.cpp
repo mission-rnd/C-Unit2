@@ -30,3 +30,12 @@ void removeSpaces(char *statement) {
 void preprocessCFile() {
     
 }
+
+
+//
+// TODO:
+//
+
+//
+// write a program to print all the variable names in a given valid C program
+//

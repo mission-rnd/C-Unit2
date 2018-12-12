@@ -18,11 +18,13 @@
 // to make you read the code carefully.
 //
 
-// move these to spec
-int sum = 0, product = 0;
-sum, product = computeSumAndProduct01(2, 0);
-sum, product = computeSumAndProduct01(2, 4);
-sum, product = computeSumAndProduct01(2, 8);
+#include "L03_Types.h"
+
+// TODO: move these to spec
+//int sum = 0, product = 0;
+//sum, product = computeSumAndProduct01(2, 0);
+//sum, product = computeSumAndProduct01(2, 4);
+//sum, product = computeSumAndProduct01(2, 8);
 
 //
 // function to compute and return sum & product of two numbers
@@ -35,11 +37,11 @@ int computeSumAndProduct01(int number1, int number2) {
     return product;
 }
 
-// move these to spec
-int sum = 0, product = 0;
-computeSumAndProduct02(2, 0, sum, product);
-computeSumAndProduct02(2, 4, sum, product);
-computeSumAndProduct02(2, 8, sum, product);
+// TODO: move these to spec
+//int sum = 0, product = 0;
+//computeSumAndProduct02(2, 0, sum, product);
+//computeSumAndProduct02(2, 4, sum, product);
+//computeSumAndProduct02(2, 8, sum, product);
 
 //
 // function to compute sum & product of two numbers

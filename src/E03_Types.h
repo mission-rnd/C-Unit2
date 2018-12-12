@@ -6,6 +6,8 @@
 #ifndef E03_Types_h
 #define E03_Types_h
 
+#include <stdlib.h>
+
 typedef unsigned char UInt8;
 
 //

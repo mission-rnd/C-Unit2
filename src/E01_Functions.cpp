@@ -14,15 +14,23 @@
 typedef int (*CUSTOMFREE)(int, int);
 
 int sumOfNodes(struct Node *root) {
-    
+    return -99;
 }
 
 int numberOfNodes(struct Node *root) {
-    
+    return -99;
 }
 
 int numberOfLeafNodes(struct Node *root) {
-    
+    return -99;
 }
 
-void destroyTree(
+// TODO:
+// evaluate expression trees
+// Remove leaf node
+// Remove last n nodes from linked list
+// Destroy a tree, linked list.
+
+//
+// sort records, based on specific parameters.
+//

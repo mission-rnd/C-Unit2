@@ -9,7 +9,7 @@
 #include "BinaryTree.h"
 
 int heightOfTree(struct treeNode *root);
-void destroyLinkedListV1(struct listNode *head, void freeMethod);
+void destroyLinkedListV1(struct listNode *head);
 void destroyLinkedListV2(struct listNode *head);
 
 void sortNonDescending(int *numbers, int size);

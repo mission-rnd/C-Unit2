@@ -11,6 +11,7 @@
  pass in E02_StringsSpec.cpp file.
  */
 
+#include "E02_Strings.h"
 //
 // sum of most significant digits of non-negative integers.
 //
@@ -29,17 +30,8 @@ int sumOfMSDs(char *pNumber1, char *pNumber2) {
 // 0 < number of digits < 100
 //
 char *sum(char *pNumber1, char *pNumber2) {
-    
+    return NULL;
 }
-
-//
-// product of 2 non-negative numbers
-// 0 < number of digits < 100
-//
-char *sum(char *pNumber1, char *pNumber2) {
-    
-}
-
 
 //
 // replicate string n times
@@ -49,7 +41,7 @@ char *sum(char *pNumber1, char *pNumber2) {
 // "-integrity-inspire-insight-", 3 => "integrity-inspire-insight--integrity-inspire-insight--integrity-inspire-insight-"
 //
 char *replicateNTimes(char *mantra, int n) {
-    
+    return NULL;
 }
 
 //
@@ -60,21 +52,21 @@ char *replicateNTimes(char *mantra, int n) {
 // "btech" => "btteeecccchhhhh"
 //
 char *repeatPositionTimes(char *word) {
-    
+    return NULL;
 }
 
 //
 // scanf integer implementation
 //
 int scanfInt(char *input) {
-    
+    return 0;
 }
 
 //
 // scanf float implementation
 //
 float scanfFloat(char *input) {
-    
+    return 0.0;
 }
 
 //
@@ -82,11 +74,11 @@ float scanfFloat(char *input) {
 //
 
 char *printfInt(char *format, int n) {
-    
+    return NULL;
 }
 
 char *printfFloat(char *format, float n) {
-    
+    return NULL;
 }
 
 //
@@ -96,9 +88,25 @@ char *printfFloat(char *format, float n) {
 //  - no spaces at the end
 //
 char *getCommandLine(int argc, char *argv[]) {
-    
+    return NULL;
 }
 
 char *getExecutableName(int argc, char *argv[]) {
-    
+    return NULL;
 }
+
+
+// TODO:
+// Write the function strend(s,t) , which returns 1 if the string t occurs at the end of the string s , and zero otherwise.
+
+
+//
+// Write a program that prints the distinct words in its input sorted into decreasing order of frequency of occurrence. Precede each word by its count.
+
+//
+// Write a cross-referencer that prints a list of all words in a document, and, for each word, a list of the line numbers on which it occurs. Remove noise words like "the," "and," and so on.
+// with files
+// support methods: open file, readline, writeline, close file.
+//
+
+

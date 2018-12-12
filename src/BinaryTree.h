@@ -5,10 +5,12 @@
 #ifndef BinaryTree_h
 #define BinaryTree_h
 
+#include <stdlib.h>
+
 struct treeNode {
     int data;
-    struct Node *left;
-    struct Node *right;
+    struct treeNode *left;
+    struct treeNode *right;
 };
 
 typedef struct treeNode TreeNode;

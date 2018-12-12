@@ -11,11 +11,11 @@
 //
 // addInBase256 => addBigNumbers
 Base256Number *addInBase256(Base256Number *pNumber1, Base256Number *pNumber2) {
-    
+    return NULL;
 }
 
 Base256Number *multiplyInBase256(Base256Number *pNumber1, Base256Number *pNumber2) {
-    
+    return NULL;
 }
 
 //
@@ -24,7 +24,7 @@ Base256Number *multiplyInBase256(Base256Number *pNumber1, Base256Number *pNumber
 //  0 - no
 //
 int isGreater(Base256Number *pNumber1, Base256Number *pNumber2) {
-    
+    return -99;
 }
 
 void incrementInBase256(Base256Number *pNumber) {
@@ -32,7 +32,7 @@ void incrementInBase256(Base256Number *pNumber) {
 }
 
 Base256Number *newNumberInBase256() {
-    
+    return NULL;
 }
 
 //
@@ -43,7 +43,7 @@ Base256Number *newNumberInBase256() {
 //
 
 char *printBase256Number(char *format, Base256Number *pNumber) {
-    
+    return NULL;
 }
 
 //
@@ -54,7 +54,7 @@ Base256Number *integerDivisionInBase256(Base256Number *pNumber1, Base256Number *
     Base256Number *pQuotient = newNumberInBase256();
     Base256Number *pNumber = newNumberInBase256();
     while (isGreater(pNumber1, pNumber)) {
-        *pNumber = addInBase256(pNumber, pNumber2);
+        pNumber = addInBase256(pNumber, pNumber2);
         incrementInBase256(pQuotient);
     }
     return pQuotient;

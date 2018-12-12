@@ -98,8 +98,17 @@ int heightOfTree(struct treeNode *root) {
 // before releasing the current node.
 //
 
+// TODO:
+// use it give a excercise
+// typedef void (*FREE_METHOD)(void *);
 
-void destroyLinkedListV1(struct listNode *head, void freeMethod) {
+// TODO: move to header file
+struct listNode {
+    int data;
+    struct listNode *next;
+};
+
+void destroyLinkedListV1(struct listNode *head) {
     //
     // 1. terminating condition
     //
@@ -109,7 +118,7 @@ void destroyLinkedListV1(struct listNode *head, void freeMethod) {
     
     // 2. reducing into smaller problem
     // destroying the remaining LL
-    destroyLinkedList(head->next);
+    destroyLinkedListV1(head->next);
     
     // 3. combining the sub-problems solutions
     // now release this nodes memory
