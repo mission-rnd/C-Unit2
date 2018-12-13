@@ -65,6 +65,10 @@
 // To understand the basic concept and notation of Binary Trees
 // check: https://github.com/rohinibarla/FOC/raw/master/Lecture%2038.pdf
 //
+
+//
+// To determine the height of a binary tree
+//
 int heightOfTree(struct treeNode *root) {
     
     // terminating condition
@@ -154,7 +158,30 @@ void destroyLinkedListV2(struct listNode *head) {
 //
 // functions calling each other
 //
+int youDoTheWork(int *numbers, int size) {
+    
+    int result = 0;
+    
+    if (size > 2) {
+        result = firstYouDoThisPart(numbers+2, size-2);
+        result = 100 * result + 10 * numbers[1] + numbers[0];
+    }
+    
+    if (size == 1) {
+        result = numbers[0];
+    }
+    
+    return result;
+}
 
+int firstYouDoThisPart(int *numbers, int size) {
+    int partResult = 0;
+    if (size > 0) {
+        partResult = youDoTheWork(numbers+1, size-1);
+        partResult = 10 * partResult + numbers[0];
+    }
+    return partResult;
+}
 
 //
 // passing function as argument
@@ -202,6 +229,8 @@ void sort(int *numbers, int size, COMPARE isInOrder) {
 // What is the difference between
 // Non-Descending Vs Ascending order?
 //
+// Ref: https://stackoverflow.com/questions/42444024/why-do-we-use-the-term-non-descending-instead-of-ascending-in-sorting-algori
+//
 void sortNonDescending(int *numbers, int size) {
     sort(numbers, size, isGreater);
 }
@@ -209,8 +238,6 @@ void sortNonDescending(int *numbers, int size) {
 //
 // What is the difference between
 // Non-Ascending Vs Descending order?
-//
-// Ref: https://stackoverflow.com/questions/42444024/why-do-we-use-the-term-non-descending-instead-of-ascending-in-sorting-algori
 //
 void sortNonAscending(int *numbers, int size) {
     sort(numbers, size, isLesser);
@@ -220,6 +247,28 @@ void sortNonAscending(int *numbers, int size) {
 //
 // functions with variable number of arguments
 //
+
+//
+// multiply all the numbers
+// numbersCount - number of numbers
+// ... - numbers (will be numbersCount)
+//
+int multiply(int numbersCount, ...) {
+    int product = 1;
+    
+    va_list variableArgumentList;
+    
+    va_start(variableArgumentList, numbersCount);
+    
+    while (numbersCount > 0) {
+        product = product * va_arg(variableArgumentList, int);
+        numbersCount = numbersCount - 1;
+    }
+    
+    va_end(variableArgumentList);
+    
+    return product;
+}
 
 static void three_things_i_learnt() {
     /*

@@ -6,6 +6,8 @@
 #ifndef E04_Memory_h
 #define E04_Memory_h
 
+#include <stdlib.h>
+
 struct dynamicList {
     int count;
     int *list;

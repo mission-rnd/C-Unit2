@@ -80,12 +80,10 @@
     <ClInclude Include="L02_Strings.h" />
     <ClInclude Include="L03_Types.h" />
     <ClInclude Include="L04_Memory.h" />
-    <ClInclude Include="L05_Compiler.h" />
     <ClInclude Include="E01_Functions.h" />
     <ClInclude Include="E02_Strings.h" />
     <ClInclude Include="E03_Types.h" />
     <ClInclude Include="E04_Memory.h" />
-    <ClInclude Include="E05_Compiler.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -93,12 +91,10 @@
     <ClInclude Include="L02_Strings.cpp" />
     <ClInclude Include="L03_Types.cpp" />
     <ClInclude Include="L04_Memory.cpp" />
-    <ClInclude Include="L05_Compiler.cpp" />
     <ClInclude Include="E01_Functions.cpp" />
     <ClInclude Include="E02_Strings.cpp" />
     <ClInclude Include="E03_Types.cpp" />
     <ClInclude Include="E04_Memory.cpp" />
-    <ClInclude Include="E05_Compiler.cpp" />
     <ClInclude Include="BinaryTree.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

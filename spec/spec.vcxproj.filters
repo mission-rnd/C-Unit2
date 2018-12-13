@@ -36,9 +36,6 @@
     <ClCompile Include="L04_MemorySpec.cpp">
         <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="L05_CompilerSpec.cpp">
-        <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="E01_FunctionsSpec.cpp">
         <Filter>Source Files</Filter>
     </ClCompile>
@@ -49,9 +46,6 @@
         <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="E04_MemorySpec.cpp">
-        <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="E05_CompilerSpec.cpp">
         <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

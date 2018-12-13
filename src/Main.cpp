@@ -5,11 +5,7 @@ Goal is to understand
  - functions with variable number of arguments
  - type casting & type definition
  - strings & memory
- - To understand compilation process
-    - pre-processor
-    - intermediate stages
-    - executable format
- - multiple solutions for a problem (principle)
+
 
 Structure:
 The structure of the unit is it contains some lessons and exercises.
@@ -22,13 +18,11 @@ Actions:
  - L02_StringsSpec.cpp
  - L03_TypesSpec.cpp
  - L04_MemorySpec.cpp
- - L05_CompilerSpec.cpp
  By reading the code in lesson files under src project.
  - L01_Functions.cpp
  - L02_Strings.cpp
  - L03_Types.cpp
  - L04_Memory.cpp
- - L05_Compiler.cpp
  And DO NOT modify any functions in the lesson files in src project
  except the comments in three_things_i_learnt() function.
 
@@ -37,13 +31,11 @@ Actions:
  - E02_Strings.cpp
  - E03_Types.cpp
  - E04_Memory.cpp
- - E05_Compiler.cpp
  And DO NOT modify anything in excercise files in spec project
  - E01_FunctionsSpec.cpp
  - E02_StringsSpec.cpp
  - E03_TypesSpec.cpp
  - E04_MemorySpec.cpp
- - E05_CompilerSpec.cpp
  
 */
 

@@ -95,6 +95,27 @@ char *getExecutableName(int argc, char *argv[]) {
     return NULL;
 }
 
+//
+// remove white spaces in program statement
+//
+// Note: the characters between double quotes must not change
+//
+// e.g:
+// 'printf (   "compiler first removes unnessary spaces"  )  ;'  =>
+// 'printf("compiler first removes unnessary spaces");'
+//
+// Test cases:
+// "vector[0] = tenTimes         (vector[0]);"
+// "vector[1] = tenTimes  (     vector[1]   );"
+// "vector[2] = tenTimes(vector[2]);"
+// "vector[2]=tenTimes(vector[2]);"
+// 'addStrings ( "integrity and insight", "inpsire people" ) ;'
+//
+void removeSpaces(char *statement) {
+    
+}
+
+
 
 // TODO:
 // Write the function strend(s,t) , which returns 1 if the string t occurs at the end of the string s , and zero otherwise.

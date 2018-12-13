@@ -20,7 +20,80 @@
  except the comments in three_things_i_learnt() function.
  */
 
+//
+// assumption: handles simple printf format specifiers
+//
+int numberOfFormatSpecifiers(char *format) {
+    int count = 0;
+    while (*format != '\0' /* not end of string */) {
+        if (*format == '%') {
+            count++;
+        }
+        format++;
+    }
+    return count;
+}
 
+int stringLength(char *string) {
+    int length = 0;
+    while (string[length] != '\0') {
+        length++;
+    }
+    return length;
+}
+
+//
+// Note: The caller must free the memory returned
+//
+char *generateString(char *format, ...) {
+    
+    int length = stringLength(format);
+    
+    // duplicate string
+    char *resultString = (char *)malloc(length * sizeof(char));
+    
+    int nFormatSpecifiers = numberOfFormatSpecifiers(format);
+    
+    va_list variableArgumentList;
+    
+    va_start(variableArgumentList, nFormatSpecifiers);
+    
+    int charPosition = 0;
+    int number = 0;
+    char ch;
+    while (format[charPosition] != '\0') {
+        if (format[charPosition] == '%') {
+            switch (format[charPosition+1]) {
+                case 'd':
+                    // replace %d with 2 digits of given number
+                    number = va_arg(variableArgmentList, int);
+                    resultString[charPosition] = (number/100)%10 + '0';
+                    resultString[charPosition+1] = number%10 + '0';
+                    break;
+                case 'c':
+                    // replace %d with 2 times of given character
+                    ch = va_arg(variableArgmentList, char);
+                    resultString[charPosition] = ch;
+                    resultString[charPosition+1] = ch;
+                    break;
+                    
+                default:
+                    break;
+            }
+            
+            // to skip the %c or %d
+            charPosition++;
+        }
+        charPosition++;
+    }
+    
+    // set the termination character
+    resultString[charPosition] = '\0';
+    
+    va_end(variableArgumentList);
+    
+    return resultString;
+}
 
 static void three_things_i_learnt() {
     /*

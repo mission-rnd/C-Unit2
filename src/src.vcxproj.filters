@@ -28,9 +28,6 @@
     <ClInclude Include="L04_Memory.h">
         <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="L05_Compiler.h">
-        <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="E01_Functions.h">
         <Filter>Header Files</Filter>
     </ClInclude>
@@ -41,9 +38,6 @@
         <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="E04_Memory.h">
-        <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="E05_Compiler.h">
         <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BinaryTree.h">
@@ -66,9 +60,6 @@
       <ClCompile Include="L04_Memory.cpp">
           <Filter>Source Files</Filter>
       </ClCompile>
-      <ClCompile Include="L05_Compiler.cpp">
-          <Filter>Source Files</Filter>
-      </ClCompile>
       <ClCompile Include="E01_Functions.cpp">
           <Filter>Source Files</Filter>
       </ClCompile>
@@ -79,9 +70,6 @@
           <Filter>Source Files</Filter>
       </ClCompile>
       <ClCompile Include="E04_Memory.cpp">
-          <Filter>Source Files</Filter>
-      </ClCompile>
-      <ClCompile Include="E05_Compiler.cpp">
           <Filter>Source Files</Filter>
       </ClCompile>
       <ClCompile Include="BinaryTree.cpp">
