@@ -7,5 +7,6 @@
 #define E02_Strings_h
 
 #include <stdlib.h>
+#include <stdarg.h>
 
 #endif /* E02_Strings_h */

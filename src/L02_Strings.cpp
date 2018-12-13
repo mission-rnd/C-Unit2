@@ -20,6 +20,7 @@
  except the comments in three_things_i_learnt() function.
  */
 
+#include "L02_Strings.h"
 //
 // assumption: handles simple printf format specifiers
 //
@@ -66,13 +67,13 @@ char *generateString(char *format, ...) {
             switch (format[charPosition+1]) {
                 case 'd':
                     // replace %d with 2 digits of given number
-                    number = va_arg(variableArgmentList, int);
+                    number = va_arg(variableArgumentList, int);
                     resultString[charPosition] = (number/100)%10 + '0';
                     resultString[charPosition+1] = number%10 + '0';
                     break;
                 case 'c':
                     // replace %d with 2 times of given character
-                    ch = va_arg(variableArgmentList, char);
+                    ch = va_arg(variableArgumentList, char);
                     resultString[charPosition] = ch;
                     resultString[charPosition+1] = ch;
                     break;

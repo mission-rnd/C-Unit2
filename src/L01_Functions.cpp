@@ -158,6 +158,7 @@ void destroyLinkedListV2(struct listNode *head) {
 //
 // functions calling each other
 //
+int firstYouDoThisPart(int *numbers, int size);
 int youDoTheWork(int *numbers, int size) {
     
     int result = 0;

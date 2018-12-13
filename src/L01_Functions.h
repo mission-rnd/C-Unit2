@@ -6,7 +6,7 @@
 #ifndef L01_Functions_h
 #define L01_Functions_h
 
-#include <stdargs.h>
+#include <stdarg.h>
 #include "BinaryTree.h"
 
 int heightOfTree(struct treeNode *root);
