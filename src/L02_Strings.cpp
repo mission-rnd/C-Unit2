@@ -46,6 +46,7 @@ int stringLength(char *string) {
 //
 // Note: The caller must free the memory returned
 //
+/*
 char *generateString(char *format, ...) {
     
     int length = stringLength(format);
@@ -95,7 +96,7 @@ char *generateString(char *format, ...) {
     
     return resultString;
 }
-
+*/
 static void three_things_i_learnt() {
     /*
      -
