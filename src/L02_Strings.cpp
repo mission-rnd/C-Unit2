@@ -72,16 +72,16 @@ char *stringMysteryCreate(int n) {
     for (int i = n-1; i >=0; i--) {
         str[i] = i + '0';
     }
-    str[n/2] = n/2 + 'A';
-    str[n/3] = '?'
-    str[n] = '\0';
+	str[n / 2] = n / 2 + 'A';
+	str[n / 3] = '?';
+	str[n] = '\0';
     return str;
 }
 
 //
 // What is the advantange of representing string like this?
 //
-CustomString *addMystery(CustomString one, CustomString two) {
+CustomString *addMystery(CustomString *one, CustomString *two) {
     CustomString *sum = (CustomString *)malloc(sizeof(CustomString));
     sum->length = (2 * one->length) + two->length;
     sum->str = (char *)malloc(sum->length);

@@ -24,14 +24,14 @@ char *makeMystery() {
 }
 
 int memoryFirstByte(int n) {
-    char *result = &n;
+    char *result = (char *)&n;
     int m;
     m = result[0];
     return m;
 }
 
 int memoryLastByte(int n) {
-    char *result = &n;
+    char *result = (char *)&n;
     int m;
     m = result[3];
     return m;

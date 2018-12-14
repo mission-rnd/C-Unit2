@@ -17,7 +17,7 @@ void stringMystery(char *name);
 struct customString {
     int length;
     char *str;
-}
+};
 
 typedef customString CustomString;
 
