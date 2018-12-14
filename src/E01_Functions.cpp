@@ -11,17 +11,19 @@
  
  */
 
+#include "E01_Functions.h"
+
 typedef int (*CUSTOMFREE)(int, int);
 
-int sumOfNodes(struct Node *root) {
+int sumOfNodes(TreeNode *root) {
     return -99;
 }
 
-int numberOfNodes(struct Node *root) {
+int numberOfNodes(TreeNode *root) {
     return -99;
 }
 
-int numberOfLeafNodes(struct Node *root) {
+int numberOfLeafNodes(TreeNode *root) {
     return -99;
 }
 
@@ -31,12 +33,12 @@ int numberOfLeafNodes(struct Node *root) {
 //
 // sort records, based on specific parameters.
 //
-void sort(struct people *peopleRecords, int size, IsInOrderPeopleFunc isInOrder) {
+void sort(struct people *peopleRecords[], int size, IsInOrderPeopleFunc isInOrder) {
     // implement simple sorting method
     int positionToReplace;
     for (int i = 0; i < size - 1; i++) {
         positionToReplace = i;
-        for (j = i+1; j < size; j++) {
+        for (int j = i+1; j < size; j++) {
             if(!isInOrder(peopleRecords[positionToReplace], peopleRecords[j])) {
                 positionToReplace = j;
             }
@@ -54,11 +56,12 @@ void sort(struct people *peopleRecords, int size, IsInOrderPeopleFunc isInOrder)
 int isNonAscendingByAge(struct people *record1, struct people *record2) {
     // write your code here
     
+	return -99;
 }
 
 // Note: don't change this function code
 // sort records based on age non-ascending order
-void sortByAgeNonAscending(struct people *peopleRecords, int size) {
+void sortByAgeNonAscending(struct people *peopleRecords[], int size) {
     // create isNonAscendingByAge function and call sort method
     sort(peopleRecords, size, isNonAscendingByAge);
 }
@@ -70,11 +73,12 @@ void sortByAgeNonAscending(struct people *peopleRecords, int size) {
 int isNonDecendingByName(struct people *record1, struct people *record2) {
     // write your code here
     
+	return -99;
 }
 
 // Note: don't change this function code
 // sort records based on name non-decending order
-void sortByNameNonDecending(struct people *peopleRecords, int size) {
+void sortByNameNonDecending(struct people *peopleRecords[], int size) {
     // create isNonDecendingByName function and call sort method
     sort(peopleRecords, size, isNonDecendingByName);
 }
@@ -87,5 +91,5 @@ void sortByNameNonDecending(struct people *peopleRecords, int size) {
 // Returns
 //   number of characters in the output string
 int outputStringLength(char *format, ...) {
-    
+	return -99;
 }

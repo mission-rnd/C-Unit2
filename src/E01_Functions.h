@@ -11,9 +11,9 @@
 //
 // recursive
 //
-int sumOfNodes(struct Node *root);
-int numberOfNodes(struct Node *root);
-int numberOfLeafNodes(struct Node *root);
+int sumOfNodes(TreeNode *root);
+int numberOfNodes(TreeNode *root);
+int numberOfLeafNodes(TreeNode *root);
 
 
 //
@@ -30,13 +30,14 @@ struct people {
 // 0 - NO
 typedef int (*IsInOrderPeopleFunc)(struct people *record1, struct people *record2);
 
-void sort(struct people *peopleRecords, int size, IsInOrderPeopleFunc isInOrder);
+void sort(struct people *peopleRecords[], int size, IsInOrderPeopleFunc isInOrder);
 
 // sort records based on age
-void sortByAge(struct people *peopleRecords, int size);
+void sortByAge(struct people *peopleRecords[], int size);
 
 // sort records based on name
-void sortByName(struct people *peopleRecords, int size);
+void sortByName(struct people *peopleRecords[], int size);
 
+int outputStringLength(char *format, ...);
 
 #endif /* E01_Functions_h */
