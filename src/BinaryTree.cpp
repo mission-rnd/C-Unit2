@@ -3,11 +3,11 @@
 
 #include "BinaryTree.h"
 
-struct treeNode *createTree(int numbers[], int size) {
+TreeNode *createTree(int numbers[], int size) {
     
-	struct treeNode *root;
-	struct treeNode *node;
-    
+    TreeNode *root;
+    TreeNode *node;
+  
     root = createNode(numbers[0]);
     for (int i = 1; i < size; i++) {
         node = createNode(numbers[i]);
@@ -17,10 +17,9 @@ struct treeNode *createTree(int numbers[], int size) {
     return root;
 }
 
-
-struct treeNode *createNode(int value) {
-	struct treeNode *node;
-	node = (struct treeNode *)malloc(sizeof(struct treeNode));
+TreeNode *createNode(int value) {
+    TreeNode *node;
+    node = (TreeNode *)malloc(sizeof(TreeNode));
     node->data = value;
     node->left = NULL;
     node->right = NULL;
@@ -30,7 +29,7 @@ struct treeNode *createNode(int value) {
 //
 // binary search tree
 //
-void insertNodeInTree(struct treeNode *root, struct treeNode *node) {
+void insertNodeInTree(TreeNode *root, TreeNode *node) {
     if (node->data > root->data) {
         // insert in right sub-tree
         
