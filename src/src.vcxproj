@@ -87,15 +87,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
-    <ClInclude Include="L01_Functions.cpp" />
-    <ClInclude Include="L02_Strings.cpp" />
-    <ClInclude Include="L03_Types.cpp" />
-    <ClInclude Include="L04_Memory.cpp" />
-    <ClInclude Include="E01_Functions.cpp" />
-    <ClInclude Include="E02_Strings.cpp" />
-    <ClInclude Include="E03_Types.cpp" />
-    <ClInclude Include="E04_Memory.cpp" />
-    <ClInclude Include="BinaryTree.cpp" />
+    <ClCompile Include="L01_Functions.cpp" />
+    <ClCompile Include="L02_Strings.cpp" />
+    <ClCompile Include="L03_Types.cpp" />
+    <ClCompile Include="L04_Memory.cpp" />
+    <ClCompile Include="E01_Functions.cpp" />
+    <ClCompile Include="E02_Strings.cpp" />
+    <ClCompile Include="E03_Types.cpp" />
+    <ClCompile Include="E04_Memory.cpp" />
+    <ClCompile Include="BinaryTree.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
