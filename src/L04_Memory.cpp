@@ -23,6 +23,26 @@ char *makeMystery() {
     return mystery;
 }
 
+int memoryFirstByte(int n) {
+    char *result = &n;
+    int m;
+    m = result[0];
+    return m;
+}
+
+int memoryLastByte(int n) {
+    char *result = &n;
+    int m;
+    m = result[3];
+    return m;
+}
+
+int ohISee() {
+    char *str = "Oh I See";
+    int m = str[2] + str[4];
+    return m;
+}
+
 static void three_things_i_learnt() {
     /*
      -

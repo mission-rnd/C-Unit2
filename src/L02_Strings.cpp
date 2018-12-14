@@ -43,6 +43,67 @@ int stringLength(char *string) {
     return length;
 }
 
+
+// TODO: give all test cases with strings of length 4 and above.
+void stringMystery(char *name) {
+    int len = stringLength(name);
+    name[len/3] = '-';
+    name[len/2] = '\0';
+    name[len - 1] = '?';
+}
+
+// give string of length 12 to 16
+// but update only the first 4 characters
+// "impart confidence"
+// "jumpToMax"
+// "digDeeper"
+// "ThinkBigAndBigger"
+void stringMysteryAdd(char *str) {
+    int len = stringLength(str);
+    for (int i = 0; i < 5; i++) {
+        str[i] = str[i] + i;
+    }
+}
+
+// give n
+// 2, 4, 8, 9.
+char *stringMysteryCreate(int n) {
+    char *str = (char *)malloc(n+1);
+    for (int i = n-1; i >=0; i--) {
+        str[i] = i + '0';
+    }
+    str[n/2] = n/2 + 'A';
+    str[n/3] = '?'
+    str[n] = '\0';
+    return str;
+}
+
+//
+// What is the advantange of representing string like this?
+//
+CustomString *addMystery(CustomString one, CustomString two) {
+    CustomString *sum = (CustomString *)malloc(sizeof(CustomString));
+    sum->length = (2 * one->length) + two->length;
+    sum->str = (char *)malloc(sum->length);
+    int targetPosition = 0;
+    for (int i = 0; i < one->length; i++) {
+        sum->str[targetPosition] = one->str[i];
+        targetPosition += 1;
+    }
+    
+    for (int i = 0; i < two->length; i++) {
+        sum->str[targetPosition] = two->str[i];
+        targetPosition += 1;
+    }
+    
+    for (int i = 0; i < one->length; i++) {
+        sum->str[targetPosition] = one->str[i];
+        targetPosition += 1;
+    }
+    return sum;
+}
+
+
 //
 // Note: The caller must free the memory returned
 //
