@@ -294,6 +294,43 @@ namespace spec
 			freeTree(root);
 			Assert::AreEqual(1000, count, L"TestNumberofLeafNodesLarge() failed", 1, 2);
 		}
+
+		[TestMethod, Timeout(3000)]
+		void TestisNonAscendingByAge(){
+			struct people *p1 = (struct people *)malloc(sizeof(struct people));
+			struct people *p2 = (struct people *)malloc(sizeof(struct people));
+			p1->age = 10;
+			p2->age = 20;
+			int res = isNonAscendingByAge(p1, p2);
+			Assert::AreEqual(0, res, L"TestisNonAscendingByAge(10,20) failed", 1, 2);
+			p1->age = 60;
+			p2->age = 5;
+			int res = isNonAscendingByAge(p1, p2);
+			Assert::AreEqual(1, res, L"TestisNonAscendingByAge(60,5) failed", 1, 2);
+			p1->age = 40;
+			p2->age = 40;
+			int res = isNonAscendingByAge(p1, p2);
+			Assert::AreEqual(0, res, L"TestisNonAscendingByAge(40,40) failed", 1, 2);
+		}
+
+		[TestMethod, Timeout(3000)]
+		void TestisNonDecendingByName(){
+			struct people *p1 = (struct people *)malloc(sizeof(struct people));
+			struct people *p2 = (struct people *)malloc(sizeof(struct people));
+			strcopy(p1->name, "aaaaaa");
+			strcopy(p2->name, "abaaaa");
+			int res = isNonDecendingByName(p1, p2);
+			Assert::AreEqual(1, res, L"TestisNonDecendingByName(aaaaaa,abaaaa) failed", 1, 2);
+			strcopy(p1->name, "sheldon");
+			strcopy(p2->name, "leonord");
+			int res = isNonDecendingByName(p1, p2);
+			Assert::AreEqual(0, res, L"TestisNonDecendingByName(sheldon,leonord) failed", 1, 2);
+			strcopy(p1->name, "same");
+			strcopy(p2->name, "same");
+			int res = isNonDecendingByName(p1, p2);
+			Assert::AreEqual(0, res, L"TestisNonDecendingByName(40,40) failed", 1, 2);
+		}
+
         // test cases
         // Number of leaf nodes
 //        6
