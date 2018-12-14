@@ -245,6 +245,7 @@ void sortNonAscending(int *numbers, int size) {
 // numbersCount - number of numbers
 // ... - numbers (will be numbersCount)
 //
+/* not supported with clr
 int multiplyAll(int numbersCount, ...) {
     int product = 1;
     
@@ -261,7 +262,7 @@ int multiplyAll(int numbersCount, ...) {
     
     return product;
 }
-
+*/
 static void three_things_i_learnt() {
     /*
      -

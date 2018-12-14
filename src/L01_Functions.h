@@ -24,6 +24,6 @@ int firstYouDoThisPart(int *numbers, int size);
 void sortNonDescending(int *numbers, int size);
 void sortNonAscending(int *numbers, int size);
 
-int multiplyAll(int numbersCount, ...);
+// int multiplyAll(int numbersCount, ...);
 
 #endif /* L01_Functions_h */
