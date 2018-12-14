@@ -159,6 +159,10 @@ int youDoTheWork(int *numbers, int size) {
         result = 100 * result + 10 * numbers[1] + numbers[0];
     }
     
+    if (size == 2) {
+        result = 10 * numbers[1] + numbers[0];
+    }
+    
     if (size == 1) {
         result = numbers[0];
     }
