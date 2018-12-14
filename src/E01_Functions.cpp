@@ -24,12 +24,7 @@ int numberOfNodes(TreeNode *root) {
 }
 
 int numberOfLeafNodes(TreeNode *root) {
-    //return -99;
-	if (root == NULL)
-		return 0;
-	if (root->left == NULL&&root->right == NULL)
-		return 1;
-	return numberOfLeafNodes(root->left) + numberOfLeafNodes(root->right);
+    return -99;
 }
 
 
