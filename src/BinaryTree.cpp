@@ -7,7 +7,7 @@ TreeNode *createTree(int numbers[], int size) {
     
     TreeNode *root;
     TreeNode *node;
-    
+  
     root = createNode(numbers[0]);
     for (int i = 1; i < size; i++) {
         node = createNode(numbers[i]);
@@ -16,7 +16,6 @@ TreeNode *createTree(int numbers[], int size) {
     
     return root;
 }
-
 
 TreeNode *createNode(int value) {
     TreeNode *node;

@@ -16,7 +16,7 @@ struct treeNode {
 typedef struct treeNode TreeNode;
 
 TreeNode *createNode(int value);
-TreeNode *createTree();
+TreeNode *createTree(int numbers[], int size);
 void insertNodeInTree(TreeNode *root, TreeNode *node);
 
 #endif /* BinaryTree_h */
