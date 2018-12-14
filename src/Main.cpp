@@ -1,8 +1,8 @@
 /*
 Note:
-Goal is to understand
- - To become comfortable with
+Goal is to understand and become comfortable with
  - functions with variable number of arguments
+ - passing functions as arguments to other functions
  - type casting & type definition
  - strings & memory
 

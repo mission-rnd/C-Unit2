@@ -25,12 +25,67 @@ int numberOfLeafNodes(struct Node *root) {
     return -99;
 }
 
-// TODO:
-// evaluate expression trees
-// Remove leaf node
-// Remove last n nodes from linked list
-// Destroy a tree, linked list.
 
+//
+// Note: don't change this function code
 //
 // sort records, based on specific parameters.
 //
+void sort(struct people *peopleRecords, int size, IsInOrderPeopleFunc isInOrder) {
+    // implement simple sorting method
+    int positionToReplace;
+    for (int i = 0; i < size - 1; i++) {
+        positionToReplace = i;
+        for (j = i+1; j < size; j++) {
+            if(!isInOrder(peopleRecords[positionToReplace], peopleRecords[j])) {
+                positionToReplace = j;
+            }
+        }
+        // swap the records in position: i & positionToReplace
+        struct people *temp = peopleRecords[i];
+        peopleRecords[i] = peopleRecords[positionToReplace];
+        peopleRecords[positionToReplace] = temp;
+    }
+}
+
+//
+// write this method to make the sorting by age non-ascending order work
+//
+int isNonAscendingByAge(struct people *record1, struct people *record2) {
+    // write your code here
+    
+}
+
+// Note: don't change this function code
+// sort records based on age non-ascending order
+void sortByAgeNonAscending(struct people *peopleRecords, int size) {
+    // create isNonAscendingByAge function and call sort method
+    sort(peopleRecords, size, isNonAscendingByAge);
+}
+
+
+//
+// write this method to make the sorting by name non-decending order work
+//
+int isNonDecendingByName(struct people *record1, struct people *record2) {
+    // write your code here
+    
+}
+
+// Note: don't change this function code
+// sort records based on name non-decending order
+void sortByNameNonDecending(struct people *peopleRecords, int size) {
+    // create isNonDecendingByName function and call sort method
+    sort(peopleRecords, size, isNonDecendingByName);
+}
+
+//
+// The 'format' will contain only %c and %d, format specifiers
+// rest are just characters
+//
+
+// Returns
+//   number of characters in the output string
+int outputStringLength(char *format, ...) {
+    
+}

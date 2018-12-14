@@ -9,4 +9,7 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
+int numberOfFormatSpecifiers(char *format);
+char *generateString(char *format, ...);
+
 #endif /* L02_Strings_h */

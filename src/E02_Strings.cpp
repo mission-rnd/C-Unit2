@@ -116,18 +116,11 @@ void removeSpaces(char *statement) {
 }
 
 
+// Return
+// 1 - if string t is suffix of s.
+// 0 - otherwise
 
-// TODO:
-// Write the function strend(s,t) , which returns 1 if the string t occurs at the end of the string s , and zero otherwise.
-
-
-//
-// Write a program that prints the distinct words in its input sorted into decreasing order of frequency of occurrence. Precede each word by its count.
-
-//
-// Write a cross-referencer that prints a list of all words in a document, and, for each word, a list of the line numbers on which it occurs. Remove noise words like "the," "and," and so on.
-// with files
-// support methods: open file, readline, writeline, close file.
-//
-
-
+// returns 1 if the string t occurs at the end of the string s, and zero otherwise
+int strend(char *s, char *t) {
+    
+}

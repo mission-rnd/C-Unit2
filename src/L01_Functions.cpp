@@ -7,7 +7,7 @@
  Note:
 
  In this lesson we will understand.
- - functions calling itself
+ - function calling itself
  - functions calling each other
  - passing function as argument
  - functions with variable number of arguments
@@ -102,15 +102,6 @@ int heightOfTree(struct treeNode *root) {
 // before releasing the current node.
 //
 
-// TODO:
-// use it give a excercise
-// typedef void (*FREE_METHOD)(void *);
-
-// TODO: move to header file
-struct listNode {
-    int data;
-    struct listNode *next;
-};
 
 void destroyLinkedListV1(struct listNode *head) {
     //
@@ -158,7 +149,7 @@ void destroyLinkedListV2(struct listNode *head) {
 //
 // functions calling each other
 //
-int firstYouDoThisPart(int *numbers, int size);
+
 int youDoTheWork(int *numbers, int size) {
     
     int result = 0;
@@ -254,7 +245,7 @@ void sortNonAscending(int *numbers, int size) {
 // numbersCount - number of numbers
 // ... - numbers (will be numbersCount)
 //
-int multiply(int numbersCount, ...) {
+int multiplyAll(int numbersCount, ...) {
     int product = 1;
     
     va_list variableArgumentList;

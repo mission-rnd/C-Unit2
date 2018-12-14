@@ -8,4 +8,6 @@
 
 #include <stdlib.h>
 
+char *makeMystery();
+
 #endif /* L04_Memory_h */
