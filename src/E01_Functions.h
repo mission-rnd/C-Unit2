@@ -38,6 +38,6 @@ void sortByAge(struct people *peopleRecords[], int size);
 // sort records based on name
 void sortByName(struct people *peopleRecords[], int size);
 
-int outputStringLength(char *format, ...);
+int outputStringLength(char *format, char ch, int n);
 
 #endif /* E01_Functions_h */

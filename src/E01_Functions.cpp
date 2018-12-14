@@ -90,6 +90,6 @@ void sortByNameNonDecending(struct people *peopleRecords[], int size) {
 
 // Returns
 //   number of characters in the output string
-int outputStringLength(char *format, ...) {
+int outputStringLength(char *format, char ch, int n) {
 	return -99;
 }
