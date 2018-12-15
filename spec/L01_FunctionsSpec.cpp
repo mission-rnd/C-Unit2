@@ -165,6 +165,7 @@ namespace spec
 			Assert::AreEqual(___, res, L"youDoTheWork() failed", 1, 2);
 		}
 
+		[TestMethod, Timeout(3000)]
 		void TestsortNonDescending(){
 			int numbers1[] = {1,3,1,4,2,45,3};
 			int ans1[] =  ______ ;
@@ -183,6 +184,7 @@ namespace spec
 
 		}
 
+		[TestMethod, Timeout(3000)]
 		void TestsortNonAscending(){
 			int numbers1[] = { 1, 5, 3, 2, 5, 3, 3 };
 			int ans1[] = ______;
