@@ -41,6 +41,7 @@ namespace spec
 				testContextInstance = value;
 			}
 		};
+
 		[TestMethod, Timeout(3000)]
 		void TestheightOfTreeEmptyTree(){
 			int height = heightOfTree(NULL);
