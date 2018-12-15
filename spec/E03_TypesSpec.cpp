@@ -45,11 +45,9 @@ namespace spec
         
         // test cases
 
-		int compare(struct base256Number* num1, struct base256Number* num2){
-			if ((num1 == NULL) && (num2 == NULL))	return 1;
-			else if ((num1 == NULL) || (num2 == NULL))	return 0;
+		int compare(Base256Number *num1, Base256Number *num2){
 			if (num1->numberOfDigits != num2->numberOfDigits)	return 0;
-			for (int i = 0; i < num1->numberOfDigits; i++){
+			for (unsigned int i = 0; i < num1->numberOfDigits; i++){
 				if (num1->digits[i] != num2->digits[i])	return 0;
 			}
 			return 1;
@@ -335,7 +333,6 @@ namespace spec
 			int expectedOutput = 1;
 			Assert::AreEqual(actualOutput, expectedOutput, L"TestSumOfNodesSmall() failed", 1, 2);
 		}
-
     };
 }
 
