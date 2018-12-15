@@ -70,15 +70,7 @@ Base256Number *multiplyInBase256(Base256Number *pNumber1, Base256Number *pNumber
 //  0 - no
 //
 int isGreater(Base256Number *pNumber1, Base256Number *pNumber2) {
-	if (pNumber1->numberOfDigits > pNumber2->numberOfDigits)	return 1;
-	if (pNumber2->numberOfDigits > pNumber1->numberOfDigits)	return 0;
-	int i = pNumber1->numberOfDigits - 1;
-	while (i > 0){
-		if (pNumber1->digits[i] > pNumber2->digits[i])	return 1;
-		if (pNumber1->digits[i] < pNumber2->digits[i])	return 0;
-		i--;
-	}
-    return 0;
+	return -1;
 }
 
 void incrementInBase256(Base256Number *pNumber) {
