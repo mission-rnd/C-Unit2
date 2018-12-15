@@ -11,7 +11,47 @@
 //
 // addInBase256 => addBigNumbers
 Base256Number *addInBase256(Base256Number *pNumber1, Base256Number *pNumber2) {
-    return NULL;
+	if (pNumber1 == NULL)return pNumber2;
+	if (pNumber2 == NULL)return pNumber1;
+	struct base256Number* result = (struct base256Number*)malloc(sizeof(base256Number));
+	if (pNumber1->numberOfDigits > pNumber2->numberOfDigits){
+		result->numberOfDigits = pNumber1->numberOfDigits;
+	}
+	else{
+		result->numberOfDigits = pNumber2->numberOfDigits;
+	}
+	UInt8 *digits = (UInt8*)malloc((result->numberOfDigits)*sizeof(UInt8));
+	UInt8 carry = 0;
+	int i = 0, current_sum = 0;
+	while ((i < pNumber1->numberOfDigits) && (i < pNumber2->numberOfDigits)){
+		current_sum = pNumber1->digits[i] + pNumber2->digits[i] + carry;
+		digits[i] = current_sum % 255;
+		carry = current_sum / 255;
+		i++;
+	}
+	if (pNumber1->numberOfDigits > pNumber2->numberOfDigits){
+		while (i < pNumber1->numberOfDigits){
+			current_sum = pNumber1->digits[i] + carry;
+			digits[i] = current_sum % 255;
+			carry = current_sum / 255;
+			i++;
+		}
+	}
+	else if (pNumber2->numberOfDigits > pNumber1->numberOfDigits){
+		while (i < pNumber2->numberOfDigits){
+			current_sum = pNumber2->digits[i] + carry;
+			digits[i] = current_sum % 255;
+			carry = current_sum / 255;
+			i++;
+		}
+	}
+	if (carry > 0){
+		result->numberOfDigits++;
+		digits = (UInt8*)realloc(digits, sizeof(UInt8) * (result->numberOfDigits));
+		digits[i] = carry;
+	}
+	result->digits = digits;
+    return result;
 }
 
 Base256Number *multiplyInBase256(Base256Number *pNumber1, Base256Number *pNumber2) {
