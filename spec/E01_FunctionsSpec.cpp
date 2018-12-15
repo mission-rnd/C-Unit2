@@ -356,17 +356,18 @@ namespace spec
             records[2] = newPeopleWith("gopal", 10, 530005);
             records[3] = newPeopleWith("ramu", 5, 530002);
             
-            sortByAge(records, 4);
-            Assert::AreEqual(5, records[0]->age, L"TestsortByAge failed", 1, 2);
-            Assert::AreEqual(5, records[0]->age, L"TestsortByAge failed", 1, 2);
-            Assert::AreEqual(10, records[1]->age, L"TestsortByAge failed", 1, 2);
-            Assert::AreEqual(20, records[2]->age, L"TestsortByAge failed", 1, 2);
+            sortByAgeNonAscending(records, 4);
+            Assert::AreEqual(20, records[0]->age, L"TestsortByAgeNonAscending failed", 1, 2);
+            Assert::AreEqual(10, records[1]->age, L"TestsortByAgeNonAscending failed", 1, 2);
+            Assert::AreEqual(5, records[2]->age, L"TestsortByAgeNonAscending failed", 1, 2);
+            Assert::AreEqual(5, records[3]->age, L"TestsortByAgeNonAscending failed", 1, 2);
             
-            sortByName(records, 4);
-            Assert::AreEqual(true, areEqualStrings("gopal", records[0]->name), L"TestsortByName failed", 1, 2);
-            Assert::AreEqual(true, areEqualStrings("raju", records[1]->name), L"TestsortByName failed", 1, 2);
-            Assert::AreEqual(true, areEqualStrings("ramu", records[2]->name), L"TestsortByName failed", 1, 2);
-            Assert::AreEqual(true, areEqualStrings("ramu", records[3]->name), L"TestsortByName failed", 1, 2);
+            
+            sortByNameNonDecending(records, 4);
+            Assert::AreEqual(true, areEqualStrings("gopal", records[0]->name), L"TestsortByNameNonDecending failed", 1, 2);
+            Assert::AreEqual(true, areEqualStrings("raju", records[1]->name), L"TestsortByNameNonDecending failed", 1, 2);
+            Assert::AreEqual(true, areEqualStrings("ramu", records[2]->name), L"TestsortByNameNonDecending failed", 1, 2);
+            Assert::AreEqual(true, areEqualStrings("ramu", records[3]->name), L"TestsortByNameNonDecending failed", 1, 2);
             
             for (int i = 0; i < 4; i++) {
                 free(records[i]);
