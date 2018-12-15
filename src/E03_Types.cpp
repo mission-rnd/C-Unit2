@@ -90,7 +90,7 @@ Base256Number *addInBase256(Base256Number *pNumber1, Base256Number *pNumber2) {
 		}
 	}
 	if (carry > 0){
-		result->numberOfDigits++;
+		result->numberOfDigits += 1;
 		digits = (UInt8*)realloc(digits, sizeof(UInt8) * (result->numberOfDigits));
 		digits[i] = carry;
 	}
@@ -124,6 +124,14 @@ int isGreater(Base256Number *pNumber1, Base256Number *pNumber2) {
 	return 0;
 }
 
+int areEqual(Base256Number *pNumber1, Base256Number *pNumber2) {
+	if ((pNumber1->numberOfDigits) != (pNumber2->numberOfDigits))	return 0;
+	for (int i = 0; i < (pNumber1->numberOfDigits); i++){
+		if ((pNumber1->digits[i]) != (pNumber2->digits[i]))	return 0;
+	}
+	return 1;
+}
+
 void incrementInBase256(Base256Number *pNumber) {
 	int len = pNumber->numberOfDigits;
 	if (pNumber->digits[len-1] == 255)
@@ -150,12 +158,14 @@ X:
 // make the test cases pass, by implementing above functions
 //
 Base256Number *integerDivisionInBase256(Base256Number *pNumber1, Base256Number *pNumber2) {
+	if (isGreater(pNumber2, pNumber1))	return 0;
     Base256Number *pQuotient = newNumberInBase256(0);
 	Base256Number *pTempNumber = newNumberInBase256(0);
     while (isGreater(pNumber1, pTempNumber)) {
         pTempNumber = addInBase256(pTempNumber, pNumber2);
         incrementInBase256(pQuotient);
     }
+	if (areEqual(pNumber1, pTempNumber))	incrementInBase256(pQuotient);
     return pQuotient;
 }
 
