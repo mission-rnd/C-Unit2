@@ -138,12 +138,6 @@ namespace spec
             int height = heightOfTree(NULL);
             Assert::AreEqual(___, height);
         }
-        
-		[TestMethod, Timeout(3000)]
-		void TestheightOfTreeEmptyTree(){
-			int height = heightOfTree(NULL);
-			Assert::AreEqual(___, height);
-		}
 
 		[TestMethod, Timeout(3000)]
 		void TestheightOfTreeUnaryTree(){

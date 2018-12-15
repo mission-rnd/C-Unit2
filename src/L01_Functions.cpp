@@ -78,7 +78,7 @@ int sumOfDigits(int number) {
     // Reducing the problem length by 1
     // and calling for the remaining number.
     int unitsPlaceDigit = number%10;
-    int sumOfRemainingDigits = sumOfDigits(n/10);
+    int sumOfRemainingDigits = sumOfDigits(number/10);
     
     // 3. combining the sub-problems solutions
     int sum = unitsPlaceDigit + sumOfRemainingDigits;
@@ -107,7 +107,7 @@ int sumOfDigitsMystery(int number) {
     // Reducing the problem length by 1
     // and calling for the remaining number.
     int unitsPlaceDigit = number%10;
-    int sumOfRemainingDigits = sumOfDigitsMystery(n/10);
+    int sumOfRemainingDigits = sumOfDigitsMystery(number/10);
     
     // 3. combining the sub-problems solutions
     int sum = unitsPlaceDigit + sumOfRemainingDigits;
