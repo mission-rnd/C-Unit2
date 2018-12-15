@@ -82,5 +82,11 @@ Base256Number *integerDivisionInBase256(Base256Number *pNumber1, Base256Number *
 // check if the number is palindrome in base 256
 //
 int isPalindrome(Base256Number *number) {
-    return -99;
+	if (number->numberOfDigits == 1)	return 1;
+	int start = 0, end = number->numberOfDigits - 1, mid = number->numberOfDigits / 2;
+	while (mid > 0){
+		if (number->digits[start] != number->digits[end])	return 0;
+		start++; end--; mid--;
+	}
+    return 1;
 }
