@@ -56,6 +56,11 @@ Base256Number *addInBase256(Base256Number *pNumber1, Base256Number *pNumber2) {
 }
 
 Base256Number *multiplyInBase256(Base256Number *pNumber1, Base256Number *pNumber2) {
+	if ((pNumber1 == NULL)||(pNumber2==NULL))return NULL;
+	if ((pNumber1->numberOfDigits == 0) || (pNumber2->numberOfDigits == 0))	return NULL;
+	struct base256Number* result = (struct base256Number*)malloc(sizeof(base256Number));
+	result->numberOfDigits = pNumber1->numberOfDigits + pNumber2->numberOfDigits;
+	UInt8 *digits = (UInt8*)malloc((result->numberOfDigits)*sizeof(UInt8));
     return NULL;
 }
 
@@ -65,7 +70,15 @@ Base256Number *multiplyInBase256(Base256Number *pNumber1, Base256Number *pNumber
 //  0 - no
 //
 int isGreater(Base256Number *pNumber1, Base256Number *pNumber2) {
-    return -99;
+	if (pNumber1->numberOfDigits > pNumber2->numberOfDigits)	return 1;
+	if (pNumber2->numberOfDigits > pNumber1->numberOfDigits)	return 0;
+	int i = pNumber1->numberOfDigits - 1;
+	while (i > 0){
+		if (pNumber1->digits[i] > pNumber2->digits[i])	return 1;
+		if (pNumber1->digits[i] < pNumber2->digits[i])	return 0;
+		i--;
+	}
+    return 0;
 }
 
 void incrementInBase256(Base256Number *pNumber) {
