@@ -57,72 +57,6 @@ namespace spec
 
 		[TestMethod, Timeout(3000)]
 		void TestaddInBase256_00(){
-			struct base256Number* actualOutput = addInBase256(NULL, NULL);
-			struct base256Number* expectedOutput = NULL;
-			Assert::AreEqual(1, compare(actualOutput, expectedOutput), L"TestSumOfNodesSmall() failed", 1, 2);
-		}
-
-		[TestMethod, Timeout(3000)]
-		void TestaddInBase256_01(){
-			unsigned int numberOfDigits1 = 1;
-			UInt8 digits1[] = { 0 };
-			struct base256Number pNumber1 = { numberOfDigits1, digits1 };
-			struct base256Number* actualOutput = addInBase256(&pNumber1, NULL);
-			struct base256Number expectedOutput = pNumber1;
-			Assert::AreEqual(1, compare(actualOutput, &expectedOutput), L"TestSumOfNodesSmall() failed", 1, 2);
-		}
-
-		[TestMethod, Timeout(3000)]
-		void TestaddInBase256_02(){
-			unsigned int numberOfDigits1 = 1;
-			UInt8 digits1[] = { 0 };
-			struct base256Number pNumber1 = { numberOfDigits1, digits1 };
-			struct base256Number* actualOutput = addInBase256(NULL, &pNumber1);
-			struct base256Number expectedOutput = pNumber1;
-			Assert::AreEqual(1, compare(actualOutput, &expectedOutput), L"TestSumOfNodesSmall() failed", 1, 2);
-		}
-
-		[TestMethod, Timeout(3000)]
-		void TestaddInBase256_03(){
-			unsigned int numberOfDigits1 = 0;
-			UInt8 digits1[] = { 0 };
-			unsigned int numberOfDigits2 = 0;
-			UInt8 digits2[] = { 0 };
-			struct base256Number pNumber1 = { numberOfDigits1, digits1 };
-			struct base256Number pNumber2 = { numberOfDigits2, digits2 };
-			struct base256Number* actualOutput = addInBase256(&pNumber1, &pNumber2);
-			struct base256Number* expectedOutput = NULL;
-			Assert::AreEqual(1, compare(actualOutput, expectedOutput), L"TestSumOfNodesSmall() failed", 1, 2);
-		}
-
-		[TestMethod, Timeout(3000)]
-		void TestaddInBase256_04(){
-			unsigned int numberOfDigits1 = 0;
-			UInt8 digits1[] = { 0 };
-			unsigned int numberOfDigits2 = 1;
-			UInt8 digits2[] = { 0 };
-			struct base256Number pNumber1 = { numberOfDigits1, digits1 };
-			struct base256Number pNumber2 = { numberOfDigits2, digits2 };
-			struct base256Number* actualOutput = addInBase256(&pNumber1, &pNumber2);
-			struct base256Number* expectedOutput = NULL;
-			Assert::AreEqual(1, compare(actualOutput, expectedOutput), L"TestSumOfNodesSmall() failed", 1, 2);
-		}
-
-		[TestMethod, Timeout(3000)]
-		void TestaddInBase256_05(){
-			unsigned int numberOfDigits1 = 1;
-			UInt8 digits1[] = { 0 };
-			unsigned int numberOfDigits2 = 0;
-			UInt8 digits2[] = { 0 };
-			struct base256Number pNumber1 = { numberOfDigits1, digits1 };
-			struct base256Number pNumber2 = { numberOfDigits2, digits2 };
-			struct base256Number* actualOutput = addInBase256(&pNumber1, &pNumber2);
-			struct base256Number* expectedOutput = NULL;
-			Assert::AreEqual(1, compare(actualOutput, expectedOutput), L"TestSumOfNodesSmall() failed", 1, 2);
-		}
-
-		[TestMethod, Timeout(3000)]
-		void TestaddInBase256_06(){
 			unsigned int numberOfDigits1 = 1;
 			UInt8 digits1[] = { 0 };
 			unsigned int numberOfDigits2 = 1;
@@ -137,7 +71,7 @@ namespace spec
 		}
 
 		[TestMethod, Timeout(3000)]
-		void TestaddInBase256_07(){
+		void TestaddInBase256_01(){
 			unsigned int numberOfDigits1 = 2;
 			UInt8 digits1[] = { 0, 12 };
 			unsigned int numberOfDigits2 = 2;
@@ -152,7 +86,7 @@ namespace spec
 		}
 
 		[TestMethod, Timeout(3000)]
-		void TestaddInBase256_08(){
+		void TestaddInBase256_02(){
 			unsigned int numberOfDigits1 = 3;
 			UInt8 digits1[] = { 0, 12, 45};
 			unsigned int numberOfDigits2 = 2;
@@ -167,7 +101,7 @@ namespace spec
 		}
 
 		[TestMethod, Timeout(3000)]
-		void TestaddInBase256_09(){
+		void TestaddInBase256_03(){
 			unsigned int numberOfDigits1 = 2;
 			UInt8 digits1[] = { 0, 255 };
 			unsigned int numberOfDigits2 = 2;
@@ -182,7 +116,7 @@ namespace spec
 		}
 
 		[TestMethod, Timeout(3000)]
-		void TestaddInBase256_10(){
+		void TestaddInBase256_04(){
 			unsigned int numberOfDigits1 = 4;
 			UInt8 digits1[] = { 17, 29, 61, 74 };
 			unsigned int numberOfDigits2 = 2;
@@ -197,7 +131,7 @@ namespace spec
 		}
 
 		[TestMethod, Timeout(3000)]
-		void TestaddInBase256_11(){
+		void TestaddInBase256_05(){
 			unsigned int numberOfDigits1 = 5;
 			UInt8 digits1[] = { 61, 74, 29, 89, 52 };
 			unsigned int numberOfDigits2 = 7;
@@ -212,7 +146,7 @@ namespace spec
 		}
 
 		[TestMethod, Timeout(3000)]
-		void TestaddInBase256_12(){
+		void TestaddInBase256_06(){
 			unsigned int numberOfDigits1 = 100;
 			UInt8 digits1[] = { 118, 37, 190, 252, 36, 55, 107, 134, 227, 235, 230, 82, 94, 34, 230, 238, 20, 160, 142, 198, 182, 94, 53, 160, 64, 96, 15, 40, 177, 230, 3, 52, 30, 238, 36, 159, 172, 227, 192, 182, 235, 183, 16, 161, 242, 24, 254, 217, 150, 65, 242, 6, 251, 92, 74, 35, 115, 35, 10, 37, 188, 251, 253, 147, 74, 100, 206, 64, 108, 43, 226, 140, 209, 194, 57, 27, 254, 78, 167, 12, 172, 10, 109, 110, 16, 123, 218, 13, 188, 211, 172, 52, 183, 46, 159, 228, 169, 120, 230, 107 };
 			unsigned int numberOfDigits2 = 172;
@@ -227,7 +161,7 @@ namespace spec
 		}
 
 		[TestMethod, Timeout(3000)]
-		void TestaddInBase256_13(){
+		void TestaddInBase256_07(){
 			unsigned int numberOfDigits1 = 100;
 			UInt8 digits1[] = { 118, 37, 190, 252, 36, 55, 107, 134, 227, 235, 230, 82, 94, 34, 230, 238, 20, 160, 142, 198, 182, 94, 53, 160, 64, 96, 15, 40, 177, 230, 3, 52, 30, 238, 36, 159, 172, 227, 192, 182, 235, 183, 16, 161, 242, 24, 254, 217, 150, 65, 242, 6, 251, 92, 74, 35, 115, 35, 10, 37, 188, 251, 253, 147, 74, 100, 206, 64, 108, 43, 226, 140, 209, 194, 57, 27, 254, 78, 167, 12, 172, 10, 109, 110, 16, 123, 218, 13, 188, 211, 172, 52, 183, 46, 159, 228, 169, 120, 230, 107 };
 			unsigned int numberOfDigits2 = 172;
@@ -242,7 +176,7 @@ namespace spec
 		}
 
 		[TestMethod, Timeout(3000)]
-		void TestaddInBase256_14(){
+		void TestaddInBase256_08(){
 			unsigned int numberOfDigits1 = 149;
 			UInt8 digits1[] = { 131, 215, 200, 180, 5, 89, 222, 39, 25, 223, 170, 75, 171, 155, 156, 131, 207, 21, 158, 151, 191, 89, 139, 218, 75, 245, 25, 101, 235, 102, 62, 38, 80, 140, 121, 174, 41, 104, 134, 97, 245, 86, 164, 64, 168, 146, 27, 63, 255, 39, 230, 87, 24, 204, 191, 52, 255, 42, 246, 162, 110, 249, 24, 64, 143, 54, 181, 190, 224, 222, 70, 33, 116, 112, 10, 182, 54, 13, 195, 250, 148, 239, 55, 206, 233, 144, 138, 229, 216, 192, 72, 65, 36, 7, 222, 217, 150, 89, 55, 182, 202, 81, 157, 53, 211, 71, 249, 161, 104, 241, 250, 8, 127, 19, 248, 139, 232, 162, 252, 32, 82, 31, 224, 99, 123, 245, 219, 50, 93, 222, 127, 88, 124, 46, 124, 66, 33, 244, 38, 182, 218, 135, 140, 129, 127, 52, 69, 95, 53 };
 			unsigned int numberOfDigits2 = 258;
@@ -257,7 +191,7 @@ namespace spec
 		}
 
 		[TestMethod, Timeout(3000)]
-		void TestaddInBase256_15(){
+		void TestaddInBase256_09(){
 			unsigned int numberOfDigits1 = 149;
 			UInt8 digits1[] = { 131, 215, 200, 180, 5, 89, 222, 39, 25, 223, 170, 75, 171, 155, 156, 131, 207, 21, 158, 151, 191, 89, 139, 218, 75, 245, 25, 101, 235, 102, 62, 38, 80, 140, 121, 174, 41, 104, 134, 97, 245, 86, 164, 64, 168, 146, 27, 63, 255, 39, 230, 87, 24, 204, 191, 52, 255, 42, 246, 162, 110, 249, 24, 64, 143, 54, 181, 190, 224, 222, 70, 33, 116, 112, 10, 182, 54, 13, 195, 250, 148, 239, 55, 206, 233, 144, 138, 229, 216, 192, 72, 65, 36, 7, 222, 217, 150, 89, 55, 182, 202, 81, 157, 53, 211, 71, 249, 161, 104, 241, 250, 8, 127, 19, 248, 139, 232, 162, 252, 32, 82, 31, 224, 99, 123, 245, 219, 50, 93, 222, 127, 88, 124, 46, 124, 66, 33, 244, 38, 182, 218, 135, 140, 129, 127, 52, 69, 95, 53 };
 			unsigned int numberOfDigits2 = 258;
@@ -269,6 +203,137 @@ namespace spec
 			struct base256Number* actualOutput = addInBase256(&pNumber2, &pNumber1);
 			struct base256Number expectedOutput = { numberOfDigitsSum, digitsSum };
 			Assert::AreEqual(1, compare(actualOutput, &expectedOutput), L"TestSumOfNodesSmall() failed", 1, 2);
+		}
+
+
+		[TestMethod, Timeout(3000)]
+		void TestisGreater_00(){
+			unsigned int numberOfDigits1 = 1;
+			UInt8 digits1[] = { 0 };
+			unsigned int numberOfDigits2 = 1;
+			UInt8 digits2[] = { 0 };
+			struct base256Number pNumber1 = { numberOfDigits1, digits1 };
+			struct base256Number pNumber2 = { numberOfDigits2, digits2 };
+			int actualOutput = isGreater(&pNumber1, &pNumber2);
+			int expectedOutput = 0;
+			Assert::AreEqual(actualOutput, expectedOutput, L"TestSumOfNodesSmall() failed", 1, 2);
+		}
+
+		[TestMethod, Timeout(3000)]
+		void TestisGreater_01(){
+			unsigned int numberOfDigits1 = 2;
+			UInt8 digits1[] = { 0, 12 };
+			unsigned int numberOfDigits2 = 2;
+			UInt8 digits2[] = { 0, 25 };
+			struct base256Number pNumber1 = { numberOfDigits1, digits1 };
+			struct base256Number pNumber2 = { numberOfDigits2, digits2 };
+			int actualOutput = isGreater(&pNumber1, &pNumber2);
+			int expectedOutput = 0;
+			Assert::AreEqual(actualOutput, expectedOutput, L"TestSumOfNodesSmall() failed", 1, 2);
+		}
+
+		[TestMethod, Timeout(3000)]
+		void TestisGreater_02(){
+			unsigned int numberOfDigits1 = 3;
+			UInt8 digits1[] = { 0, 12, 45 };
+			unsigned int numberOfDigits2 = 2;
+			UInt8 digits2[] = { 0, 25 };
+			struct base256Number pNumber1 = { numberOfDigits1, digits1 };
+			struct base256Number pNumber2 = { numberOfDigits2, digits2 };
+			int actualOutput = isGreater(&pNumber1, &pNumber2);
+			int expectedOutput = 1;
+			Assert::AreEqual(actualOutput, expectedOutput, L"TestSumOfNodesSmall() failed", 1, 2);
+		}
+
+		[TestMethod, Timeout(3000)]
+		void TestisGreater_03(){
+			unsigned int numberOfDigits1 = 2;
+			UInt8 digits1[] = { 0, 255 };
+			unsigned int numberOfDigits2 = 2;
+			UInt8 digits2[] = { 0, 255 };
+			struct base256Number pNumber1 = { numberOfDigits1, digits1 };
+			struct base256Number pNumber2 = { numberOfDigits2, digits2 };
+			int actualOutput = isGreater(&pNumber1, &pNumber2);
+			int expectedOutput = 0;
+			Assert::AreEqual(actualOutput, expectedOutput, L"TestSumOfNodesSmall() failed", 1, 2);
+		}
+
+		[TestMethod, Timeout(3000)]
+		void TestisGreater_04(){
+			unsigned int numberOfDigits1 = 4;
+			UInt8 digits1[] = { 17, 29, 61, 74 };
+			unsigned int numberOfDigits2 = 2;
+			UInt8 digits2[] = { 66, 6 };
+			struct base256Number pNumber1 = { numberOfDigits1, digits1 };
+			struct base256Number pNumber2 = { numberOfDigits2, digits2 };
+			int actualOutput = isGreater(&pNumber1, &pNumber2);
+			int expectedOutput = 1;
+			Assert::AreEqual(actualOutput, expectedOutput, L"TestSumOfNodesSmall() failed", 1, 2);
+		}
+
+		[TestMethod, Timeout(3000)]
+		void TestisGreater_05(){
+			unsigned int numberOfDigits1 = 5;
+			UInt8 digits1[] = { 61, 74, 29, 89, 52 };
+			unsigned int numberOfDigits2 = 7;
+			UInt8 digits2[] = { 78, 152, 75, 45, 125, 137, 247 };
+			struct base256Number pNumber1 = { numberOfDigits1, digits1 };
+			struct base256Number pNumber2 = { numberOfDigits2, digits2 };
+			int actualOutput = isGreater(&pNumber1, &pNumber2);
+			int expectedOutput = 0;
+			Assert::AreEqual(actualOutput, expectedOutput, L"TestSumOfNodesSmall() failed", 1, 2);
+		}
+
+		[TestMethod, Timeout(3000)]
+		void TestisGreater_06(){
+			unsigned int numberOfDigits1 = 100;
+			UInt8 digits1[] = { 118, 37, 190, 252, 36, 55, 107, 134, 227, 235, 230, 82, 94, 34, 230, 238, 20, 160, 142, 198, 182, 94, 53, 160, 64, 96, 15, 40, 177, 230, 3, 52, 30, 238, 36, 159, 172, 227, 192, 182, 235, 183, 16, 161, 242, 24, 254, 217, 150, 65, 242, 6, 251, 92, 74, 35, 115, 35, 10, 37, 188, 251, 253, 147, 74, 100, 206, 64, 108, 43, 226, 140, 209, 194, 57, 27, 254, 78, 167, 12, 172, 10, 109, 110, 16, 123, 218, 13, 188, 211, 172, 52, 183, 46, 159, 228, 169, 120, 230, 107 };
+			unsigned int numberOfDigits2 = 172;
+			UInt8 digits2[] = { 221, 16, 51, 237, 175, 231, 128, 154, 22, 49, 128, 117, 239, 126, 230, 35, 168, 140, 20, 25, 150, 120, 196, 23, 24, 171, 248, 170, 188, 22, 206, 136, 145, 96, 29, 213, 158, 201, 78, 124, 64, 117, 219, 144, 115, 92, 254, 155, 124, 216, 20, 58, 44, 231, 216, 179, 213, 198, 38, 168, 169, 105, 50, 24, 63, 200, 83, 30, 4, 15, 59, 66, 151, 232, 139, 1, 82, 226, 14, 10, 6, 5, 158, 119, 89, 177, 211, 109, 53, 41, 2, 114, 185, 55, 218, 44, 125, 2, 165, 233, 232, 255, 134, 221, 22, 135, 91, 120, 161, 19, 145, 70, 179, 90, 128, 79, 184, 233, 210, 42, 119, 83, 242, 37, 197, 56, 126, 58, 132, 1, 78, 194, 24, 95, 244, 12, 124, 145, 3, 174, 48, 142, 82, 5, 16, 131, 17, 43, 159, 181, 171, 165, 115, 174, 19, 58, 20, 16, 0, 71, 224, 29, 233, 40, 86, 1, 219, 232, 157, 14, 244, 128 };
+			struct base256Number pNumber1 = { numberOfDigits1, digits1 };
+			struct base256Number pNumber2 = { numberOfDigits2, digits2 };
+			int actualOutput = isGreater(&pNumber1, &pNumber2);
+			int expectedOutput = 0;
+			Assert::AreEqual(actualOutput, expectedOutput, L"TestSumOfNodesSmall() failed", 1, 2);
+		}
+
+		[TestMethod, Timeout(3000)]
+		void TestisGreater_07(){
+			unsigned int numberOfDigits1 = 100;
+			UInt8 digits1[] = { 118, 37, 190, 252, 36, 55, 107, 134, 227, 235, 230, 82, 94, 34, 230, 238, 20, 160, 142, 198, 182, 94, 53, 160, 64, 96, 15, 40, 177, 230, 3, 52, 30, 238, 36, 159, 172, 227, 192, 182, 235, 183, 16, 161, 242, 24, 254, 217, 150, 65, 242, 6, 251, 92, 74, 35, 115, 35, 10, 37, 188, 251, 253, 147, 74, 100, 206, 64, 108, 43, 226, 140, 209, 194, 57, 27, 254, 78, 167, 12, 172, 10, 109, 110, 16, 123, 218, 13, 188, 211, 172, 52, 183, 46, 159, 228, 169, 120, 230, 107 };
+			unsigned int numberOfDigits2 = 100;
+			UInt8 digits2[] = { 118, 37, 190, 252, 36, 55, 107, 134, 227, 235, 230, 82, 94, 34, 230, 238, 20, 160, 142, 198, 182, 94, 53, 160, 64, 96, 15, 40, 177, 230, 3, 52, 30, 238, 36, 159, 172, 227, 192, 182, 235, 183, 16, 161, 242, 24, 254, 217, 150, 65, 242, 6, 251, 92, 74, 35, 115, 35, 10, 37, 188, 251, 253, 147, 74, 100, 206, 64, 108, 43, 226, 140, 209, 194, 57, 27, 254, 78, 167, 12, 172, 10, 109, 110, 16, 123, 218, 13, 188, 211, 172, 52, 183, 46, 159, 228, 169, 120, 230, 107 };
+			struct base256Number pNumber1 = { numberOfDigits1, digits1 };
+			struct base256Number pNumber2 = { numberOfDigits2, digits2 };
+			int actualOutput = isGreater(&pNumber1, &pNumber2);
+			int expectedOutput = 0;
+			Assert::AreEqual(actualOutput, expectedOutput, L"TestSumOfNodesSmall() failed", 1, 2);
+		}
+
+		[TestMethod, Timeout(3000)]
+		void TestisGreater_08(){
+			unsigned int numberOfDigits1 = 149;
+			UInt8 digits1[] = { 131, 215, 200, 180, 5, 89, 222, 39, 25, 223, 170, 75, 171, 155, 156, 131, 207, 21, 158, 151, 191, 89, 139, 218, 75, 245, 25, 101, 235, 102, 62, 38, 80, 140, 121, 174, 41, 104, 134, 97, 245, 86, 164, 64, 168, 146, 27, 63, 255, 39, 230, 87, 24, 204, 191, 52, 255, 42, 246, 162, 110, 249, 24, 64, 143, 54, 181, 190, 224, 222, 70, 33, 116, 112, 10, 182, 54, 13, 195, 250, 148, 239, 55, 206, 233, 144, 138, 229, 216, 192, 72, 65, 36, 7, 222, 217, 150, 89, 55, 182, 202, 81, 157, 53, 211, 71, 249, 161, 104, 241, 250, 8, 127, 19, 248, 139, 232, 162, 252, 32, 82, 31, 224, 99, 123, 245, 219, 50, 93, 222, 127, 88, 124, 46, 124, 66, 33, 244, 38, 182, 218, 135, 140, 129, 127, 52, 69, 95, 53 };
+			unsigned int numberOfDigits2 = 149;
+			UInt8 digits2[] = { 131, 215, 200, 180, 5, 89, 222, 39, 25, 223, 170, 75, 171, 155, 156, 131, 207, 21, 158, 151, 191, 89, 139, 218, 75, 245, 25, 101, 235, 102, 62, 38, 80, 140, 121, 174, 41, 104, 134, 97, 245, 86, 164, 64, 168, 146, 27, 63, 255, 39, 230, 87, 24, 204, 191, 52, 255, 42, 246, 162, 110, 249, 24, 64, 143, 54, 181, 190, 224, 222, 70, 33, 116, 112, 10, 182, 54, 13, 195, 250, 148, 239, 55, 206, 233, 144, 138, 229, 216, 192, 72, 65, 36, 7, 222, 217, 150, 89, 55, 182, 202, 81, 157, 53, 211, 71, 249, 161, 104, 241, 250, 8, 127, 19, 248, 139, 232, 162, 252, 32, 82, 31, 224, 99, 123, 245, 219, 50, 93, 222, 127, 88, 124, 46, 124, 66, 33, 244, 38, 182, 218, 135, 140, 129, 127, 52, 69, 95, 53 };
+			struct base256Number pNumber1 = { numberOfDigits1, digits1 };
+			struct base256Number pNumber2 = { numberOfDigits2, digits2 };
+			int actualOutput = isGreater(&pNumber1, &pNumber2);
+			int expectedOutput = 0;
+			Assert::AreEqual(actualOutput, expectedOutput, L"TestSumOfNodesSmall() failed", 1, 2);
+		}
+
+		[TestMethod, Timeout(3000)]
+		void TestisGreater_09(){
+			unsigned int numberOfDigits1 = 149;
+			UInt8 digits1[] = { 131, 215, 200, 180, 5, 89, 222, 39, 25, 223, 170, 75, 171, 155, 156, 131, 207, 21, 158, 151, 191, 89, 139, 218, 75, 245, 25, 101, 235, 102, 62, 38, 80, 140, 121, 174, 41, 104, 134, 97, 245, 86, 164, 64, 168, 146, 27, 63, 255, 39, 230, 87, 24, 204, 191, 52, 255, 42, 246, 162, 110, 249, 24, 64, 143, 54, 181, 190, 224, 222, 70, 33, 116, 112, 10, 182, 54, 13, 195, 250, 148, 239, 55, 206, 233, 144, 138, 229, 216, 192, 72, 65, 36, 7, 222, 217, 150, 89, 55, 182, 202, 81, 157, 53, 211, 71, 249, 161, 104, 241, 250, 8, 127, 19, 248, 139, 232, 162, 252, 32, 82, 31, 224, 99, 123, 245, 219, 50, 93, 222, 127, 88, 124, 46, 124, 66, 33, 244, 38, 182, 218, 135, 140, 129, 127, 52, 69, 95, 53 };
+			unsigned int numberOfDigits2 = 149;
+			UInt8 digits2[] = { 131, 215, 200, 180, 5, 89, 222, 39, 25, 223, 170, 75, 171, 155, 156, 131, 207, 21, 158, 151, 191, 89, 139, 218, 75, 245, 25, 101, 235, 102, 62, 38, 80, 140, 121, 174, 41, 104, 134, 97, 245, 86, 164, 64, 168, 146, 27, 63, 255, 39, 230, 87, 24, 204, 191, 52, 255, 42, 246, 162, 110, 249, 24, 64, 143, 54, 181, 190, 224, 222, 70, 33, 116, 112, 10, 182, 54, 13, 195, 250, 148, 239, 55, 206, 233, 143, 138, 229, 216, 192, 72, 65, 36, 7, 222, 217, 150, 89, 55, 182, 202, 81, 157, 53, 211, 71, 249, 161, 104, 241, 250, 8, 127, 19, 248, 139, 232, 162, 252, 32, 82, 31, 224, 99, 123, 245, 219, 50, 93, 222, 127, 88, 124, 46, 124, 66, 33, 244, 38, 182, 218, 135, 140, 129, 127, 52, 69, 95, 53 };
+			struct base256Number pNumber1 = { numberOfDigits1, digits1 };
+			struct base256Number pNumber2 = { numberOfDigits2, digits2 };
+			int actualOutput = isGreater(&pNumber1, &pNumber2);
+			int expectedOutput = 1;
+			Assert::AreEqual(actualOutput, expectedOutput, L"TestSumOfNodesSmall() failed", 1, 2);
 		}
 
     };
