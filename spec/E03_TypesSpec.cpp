@@ -47,7 +47,7 @@ namespace spec
 
 		int compare(Base256Number *num1, Base256Number *num2){
 			if (num1->numberOfDigits != num2->numberOfDigits)	return 0;
-			for (int i = 0; i < num1->numberOfDigits; i++){
+			for (unsigned int i = 0; i < num1->numberOfDigits; i++){
 				if (num1->digits[i] != num2->digits[i])	return 0;
 			}
 			return 1;
