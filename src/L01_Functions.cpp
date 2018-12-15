@@ -10,7 +10,6 @@
  - function calling itself
  - functions calling each other
  - passing function as argument
- - functions with variable number of arguments
 
  Understand the behaviour by seeing the code (in this file)
  in excution using debugger.
@@ -60,6 +59,67 @@
 // writing recursive programs will be joy.
 //
 
+//
+// Return the sum of the digits in the number
+//
+// 0 <= number  // positive numbers only
+//
+int sumOfDigits(int number) {
+    
+    // 1. terminating condition (base case)
+    // single digit, the answer is itself.
+    if (number <= 9) {
+        return number;
+    }
+    
+    // 2. reducing into smaller problem or
+    //    breaking into sub-problems
+    //
+    // Reducing the problem length by 1
+    // and calling for the remaining number.
+    int unitsPlaceDigit = number%10;
+    int sumOfRemainingDigits = sumOfDigits(number/10);
+    
+    // 3. combining the sub-problems solutions
+    int sum = unitsPlaceDigit + sumOfRemainingDigits;
+    
+    return sum;
+}
+
+
+//
+// now let's add some mystery
+//
+// 0 <= number  // this mysterious one can't even handle negative numbers
+//
+
+int sumOfDigitsMystery(int number) {
+    
+    // 1. terminating condition (base case)
+    // single digit, the answer is itself.
+    if (number <= 9) {
+        return number;
+    }
+    
+    // 2. reducing into smaller problem or
+    //    breaking into sub-problems
+    //
+    // Reducing the problem length by 1
+    // and calling for the remaining number.
+    int unitsPlaceDigit = number%10;
+    int sumOfRemainingDigits = sumOfDigitsMystery(number/10);
+    
+    // 3. combining the sub-problems solutions
+    int sum = unitsPlaceDigit + sumOfRemainingDigits;
+    
+    // 4. Let's add mystery
+    if (sum > 9) {
+        sum = sumOfDigitsMystery(sum);
+    }
+    
+    return sum;
+}
+
 
 //
 // To understand the basic concept and notation of Binary Trees
@@ -71,16 +131,21 @@
 //
 int heightOfTree(struct treeNode *root) {
     
-    // terminating condition
+    // 1. terminating condition
     if (root == NULL) {
         return 0;
     }
     
-    // breaking into sub-problems
+    // 2. reducing into smaller problem or
+    //    breaking into sub-problems
+    //
+    // breaking into 2 sub-problems of
+    // left sub-tree and
+    // right sub-tree
     int rightSubTreeHeight = heightOfTree(root->right);
     int leftSubTreeHeight = heightOfTree(root->left);
     
-    // combining the sub-problems solutions
+    // 3. combining the sub-problems solutions
     int maxSubTreeHeight;
     if(rightSubTreeHeight > leftSubTreeHeight) {
         maxSubTreeHeight = rightSubTreeHeight;
@@ -93,6 +158,13 @@ int heightOfTree(struct treeNode *root) {
 }
 
 
+
+//
+// Compare the bellow 2 methods of destroying a Linked List
+// These are just written for your reading pleasure
+//
+
+// recursive style
 //
 // since if we release the current head node first
 // we cannot use the data inside it
@@ -123,7 +195,6 @@ void destroyLinkedListV1(struct listNode *head) {
 
 //
 // non-recursive way
-//
 //
 // since if we release the current head node first
 // we cannot use the data inside it
@@ -183,13 +254,6 @@ int firstYouDoThisPart(int *numbers, int size) {
 // passing function as argument
 //
 
-//
-// returns
-// 1 - in correct order, no need to change
-// 0 - in reverse order, need to change
-//
-typedef int (*COMPARE)(int, int);
-
 int isGreater(int a, int b) {
     if(a > b) {
         return 1;
@@ -207,9 +271,20 @@ int isLesser(int a, int b) {
 }
 
 //
-// assumption: size > 1
+// sort method takes function-as-an-argument
+// uses the passed method to sort the list in order
+//
+// Experiment calling this method (from main.cpp),
+// by passing different methods as parameters.
+// and see the behaviour
 //
 void sort(int *numbers, int size, COMPARE isInOrder) {
+    
+    if (size <= 1) {
+        // already sorted
+        return;
+    }
+    
     for (int i = 0; i < size-1; i++) {
         if (isInOrder(numbers[i], numbers[i+1]) == 0) {
             // swap numbers
@@ -219,7 +294,6 @@ void sort(int *numbers, int size, COMPARE isInOrder) {
         }
     }
 }
-
 
 //
 // What is the difference between
@@ -239,34 +313,6 @@ void sortNonAscending(int *numbers, int size) {
     sort(numbers, size, isLesser);
 }
 
-
-//
-// functions with variable number of arguments
-//
-
-//
-// multiply all the numbers
-// numbersCount - number of numbers
-// ... - numbers (will be numbersCount)
-//
-/* not supported with clr
-int multiplyAll(int numbersCount, ...) {
-    int product = 1;
-    
-    va_list variableArgumentList;
-    
-    va_start(variableArgumentList, numbersCount);
-    
-    while (numbersCount > 0) {
-        product = product * va_arg(variableArgumentList, int);
-        numbersCount = numbersCount - 1;
-    }
-    
-    va_end(variableArgumentList);
-    
-    return product;
-}
-*/
 static void three_things_i_learnt() {
     /*
      -
