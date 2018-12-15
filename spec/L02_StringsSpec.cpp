@@ -84,30 +84,30 @@ namespace spec
 
 		[TestMethod, Timeout(3000)]
 		void TeststringMystery(){
-			char *str;
+			char *str = (char *)malloc(100);
 
-			str = "hello";
+			strcopy(str, "hello");
 			stringMystery(str);
 			Assert::AreEqual(true, areEqualStrings(____, str), L"stringMystery() failed", 1, 2);
 
-			str = "thisisamediumstring";
+			strcopy(str, "thisisamediumstring");
 			stringMystery(str);
 			Assert::AreEqual(true, areEqualStrings(____, str), L"stringMystery() failed", 1, 2);
 
-			str = "loremipsumloremipsumloremipsumloremipsumlorem";
+			strcopy(str, "loremipsumloremipsumloremipsumloremipsumlorem");
 			stringMystery(str);
 			Assert::AreEqual(true, areEqualStrings(____, str), L"stringMystery() failed", 1, 2);
 		}
 
 		[TestMethod, Timeout(3000)]
 		void TeststringMysteryAdd(){
-			char *str;
+			char *str = (char *)malloc(100);
 
-			str = "thisisaverygoodstring";
+			strcopy(str, "thisisaverygoodstring");
 			stringMysteryAdd(str);
 			Assert::AreEqual(true, areEqualStrings(____, str), L"stringMysteryAdd() failed", 1, 2);
 
-			str = "loremipsumloremipsum";
+			strcopy(str, "loremipsumloremipsum");
 			stringMysteryAdd(str);
 			Assert::AreEqual(true, areEqualStrings(____, str), L"stringMysteryAdd() failed", 1, 2);
 		}
@@ -128,30 +128,30 @@ namespace spec
 
 		[TestMethod, Timeout(3000)]
 		void TestnumberCharMystery(){
-			char *str;
+			char *str = (char *)malloc(100);
 
-			str = "1002034";
+			strcopy(str, "1002034");
 			numberCharMystery(str);
 			Assert::AreEqual(true, areEqualStrings(____, str), L"numberCharMystery() failed", 1, 2);
 
-			str = "9023";
+			strcopy(str, "9023");
 			numberCharMystery(str);
 			Assert::AreEqual(true, areEqualStrings(____, str), L"numberCharMystery() failed", 1, 2);
 
-			str = "346";
+			strcopy(str, "346");
 			numberCharMystery(str);
 			Assert::AreEqual(true, areEqualStrings(____, str), L"numberCharMystery() failed", 1, 2);
 		}
 
 		[TestMethod, Timeout(3000)]
 		void TestabcMystery(){
-			char *str;
+			char *str = (char *)malloc(100);
 
-			str = "gre32344fr";
+			strcopy(str, "gre32344fr");
 			abcMystery(str);
 			Assert::AreEqual(true, areEqualStrings(____, str), L"abcMystery() failed", 1, 2);
 
-			str = "1234";
+			strcopy(str, "1234");
 			abcMystery(str);
 			Assert::AreEqual(true, areEqualStrings(____, str), L"abcMystery() failed", 1, 2);
 		}
