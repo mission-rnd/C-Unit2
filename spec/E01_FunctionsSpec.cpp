@@ -333,28 +333,27 @@ namespace spec
 			Assert::AreEqual(0, res, L"TestisNonDecendingByName(same,same) failed", 1, 2);
 		}
 
-        // test cases
-        // Number of leaf nodes
-//        6
-//        1
-//        1
-//        2
-//        1 2
-//        2
-//        2 1
-//        3
-//        1 2 3
-//        3
-//        2 1 3
-//        3
-//        3 2 1
-//
-//
-//        1
-//        1
-//        1
-//        1
-//        2
-//        1
+		[TestMethod, Timeout(3000)]
+		void TestoutputStringLength(){
+			char *format;
+			int res;
+
+			format = "%c%d";
+			res = outputStringLength(format, 'a', 1);
+			Assert::AreEqual(___, res, L"outputStringLength() failed", 1, 2);
+
+			format = "hai%c%d";
+			res = outputStringLength(format, 'k', 15);
+			Assert::AreEqual(6, res, L"outputStringLength() failed", 1, 2);
+
+			format = "%c  %d ";
+			res = outputStringLength(format, 's', 13042);
+			Assert::AreEqual(9, res, L"outputStringLength() failed", 1, 2);
+
+			format = " %d this %c";
+			res = outputStringLength(format, 'p', 312);
+			Assert::AreEqual(11, res, L"outputStringLength() failed", 1, 2);
+
+		}
     };
 }
