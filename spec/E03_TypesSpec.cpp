@@ -53,6 +53,86 @@ namespace spec
 			return 1;
 		}
 
+		int compareStrings(char* str1, char* str2){
+			const unsigned char *s1 = (const unsigned char *)str1;
+			const unsigned char *s2 = (const unsigned char *)str2;
+			unsigned char c1, c2;
+			do
+			{
+				c1 = (unsigned char)*s1++;
+				c2 = (unsigned char)*s2++;
+				if (c1 == '\0')
+					return c1 - c2;
+			} while (c1 == c2);
+			return c1 - c2;
+		}
+
+		[TestMethod, Timeout(3000)]
+		void TestprintBase256Number_00(){
+			char format[] = "IPV4: %D oho";
+			unsigned int numberOfDigits = 4;
+			UInt8 digits[] = {15, 0, 255, 255};
+			Base256Number pNumber = { numberOfDigits, digits };
+			char expectedOutput[] = "IPV4: 255.255.0.15 oho";
+			char* actualOutput = printBase256Number(format, &pNumber);
+			Assert::AreEqual(0, compareStrings(actualOutput, expectedOutput), L"TestSumOfNodesSmall() failed", 1, 2);
+		}
+
+		[TestMethod, Timeout(3000)]
+		void TestprintBase256Number_01(){
+			char format[] = "IPV6: %D ohk";
+			unsigned int numberOfDigits = 6;
+			UInt8 digits[] = { 11, 10, 15, 0, 255, 255 };
+			Base256Number pNumber = { numberOfDigits, digits };
+			char expectedOutput[] = "IPV6: ff:ff:00:0f:0a:0b ohk";
+			char* actualOutput = printBase256Number(format, &pNumber);
+			Assert::AreEqual(0, compareStrings(actualOutput, expectedOutput), L"TestSumOfNodesSmall() failed", 1, 2);
+		}
+
+		[TestMethod, Timeout(3000)]
+		void TestprintBase256Number_02(){
+			char format[] = "IPV4: %D oho";
+			unsigned int numberOfDigits = 4;
+			UInt8 digits[] = { 145, 0, 25, 255 };
+			Base256Number pNumber = { numberOfDigits, digits };
+			char expectedOutput[] = "IPV4: 255.25.0.145 oho";
+			char* actualOutput = printBase256Number(format, &pNumber);
+			Assert::AreEqual(0, compareStrings(actualOutput, expectedOutput), L"TestSumOfNodesSmall() failed", 1, 2);
+		}
+
+		[TestMethod, Timeout(3000)]
+		void TestprintBase256Number_03(){
+			char format[] = "IPV6: %D ohk";
+			unsigned int numberOfDigits = 6;
+			UInt8 digits[] = { 255, 255, 255, 255, 255, 255 };
+			Base256Number pNumber = { numberOfDigits, digits };
+			char expectedOutput[] = "IPV6: ff:ff:ff:ff:ff:ff ohk";
+			char* actualOutput = printBase256Number(format, &pNumber);
+			Assert::AreEqual(0, compareStrings(actualOutput, expectedOutput), L"TestSumOfNodesSmall() failed", 1, 2);
+		}
+
+		[TestMethod, Timeout(3000)]
+		void TestprintBase256Number_04(){
+			char format[] = "IPV4: %D oho";
+			unsigned int numberOfDigits = 4;
+			UInt8 digits[] = { 17, 29, 61, 74 };
+			Base256Number pNumber = { numberOfDigits, digits };
+			char expectedOutput[] = "IPV4: 17.29.61.74 oho";
+			char* actualOutput = printBase256Number(format, &pNumber);
+			Assert::AreEqual(0, compareStrings(actualOutput, expectedOutput), L"TestSumOfNodesSmall() failed", 1, 2);
+		}
+
+		[TestMethod, Timeout(3000)]
+		void TestprintBase256Number_05(){
+			char format[] = "IPV6: %D ohk";
+			unsigned int numberOfDigits = 6;
+			UInt8 digits[] = { 0, 0, 15, 0, 255, 0 };
+			Base256Number pNumber = { numberOfDigits, digits };
+			char expectedOutput[] = "IPV6: 00:ff:00:0f:00:00 ohk";
+			char* actualOutput = printBase256Number(format, &pNumber);
+			Assert::AreEqual(0, compareStrings(actualOutput, expectedOutput), L"TestSumOfNodesSmall() failed", 1, 2);
+		}
+
 		[TestMethod, Timeout(3000)]
 		void TestaddInBase256_00(){
 			unsigned int numberOfDigits1 = 1;
