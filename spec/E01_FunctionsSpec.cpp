@@ -332,6 +332,10 @@ namespace spec
 			res = isNonDecendingByName(p1, p2);
 			Assert::AreEqual(0, res, L"TestisNonDecendingByName(same,same) failed", 1, 2);
 		}
+        
+        // TODO: Add test cases for 2 methods
+        // void sortNonDescending(int *numbers, int size);
+        // void sortNonAscending(int *numbers, int size);
 
 		[TestMethod, Timeout(3000)]
 		void TestoutputStringLength(){

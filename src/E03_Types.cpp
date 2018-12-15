@@ -158,14 +158,23 @@ X:
 // make the test cases pass, by implementing above functions
 //
 Base256Number *integerDivisionInBase256(Base256Number *pNumber1, Base256Number *pNumber2) {
-	if (isGreater(pNumber2, pNumber1))	return 0;
+
     Base256Number *pQuotient = newNumberInBase256(0);
 	Base256Number *pTempNumber = newNumberInBase256(0);
+    
+    if (isGreater(pNumber2, pNumber1)) {
+        return pQuotient;
+    }
+    
     while (isGreater(pNumber1, pTempNumber)) {
         pTempNumber = addInBase256(pTempNumber, pNumber2);
         incrementInBase256(pQuotient);
     }
-	if (areEqual(pNumber1, pTempNumber))	incrementInBase256(pQuotient);
+    
+    if (areEqual(pNumber1, pTempNumber)) {
+        incrementInBase256(pQuotient);
+    }
+    
     return pQuotient;
 }
 

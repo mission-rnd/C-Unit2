@@ -25,4 +25,14 @@ struct base256Number {
 
 typedef struct base256Number Base256Number;
 
+Base256Number *newNumberInBase256(int n);
+char *printBase256Number(char *format, Base256Number *pNumber);
+Base256Number *addInBase256(Base256Number *pNumber1, Base256Number *pNumber2);
+Base256Number *multiplyInBase256(Base256Number *pNumber1, Base256Number *pNumber2);
+int isGreater(Base256Number *pNumber1, Base256Number *pNumber2);
+int areEqual(Base256Number *pNumber1, Base256Number *pNumber2);
+void incrementInBase256(Base256Number *pNumber);
+Base256Number *integerDivisionInBase256(Base256Number *pNumber1, Base256Number *pNumber2);
+int isPalindrome(Base256Number *number);
+
 #endif /* E03_Types_h */

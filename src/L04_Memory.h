@@ -8,6 +8,10 @@
 
 #include <stdlib.h>
 
+void makeItNoMystery(char *mystery);
 char *makeMystery();
+int memoryFirstByte(int n);
+int memoryLastByte(int n);
+int ohISee();
 
 #endif /* L04_Memory_h */

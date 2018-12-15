@@ -250,7 +250,7 @@ namespace spec
 			Assert::AreEqual(true, areEqualStrings(inp2, "vector[1] = tenTimes(vector[1]);"), L"removeSpaces() failed", 1, 2);
 			char inp3[100] = "#include          <  stdio.h>";
 			removeSpaces(inp3);
-			Assert::AreEqual(true, areEqualStrings(inp3, "#include <stdio.h>"), L"removeSpaces() failed", 1, 2);
+			Assert::AreEqual(true, areEqualStrings(inp3, "#include<stdio.h>"), L"removeSpaces() failed", 1, 2);
 		}
 
 		[TestMethod, Timeout(3000)]
@@ -264,7 +264,7 @@ namespace spec
 			b = "man";
 			Assert::AreEqual(0, strend(a, b), L"strend() failed", 1, 2);
 
-			a = "As he crossed toward the pharmacy at the corner he involuntarily turned his head because of a burst of light that had ricocheted from his temple, and saw, with that quick smile with which we greet a rainbow or a rose, a blindingly white parallelogram of sky being unloaded from the van—a dresser with mirrors across which, as across a cinema screen, passed a flawlessly clear reflection of boughs sliding and swaying not arboreally, but with a human vacillation, produced by the nature of those who were carrying this sky, these boughs, this gliding façade.";
+			a = "As he crossed toward the pharmacy at the corner he involuntarily turned his head because of a burst of light that had ricocheted from his temple, and saw, with that quick smile with which we greet a rainbow or a rose, a blindingly white parallelogram of sky being unloaded from the vanoa dresser with mirrors across which, as across a cinema screen, passed a flawlessly clear reflection of boughs sliding and swaying not arboreally, but with a human vacillation, produced by the nature of those who were carrying this sky, these boughs, this gliding facade.";
 			b = "gliding facade.";
 			Assert::AreEqual(1, strend(a, b), L"strend() failed", 1, 2);
 
