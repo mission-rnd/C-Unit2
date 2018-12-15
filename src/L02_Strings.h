@@ -9,10 +9,14 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
-int numberOfFormatSpecifiers(char *format);
 int stringLength(char *string);
+int numberOfFormatSpecifiers(char *format);
 
 void stringMystery(char *name);
+void stringMysteryAdd(char *str);
+char *stringMysteryCreate(int n);
+void numberCharMystery(char *str);
+void abcMystery(char *str);
 
 struct customString {
     int length;
@@ -22,7 +26,6 @@ struct customString {
 typedef customString CustomString;
 
 CustomString *addMystery(CustomString one, CustomString two);
-
-// char *generateString(char *format, ...);
+char *concatMystery(char *s1, char *s2);
 
 #endif /* L02_Strings_h */

@@ -65,53 +65,64 @@ namespace spec
 			char *str;
 			int res;
 
-			str = "this is a string";
+			str = "What you cannot count does not count.";
 			res = stringLength(str);
 			Assert::AreEqual(___, res, L"stringLength() failed", 1, 2);
 
-			str = "string     ";
+			str = "No, only what you cannot count, counts.";
 			res = stringLength(str);
 			Assert::AreEqual(___, res, L"stringLength() failed", 1, 2);
 
-			str = " hai    ";
-			res = stringLength(str);
-			Assert::AreEqual(___, res, L"stringLength() failed", 1, 2);
-
-			char s[10] = { 'a', 'b', 'b', '\0', 'd', 'e', 'f', 'g', 'h' };
+			char s[10] = { 'a', 'b', ' ', '\0', 'd', 'e', 'f', 'g', 'h', 'i' };
 			res = stringLength(s);
 			Assert::AreEqual(___, res, L"stringLength() failed", 1, 2);
 		}
-
+        
+        // string mystery
 		[TestMethod, Timeout(3000)]
 		void TeststringMystery(){
 			char *str = (char *)malloc(100);
 
-			strcopy(str, "hello");
+			strcopy(str, "recursive");
 			stringMystery(str);
 			Assert::AreEqual(true, areEqualStrings(____, str), L"stringMystery() failed", 1, 2);
 
-			strcopy(str, "thisisamediumstring");
+			strcopy(str, "higher-order-functions");
 			stringMystery(str);
 			Assert::AreEqual(true, areEqualStrings(____, str), L"stringMystery() failed", 1, 2);
 
-			strcopy(str, "loremipsumloremipsumloremipsumloremipsumlorem");
+			strcopy(str, "string-literals");
 			stringMystery(str);
 			Assert::AreEqual(true, areEqualStrings(____, str), L"stringMystery() failed", 1, 2);
+            
+            strcopy(str, "1234567890");
+            stringMystery(str);
+            Assert::AreEqual(true, areEqualStrings(____, str), L"stringMystery() failed", 1, 2);
 		}
 
+        // string Mystery Add
 		[TestMethod, Timeout(3000)]
 		void TeststringMysteryAdd(){
 			char *str = (char *)malloc(100);
 
-			strcopy(str, "thisisaverygoodstring");
+			strcopy(str, "goodVariableNamingConvention");
 			stringMysteryAdd(str);
 			Assert::AreEqual(true, areEqualStrings(____, str), L"stringMysteryAdd() failed", 1, 2);
-
-			strcopy(str, "loremipsumloremipsum");
-			stringMysteryAdd(str);
-			Assert::AreEqual(true, areEqualStrings(____, str), L"stringMysteryAdd() failed", 1, 2);
+            
+            strcopy(str, "badvariable");
+            stringMysteryAdd(str);
+            Assert::AreEqual(true, areEqualStrings(____, str), L"stringMysteryAdd() failed", 1, 2);
+            
+            strcopy(str, "digDeeper");
+            stringMysteryAdd(str);
+            Assert::AreEqual(true, areEqualStrings(____, str), L"stringMysteryAdd() failed", 1, 2);
+            
+            strcopy(str, "ThinkBigAndScale");
+            stringMysteryAdd(str);
+            Assert::AreEqual(true, areEqualStrings(____, str), L"stringMysteryAdd() failed", 1, 2);
 		}
-
+        
+        // string mystery create
 		[TestMethod, Timeout(3000)]
 		void TeststringMysteryCreate(){
 			char *str;
@@ -125,52 +136,41 @@ namespace spec
 			str = stringMysteryCreate(14);
 			Assert::AreEqual(true, areEqualStrings(____, str), L"stringMysteryCreate() failed", 1, 2);
 		}
-
+        
+        // number char mystery
 		[TestMethod, Timeout(3000)]
 		void TestnumberCharMystery(){
 			char *str = (char *)malloc(100);
 
-			strcopy(str, "1002034");
+			strcopy(str, "code-r");
 			numberCharMystery(str);
 			Assert::AreEqual(true, areEqualStrings(____, str), L"numberCharMystery() failed", 1, 2);
 
-			strcopy(str, "9023");
+			strcopy(str, "hack-er");
 			numberCharMystery(str);
 			Assert::AreEqual(true, areEqualStrings(____, str), L"numberCharMystery() failed", 1, 2);
 
-			strcopy(str, "346");
+			strcopy(str, "program-mer");
 			numberCharMystery(str);
 			Assert::AreEqual(true, areEqualStrings(____, str), L"numberCharMystery() failed", 1, 2);
 		}
 
+        
+        // abc mystery
 		[TestMethod, Timeout(3000)]
 		void TestabcMystery(){
 			char *str = (char *)malloc(100);
 
-			strcopy(str, "gre32344fr");
+			strcopy(str, "plantrees");
 			abcMystery(str);
 			Assert::AreEqual(true, areEqualStrings(____, str), L"abcMystery() failed", 1, 2);
 
-			strcopy(str, "1234");
+			strcopy(str, "vrukshaalu");
 			abcMystery(str);
 			Assert::AreEqual(true, areEqualStrings(____, str), L"abcMystery() failed", 1, 2);
 		}
 
-		[TestMethod, Timeout(3000)]
-		void TestconcatMystery(){
-			char *a,*b,*c;
-
-			a = "abc";
-			b = "def";
-			c = concatMystery(a, b);
-			Assert::AreEqual(true, areEqualStrings(____, c), L"abcMystery() failed", 1, 2);
-
-			a = "string";
-			b = "here";
-			c = concatMystery(a, b);
-			Assert::AreEqual(true, areEqualStrings(____, c), L"abcMystery() failed", 1, 2);
-		}
-
+		// add mystery
 		[TestMethod, Timeout(3000)]
 		void TestaddMystery(){
 			CustomString *one = (CustomString *)malloc(sizeof(CustomString));
@@ -179,29 +179,48 @@ namespace spec
 			one->str = (char *)malloc(100);
 			two->str = (char *)malloc(100);
 
-			strcopy(one->str, "hello");
-			strcopy(two->str, "hai");
+			strcopy(one->str, "stack");
+			strcopy(two->str, "top");
 			one->length = 5;
 			two->length = 3;
 			res = addMystery(one, two);
 			Assert::AreEqual(___, res->length, L"addMystery() failed length incorrect", 1, 2);
 			Assert::AreEqual(true, areEqualStrings(____, res->str), L"addMystery() failed", 1, 2);
 
-			strcopy(one->str, "goodstring");
-			strcopy(two->str, "badstring");
-			one->length = 10;
-			two->length = 9;
+			strcopy(one->str, "CallStack");
+			strcopy(two->str, "ActivationRecord");
+			one->length = 9;
+			two->length = 16;
 			res = addMystery(one, two);
 			Assert::AreEqual(___, res->length, L"addMystery() failed length incorrect", 1, 2);
 			Assert::AreEqual(true, areEqualStrings(____, res->str), L"addMystery() failed", 1, 2);
 			
-			strcopy(one->str, "ipsum");
-			strcopy(two->str, "lorem");
+			strcopy(one->str, "local");
+			strcopy(two->str, "globe");
 			one->length = 5;
 			two->length = 5;
 			res = addMystery(one, two);
 			Assert::AreEqual(___, res->length, L"addMystery() failed length incorrect", 1, 2);
 			Assert::AreEqual(true, areEqualStrings(____, res->str), L"addMystery() failed", 1, 2);
 		}
+        
+        // concat mystery
+        [TestMethod, Timeout(3000)]
+        void TestconcatMystery(){
+            char *a,*b,*c;
+            
+            a = "MMU";
+            b = "ALU";
+            c = concatMystery(a, b);
+            Assert::AreEqual(true, areEqualStrings(____, c), L"abcMystery() failed", 1, 2);
+            free(c);
+            
+            a = "thread";
+            b = "lock";
+            c = concatMystery(a, b);
+            Assert::AreEqual(true, areEqualStrings(____, c), L"abcMystery() failed", 1, 2);
+            free(c);
+        }
+
 	};
 }
