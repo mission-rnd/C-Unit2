@@ -103,6 +103,50 @@ CustomString *addMystery(CustomString *one, CustomString *two) {
     return sum;
 }
 
+void numberCharMystery(char *str) {
+    *str   = '0';
+    str[1] = '0' + 1;
+    *(str + 2) = '0' + 2;
+    str[3] = '\0';
+}
+
+void abcMystery(char *str) {
+    *str = '0';
+    str = str + 1;
+    str[1] = '1';
+    str++;
+    str[2] = '2';
+    str += 1;
+    str[3] = '\0';
+}
+
+//
+// Note: the code is intentionally wrong.
+//       Don't fix it, just guess the output.
+//
+char *concatMystery(char *s1, char *s2) {
+    int s1Len = stringLength(s1);
+    int s2Len = stringLength(s2);
+    char *combinedString = (char *)malloc(s1Len + s2Len + 1);
+    
+    int targetPos = 0;
+    // add the first string
+    for (int i = 0; i < s1Len; i++) {
+        combinedString[targetPos] = s1[i];
+        targetPos += 1;
+    }
+    
+    // add the second string in reverse
+    for (int i = s2Len; i > 0; i--) {
+        combinedString[targetPos] = s2[i];
+        targetPos += 1;
+    }
+    
+    // add the string termination character
+    combinedString[targetPos] = '\0';
+    
+    return combinedString;
+}
 
 //
 // Note: The caller must free the memory returned
