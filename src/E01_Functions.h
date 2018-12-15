@@ -36,7 +36,7 @@ void sort(struct people *peopleRecords[], int size, IsInOrderPeopleFunc isInOrde
 void sortByAgeNonAscending(struct people *peopleRecords[], int size);
 
 // sort records based on name
-void sortByNameNonDecending(struct people *peopleRecords[], int size)
+void sortByNameNonDecending(struct people *peopleRecords[], int size);
 
 int outputStringLength(char *format, char ch, int n);
 
