@@ -13,6 +13,7 @@
 Base256Number *addInBase256(Base256Number *pNumber1, Base256Number *pNumber2) {
 	if (pNumber1 == NULL)return pNumber2;
 	if (pNumber2 == NULL)return pNumber1;
+	if ((pNumber1->numberOfDigits == 0) || (pNumber2->numberOfDigits == 0))	return NULL;
 	struct base256Number* result = (struct base256Number*)malloc(sizeof(base256Number));
 	if (pNumber1->numberOfDigits > pNumber2->numberOfDigits){
 		result->numberOfDigits = pNumber1->numberOfDigits;
