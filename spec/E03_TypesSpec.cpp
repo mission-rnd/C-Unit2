@@ -435,6 +435,21 @@ namespace spec
 			Assert::AreEqual(actualOutput, expectedOutput, L"TestSumOfNodesSmall() failed", 1, 2);
 		}
 
+		[TestMethod, Timeout(3000)]
+		void TestintegerDivisionInBase256_00(){
+			unsigned int numberOfDigits1 = 3;
+			UInt8 digits1[] = { 0, 0, 1 };
+			unsigned int numberOfDigits2 = 2;
+			UInt8 digits2[] = { 0, 1 };
+			unsigned int numberOfDigitsQoutitent = 2;
+			UInt8 digitsQoutitent[] = { 0, 1 };
+			struct base256Number pNumber1 = { numberOfDigits1, digits1 };
+			struct base256Number pNumber2 = { numberOfDigits2, digits2 };
+			struct base256Number* actualOutput = integerDivisionInBase256(&pNumber1, &pNumber2);
+			struct base256Number expectedOutput = { numberOfDigitsQoutitent, digitsQoutitent };
+			Assert::AreEqual(1, compare(actualOutput, &expectedOutput), L"TestSumOfNodesSmall() failed", 1, 2);
+		}
+
     };
 }
 
