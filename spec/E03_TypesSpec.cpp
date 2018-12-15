@@ -84,6 +84,45 @@ namespace spec
 
 		[TestMethod, Timeout(3000)]
 		void TestaddInBase256_03(){
+			unsigned int numberOfDigits1 = 0;
+			UInt8 digits1[] = { 0 };
+			unsigned int numberOfDigits2 = 0;
+			UInt8 digits2[] = { 0 };
+			struct base256Number pNumber1 = { numberOfDigits1, digits1 };
+			struct base256Number pNumber2 = { numberOfDigits2, digits2 };
+			struct base256Number* actualOutput = addInBase256(&pNumber1, &pNumber2);
+			struct base256Number* expectedOutput = NULL;
+			Assert::AreEqual(1, compare(actualOutput, expectedOutput), L"TestSumOfNodesSmall() failed", 1, 2);
+		}
+
+		[TestMethod, Timeout(3000)]
+		void TestaddInBase256_04(){
+			unsigned int numberOfDigits1 = 0;
+			UInt8 digits1[] = { 0 };
+			unsigned int numberOfDigits2 = 1;
+			UInt8 digits2[] = { 0 };
+			struct base256Number pNumber1 = { numberOfDigits1, digits1 };
+			struct base256Number pNumber2 = { numberOfDigits2, digits2 };
+			struct base256Number* actualOutput = addInBase256(&pNumber1, &pNumber2);
+			struct base256Number* expectedOutput = NULL;
+			Assert::AreEqual(1, compare(actualOutput, expectedOutput), L"TestSumOfNodesSmall() failed", 1, 2);
+		}
+
+		[TestMethod, Timeout(3000)]
+		void TestaddInBase256_05(){
+			unsigned int numberOfDigits1 = 1;
+			UInt8 digits1[] = { 0 };
+			unsigned int numberOfDigits2 = 0;
+			UInt8 digits2[] = { 0 };
+			struct base256Number pNumber1 = { numberOfDigits1, digits1 };
+			struct base256Number pNumber2 = { numberOfDigits2, digits2 };
+			struct base256Number* actualOutput = addInBase256(&pNumber1, &pNumber2);
+			struct base256Number* expectedOutput = NULL;
+			Assert::AreEqual(1, compare(actualOutput, expectedOutput), L"TestSumOfNodesSmall() failed", 1, 2);
+		}
+
+		[TestMethod, Timeout(3000)]
+		void TestaddInBase256_06(){
 			unsigned int numberOfDigits1 = 1;
 			UInt8 digits1[] = { 0 };
 			unsigned int numberOfDigits2 = 1;
@@ -98,7 +137,7 @@ namespace spec
 		}
 
 		[TestMethod, Timeout(3000)]
-		void TestaddInBase256_04(){
+		void TestaddInBase256_07(){
 			unsigned int numberOfDigits1 = 2;
 			UInt8 digits1[] = { 0, 12 };
 			unsigned int numberOfDigits2 = 2;
@@ -113,7 +152,7 @@ namespace spec
 		}
 
 		[TestMethod, Timeout(3000)]
-		void TestaddInBase256_05(){
+		void TestaddInBase256_08(){
 			unsigned int numberOfDigits1 = 3;
 			UInt8 digits1[] = { 0, 12, 45};
 			unsigned int numberOfDigits2 = 2;
