@@ -9,6 +9,7 @@
 #include "stdafx.h"
 
 #include "../src/L04_Memory.cpp"
+#include "TestHelperMethods.h"
 
 using namespace System;
 using namespace System::Text;
@@ -41,6 +42,33 @@ namespace spec
         };
         
         // test methods
+		[TestMethod, Timeout(3000)]
+		void TestmakeMystery(){
+			Assert::AreEqual(true, areEqualStrings(____, makeMystery()), L"makeMystery() failed", 1, 2);
+		}
+
+		[TestMethod, Timeout(3000)]
+		void TestmemoryFirstByte(){
+			Assert::AreEqual(___, memoryFirstByte(0), L"memoryFirstByte(0) failed", 1, 2);
+			Assert::AreEqual(___, memoryFirstByte(0xffffff), L"memoryFirstByte(0xffffff) failed", 1, 2);
+			Assert::AreEqual(___, memoryFirstByte(0x64), L"memoryFirstByte(0x64) failed", 1, 2);
+			Assert::AreEqual(___, memoryFirstByte(0x40000000), L"memoryFirstByte(0x40000000) failed", 1, 2);
+			Assert::AreEqual(___, memoryFirstByte(0x7fffffff), L"memoryFirstByte(0x7fffffff) failed", 1, 2);
+		}
+
+		[TestMethod, Timeout(3000)]
+		void TestmemoryLastByte(){
+			Assert::AreEqual(___, memoryLastByte(0), L"memoryFirstByte(0) failed", 1, 2);
+			Assert::AreEqual(___, memoryLastByte(0xffffff), L"memoryFirstByte(0xffffff) failed", 1, 2);
+			Assert::AreEqual(___, memoryLastByte(0x64), L"memoryFirstByte(0x64) failed", 1, 2);
+			Assert::AreEqual(___, memoryLastByte(0x40000000), L"memoryFirstByte(0x40000000) failed", 1, 2);
+			Assert::AreEqual(___, memoryLastByte(0x7fffffff), L"memoryFirstByte(0x7fffffff) failed", 1, 2);
+		}
+
+		[TestMethod, Timeout(3000)]
+		void TestohISee(){
+			Assert::AreEqual(___, ohISee(), L"ohIsee() failed", 1, 2);
+		}
     };
 }
 
