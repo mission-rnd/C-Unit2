@@ -363,10 +363,10 @@ namespace spec
             Assert::AreEqual(20, records[2]->age, L"TestsortByAge failed", 1, 2);
             
             sortByName(records, 4);
-            Assert::AreEqual("gopal", records[0]->name, L"TestsortByName failed", 1, 2);
-            Assert::AreEqual("raju", records[1]->name, L"TestsortByName failed", 1, 2);
-            Assert::AreEqual("ramu", records[2]->name, L"TestsortByName failed", 1, 2);
-            Assert::AreEqual("ramu", records[3]->name, L"TestsortByName failed", 1, 2);
+            Assert::AreEqual(true, areEqualStrings("gopal", records[0]->name), L"TestsortByName failed", 1, 2);
+            Assert::AreEqual(true, areEqualStrings("raju", records[1]->name), L"TestsortByName failed", 1, 2);
+            Assert::AreEqual(true, areEqualStrings("ramu", records[2]->name), L"TestsortByName failed", 1, 2);
+            Assert::AreEqual(true, areEqualStrings("ramu", records[3]->name), L"TestsortByName failed", 1, 2);
             
             for (int i = 0; i < 4; i++) {
                 free(records[i]);
@@ -380,7 +380,7 @@ namespace spec
 
 			format = "%c%d";
 			res = outputStringLength(format, 'a', 1);
-			Assert::AreEqual(___, res, L"outputStringLength() failed", 1, 2);
+			Assert::AreEqual(2, res, L"outputStringLength() failed", 1, 2);
 
 			format = "hai%c%d";
 			res = outputStringLength(format, 'k', 15);
