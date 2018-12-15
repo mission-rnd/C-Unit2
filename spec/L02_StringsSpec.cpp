@@ -76,6 +76,11 @@ namespace spec
 			char s[10] = { 'a', 'b', ' ', '\0', 'd', 'e', 'f', 'g', 'h', 'i' };
 			res = stringLength(s);
 			Assert::AreEqual(___, res, L"stringLength() failed", 1, 2);
+            
+            str = "First Line.\n Second Line A.\t Second Line B.";
+            res = stringLength(str);
+            Assert::AreEqual(___, res, L"stringLength() failed", 1, 2);
+            
 		}
         
         // string mystery
