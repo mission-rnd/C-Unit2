@@ -253,31 +253,6 @@ int areEqual(Base256Number *pNumber1, Base256Number *pNumber2) {
 // increments the given number by 1
 //
 void incrementInBase256(Base256Number *pNumber) {
-	/* int start = 0;
-	while (1){
-		if ((pNumber->digits[start]) == 255){
-			if (start == ((pNumber->numberOfDigits) - 1)){
-				pNumber->numberOfDigits += 1;
-				UInt8* digitsNew = (UInt8*)malloc((pNumber->numberOfDigits)*sizeof(UInt8));
-				for (int i = 0; i < (pNumber->numberOfDigits); i++){
-					digitsNew[i] = pNumber->digits[i];
-				}
-				*(pNumber->digits) = *digitsNew;
-				pNumber->digits[start] = 0;
-				pNumber->digits[(start + 1)] = 1;
-				return;
-			}
-			else{
-				pNumber->digits[start] += 1;
-				start++;
-			}
-		}
-		else{
-			pNumber->digits[start] += 1;
-			return;
-		}
-	}
-	return;*/
     // Add 1 to and keep the carry
     // after the loop if carry is there, re-allocate and save the carry
     
