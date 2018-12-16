@@ -150,9 +150,6 @@ int isPalindrome(Base256Number *number) {
 //
 // addInBase256 => addBigNumbers
 Base256Number *addInBase256(Base256Number *pNumber1, Base256Number *pNumber2) {
-	if (pNumber1 == NULL)return pNumber2;
-	if (pNumber2 == NULL)return pNumber1;
-	if ((pNumber1->numberOfDigits == 0) || (pNumber2->numberOfDigits == 0))	return NULL;
 	struct base256Number* result = (struct base256Number*)malloc(sizeof(base256Number));
 	if (pNumber1->numberOfDigits > pNumber2->numberOfDigits){
 		result->numberOfDigits = pNumber1->numberOfDigits;
@@ -165,23 +162,23 @@ Base256Number *addInBase256(Base256Number *pNumber1, Base256Number *pNumber2) {
 	int i = 0, current_sum = 0;
 	while ((i < pNumber1->numberOfDigits) && (i < pNumber2->numberOfDigits)){
 		current_sum = pNumber1->digits[i] + pNumber2->digits[i] + carry;
-		digits[i] = current_sum % 255;
-		carry = current_sum / 255;
+		digits[i] = current_sum % 256;
+		carry = current_sum / 256;
 		i++;
 	}
 	if (pNumber1->numberOfDigits > pNumber2->numberOfDigits){
 		while (i < pNumber1->numberOfDigits){
 			current_sum = pNumber1->digits[i] + carry;
-			digits[i] = current_sum % 255;
-			carry = current_sum / 255;
+			digits[i] = current_sum % 256;
+			carry = current_sum / 256;
 			i++;
 		}
 	}
 	else if (pNumber2->numberOfDigits > pNumber1->numberOfDigits){
 		while (i < pNumber2->numberOfDigits){
 			current_sum = pNumber2->digits[i] + carry;
-			digits[i] = current_sum % 255;
-			carry = current_sum / 255;
+			digits[i] = current_sum % 256;
+			carry = current_sum / 256;
 			i++;
 		}
 	}
