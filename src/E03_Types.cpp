@@ -230,7 +230,7 @@ void incrementInBase256(Base256Number *pNumber) {
     // after the loop if carry is there, re-allocate and save the carry
     
     unsigned int carry = 1, sum = 0;
-    for (i = 0; i < pNumber->numberOfDigits; i++) {
+    for (int i = 0; i < pNumber->numberOfDigits; i++) {
         sum = pNumber->digits[i] + carry;
         pNumber->digits[i] = sum % 256;
         carry = sum/256;
