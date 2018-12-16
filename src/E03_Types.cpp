@@ -5,6 +5,7 @@
 
 #include "E03_Types.h"
 #include "L02_Strings.h"
+
 //
 // Note: The digits in the Base256Number are saved in reverse order.
 //
@@ -46,8 +47,9 @@ int getNumberOfDigits(int n, int base) {
     
     return numberOfDigits;
 }
-//
-// Print the given base 256 number using the format sepcifiers
+
+// Implement the function to
+// print the given base 256 number using the format sepcifiers
 // %D and %H
 //
 // For example for 4 digits base 256 number with format specifier
@@ -130,7 +132,7 @@ char *printBase256Number(char *format, Base256Number *pNumber) {
     formatString[totalStringLength] = '\0';
     
     return formatString;
-//    return NULL;
+//    return "not-implemented";
 }
 
 //
@@ -138,18 +140,29 @@ char *printBase256Number(char *format, Base256Number *pNumber) {
 //  1 - yes
 //  0 - no
 //
-// check if the number is palindrome in base 256
+// check if the base 256 number is palindrome or not
 //
 int isPalindrome(Base256Number *number) {
-    return -99;
+    for (int i = 0; i < number->numberOfDigits/2; i++) {
+        if (number->digits[i] != number->digits[(number->numberOfDigits-1)-i]) {
+            return 0;
+        }
+    }
+    return 1;
+//    return -99;
 }
 
 
 //
-// add & multiple in base 256
+// add in base 256
 //
-// addInBase256 => addBigNumbers
+// implement the function to add 2 base 256 numbers
+//
 Base256Number *addInBase256(Base256Number *pNumber1, Base256Number *pNumber2) {
+    int base = 256;
+	if (pNumber1 == NULL)return pNumber2;
+	if (pNumber2 == NULL)return pNumber1;
+	if ((pNumber1->numberOfDigits == 0) || (pNumber2->numberOfDigits == 0))	return NULL;
 	struct base256Number* result = (struct base256Number*)malloc(sizeof(base256Number));
 	if (pNumber1->numberOfDigits > pNumber2->numberOfDigits){
 		result->numberOfDigits = pNumber1->numberOfDigits;
@@ -162,23 +175,23 @@ Base256Number *addInBase256(Base256Number *pNumber1, Base256Number *pNumber2) {
 	int i = 0, current_sum = 0;
 	while ((i < pNumber1->numberOfDigits) && (i < pNumber2->numberOfDigits)){
 		current_sum = pNumber1->digits[i] + pNumber2->digits[i] + carry;
-		digits[i] = current_sum % 256;
-		carry = current_sum / 256;
+		digits[i] = current_sum % base;
+		carry = current_sum / base;
 		i++;
 	}
 	if (pNumber1->numberOfDigits > pNumber2->numberOfDigits){
 		while (i < pNumber1->numberOfDigits){
 			current_sum = pNumber1->digits[i] + carry;
-			digits[i] = current_sum % 256;
-			carry = current_sum / 256;
+			digits[i] = current_sum % base;
+			carry = current_sum / base;
 			i++;
 		}
 	}
 	else if (pNumber2->numberOfDigits > pNumber1->numberOfDigits){
 		while (i < pNumber2->numberOfDigits){
 			current_sum = pNumber2->digits[i] + carry;
-			digits[i] = current_sum % 256;
-			carry = current_sum / 256;
+			digits[i] = current_sum % base;
+			carry = current_sum / base;
 			i++;
 		}
 	}
@@ -200,27 +213,47 @@ Base256Number *addInBase256(Base256Number *pNumber1, Base256Number *pNumber2) {
 //
 int isGreater(Base256Number *pNumber1, Base256Number *pNumber2) {
     
-	if (pNumber1->numberOfDigits > pNumber2->numberOfDigits)	return 1;
-	if (pNumber2->numberOfDigits > pNumber1->numberOfDigits)	return 0;
+    if (pNumber1->numberOfDigits > pNumber2->numberOfDigits) {
+        return 1;
+    }
+    if (pNumber2->numberOfDigits > pNumber1->numberOfDigits) {
+        return 0;
+    }
     
 	int i = pNumber1->numberOfDigits - 1;
 	while (i >= 0){
-		if (pNumber1->digits[i] > pNumber2->digits[i])	return 1;
-		if (pNumber2->digits[i] > pNumber1->digits[i])	return 0;
+        if (pNumber1->digits[i] > pNumber2->digits[i]) {
+            return 1;
+        }
+        if (pNumber2->digits[i] > pNumber1->digits[i]) {
+            return 0;
+        }
 		i--;
 	}
 	return 0;
 }
 
+//
+// Return
+//  1 - yes
+//  0 - no
+//
 int areEqual(Base256Number *pNumber1, Base256Number *pNumber2) {
-    if ((pNumber1->numberOfDigits) != (pNumber2->numberOfDigits)) 	return 0;
+    if ((pNumber1->numberOfDigits) != (pNumber2->numberOfDigits)) {
+        return 0;
+    }
 	int numberOfDigits = pNumber1->numberOfDigits;
 	for (int i = 0; i < numberOfDigits; i++){
-		if ((pNumber1->digits[i]) != (pNumber2->digits[i]))	return 0;
+        if ((pNumber1->digits[i]) != (pNumber2->digits[i])) {
+            return 0;
+        }
 	}
 	return 1;
 }
 
+//
+// increments the given number by 1
+//
 void incrementInBase256(Base256Number *pNumber) {
 	/* int start = 0;
 	while (1){
@@ -265,7 +298,7 @@ void incrementInBase256(Base256Number *pNumber) {
 }
 
 //
-// Note: Don't change code of these last 2 functions
+// Note: Don't modify code of these last 2 functions
 // - multiplyInBase256
 // - integerDivisionInBase256
 //
@@ -284,6 +317,9 @@ Base256Number *multiplyInBase256(Base256Number *pNumber1, Base256Number *pNumber
     return result;
 }
 
+//
+// integer division
+// 
 Base256Number *integerDivisionInBase256(Base256Number *pNumber, Base256Number *pDiv) {
     
     Base256Number *pQuotient = newNumberInBase256(0);
