@@ -4,7 +4,7 @@
 //
 
 #include "E03_Types.h"
-
+#include "L02_Strings.h"
 //
 // Note: The digits in the Base256Number are saved in reverse order.
 //
@@ -13,39 +13,135 @@
 // create a new structure for base 256 number
 // and initialize with n in base-256
 //
+// DON'T MODIFY THE CODE OF THIS FUNCTION
+//
 Base256Number *newNumberInBase256(int n) {
-	int noOfDigits = 0, dummy = n;
-	while (dummy > 0){
-		dummy /= 256;
-		noOfDigits++;
-	}
-	if (n == 0)noOfDigits = 1;
-	Base256Number* result = (Base256Number*)malloc(sizeof(Base256Number));
-	result->numberOfDigits = noOfDigits;
-	UInt8* digits = (UInt8*)malloc(noOfDigits * sizeof(UInt8));
-	dummy = 0;
-	if (n == 0){
-		digits[0] = 0;
-	}
-	while (n > 0){
-		digits[dummy] = n % 256;
-		n /= 256;
-		dummy++;
-	}
-	result->digits = digits;
-    return result;
+    int base = 256;
+    
+    int numberOfDigits = 0;
+    int number = n;
+    do {
+        numberOfDigits++;
+        number /= base;
+    } while (number > 0);
+    
+    Base256Number* base256Number = (Base256Number*)malloc(sizeof(Base256Number));
+    base256Number->numberOfDigits = numberOfDigits;
+    base256Number->digits = (UInt8*)malloc(numberOfDigits * sizeof(UInt8));
+    
+    for (int digitPos = 0; digitPos < numberOfDigits; digitPos++) {
+        base256Number->digits[digitPos] = n % base;
+        n /= base;
+    }
+    
+    return base256Number;
 }
 
-
+int getNumberOfDigits(int n, int base) {
+    int numberOfDigits = 0;
+    do {
+        numberOfDigits++;
+        n /= base;
+    } while (n > 0);
+    
+    return numberOfDigits;
+}
+//
+// Print the given base 256 number using the format sepcifiers
+// %D and %H
+//
+// For example for 4 digits base 256 number with format specifier
+// %D - print digits in the format - 15.0.254.11
+// %H - print digits in the format - 0f:00:0a:0b
+//
+// e.g: like (format, pNumber) => output string
+// ("Number (base 256): %D", {4, [11, 254, 0, 15]) => "Number (base 256): 15.0.254.11"
+// ("Number (base 256): %H", {4, [11, 254, 0, 15]) => "Number (base 256): 0f:00:fe:0b"
 //
 // Note: Each digit in base 256 is saved in reverse order
-// e.g:
-// ("IPV4: %D oho", {4, [15, 0, 255, 255]})        => "IPV4: 255.255.0.15 oho"
-// ("IPV6: %C ohk", {6, [11, 10, 15, 0, 255, 255]) => "IPV6: ff:ff:00:0f:0a:0b ohk"
 //
-
 char *printBase256Number(char *format, Base256Number *pNumber) {
-    return NULL;
+    
+    // get the format specifier
+    char formatSpecifier;
+    int formatSpecifierPos = 0;
+    for (int i = 0; format[i] != '\0'; i++) {
+        if (format[i] == '%') {
+            formatSpecifierPos = i;
+            formatSpecifier = format[i+1];
+        }
+    }
+    
+    // find the result string length
+    int totalStringLength = stringLength(format) - 2; // remove fomat specifier characters
+    
+    if (formatSpecifier == 'D') {
+        for (int i = 0; i < pNumber->numberOfDigits; i++) {
+            totalStringLength += getNumberOfDigits(pNumber->digits[i], 10);
+        }
+    } else {
+        totalStringLength += 2 * pNumber->numberOfDigits;
+    }
+    
+    totalStringLength += pNumber->numberOfDigits - 1;
+    
+    
+    // reserve memory
+    char *formatString = (char *)malloc(totalStringLength+1);
+    formatString[totalStringLength] = '\0';
+    
+    // copy till formatSpecifierPos-1
+    for (int i = 0; i < formatSpecifierPos; i++) {
+        formatString[i] = format[i];
+    }
+    
+    int currentPos = formatSpecifierPos;
+    // fill the number in the given format
+    int numberOfDigits = pNumber->numberOfDigits;
+    
+    char hex[16] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+    for (int i = numberOfDigits - 1 ; i >= 0; i--) {
+        int b256Digit = pNumber->digits[i];
+        if(formatSpecifier == 'D') {
+            int nDigits = getNumberOfDigits(b256Digit, 10);
+            for (int pos = nDigits - 1; pos >= 0 ; pos--) {
+                formatString[currentPos + pos] = hex[b256Digit % 10]; // (or) '0' + b256Digit % 10
+                b256Digit /= 10;
+            }
+            currentPos += nDigits;
+            formatString[currentPos] = '.';
+        } else {
+            formatString[currentPos] = hex[b256Digit/16];
+            formatString[currentPos + 1] = hex[b256Digit%16];
+            currentPos += 2;
+            formatString[currentPos] = ':';
+        }
+        currentPos++;
+    }
+    currentPos--;
+    
+    // copy the string after format specifier
+    for (int i = formatSpecifierPos + 2; format[i] != '\0'; i++) {
+        formatString[currentPos] = format[i];
+        currentPos++;
+    }
+    
+    // set the terminations char
+    formatString[totalStringLength] = '\0';
+    
+    return formatString;
+//    return NULL;
+}
+
+//
+// Returns
+//  1 - yes
+//  0 - no
+//
+// check if the number is palindrome in base 256
+//
+int isPalindrome(Base256Number *number) {
+    return -99;
 }
 
 
@@ -98,14 +194,7 @@ Base256Number *addInBase256(Base256Number *pNumber1, Base256Number *pNumber2) {
 	return result;
 }
 
-Base256Number *multiplyInBase256(Base256Number *pNumber1, Base256Number *pNumber2) {
-	if ((pNumber1 == NULL)||(pNumber2==NULL))return NULL;
-	if ((pNumber1->numberOfDigits == 0) || (pNumber2->numberOfDigits == 0))	return NULL;
-	struct base256Number* result = (struct base256Number*)malloc(sizeof(base256Number));
-	result->numberOfDigits = pNumber1->numberOfDigits + pNumber2->numberOfDigits;
-	UInt8 *digits = (UInt8*)malloc((result->numberOfDigits)*sizeof(UInt8));
-    return NULL;
-}
+
 
 //
 // Return
@@ -113,19 +202,21 @@ Base256Number *multiplyInBase256(Base256Number *pNumber1, Base256Number *pNumber
 //  0 - no
 //
 int isGreater(Base256Number *pNumber1, Base256Number *pNumber2) {
+    
 	if (pNumber1->numberOfDigits > pNumber2->numberOfDigits)	return 1;
 	if (pNumber2->numberOfDigits > pNumber1->numberOfDigits)	return 0;
+    
 	int i = pNumber1->numberOfDigits - 1;
-	while (i > 0){
+	while (i >= 0){
 		if (pNumber1->digits[i] > pNumber2->digits[i])	return 1;
-		if (pNumber1->digits[i] < pNumber2->digits[i])	return 0;
+		if (pNumber2->digits[i] > pNumber1->digits[i])	return 0;
 		i--;
 	}
 	return 0;
 }
 
 int areEqual(Base256Number *pNumber1, Base256Number *pNumber2) {
-	if ((pNumber1->numberOfDigits) != (pNumber2->numberOfDigits))	return 0;
+    if ((pNumber1->numberOfDigits) != (pNumber2->numberOfDigits)) 	return 0;
 	int numberOfDigits = pNumber1->numberOfDigits;
 	for (int i = 0; i < numberOfDigits; i++){
 		if ((pNumber1->digits[i]) != (pNumber2->digits[i]))	return 0;
@@ -134,7 +225,7 @@ int areEqual(Base256Number *pNumber1, Base256Number *pNumber2) {
 }
 
 void incrementInBase256(Base256Number *pNumber) {
-	int start = 0;
+	/* int start = 0;
 	while (1){
 		if ((pNumber->digits[start]) == 255){
 			if (start == ((pNumber->numberOfDigits) - 1)){
@@ -158,42 +249,62 @@ void incrementInBase256(Base256Number *pNumber) {
 			return;
 		}
 	}
-	return;
+	return;*/
+    // Add 1 to and keep the carry
+    // after the loop if carry is there, re-allocate and save the carry
+    
+    unsigned int carry = 1, sum = 0;
+    for (int i = 0; i < pNumber->numberOfDigits; i++) {
+        sum = pNumber->digits[i] + carry;
+        pNumber->digits[i] = sum % 256;
+        carry = sum/256;
+    }
+    
+    if (carry > 0) {
+        pNumber->digits = (UInt8 *)realloc(pNumber->digits, pNumber->numberOfDigits+1);
+        pNumber->digits[pNumber->numberOfDigits] = carry;
+        pNumber->numberOfDigits += 1;
+    }
 }
 
 //
-// Note: Don't change code of this function
-// make the test cases pass, by implementing above functions
+// Note: Don't change code of these last 2 functions
+// - multiplyInBase256
+// - integerDivisionInBase256
 //
-Base256Number *integerDivisionInBase256(Base256Number *pNumber1, Base256Number *pNumber2) {
-	if (isGreater(pNumber2, pNumber1))	return newNumberInBase256(0);
-	if (areEqual(pNumber1, pNumber2))	return newNumberInBase256(1);
-	Base256Number* pQuotient = newNumberInBase256(0);
-	Base256Number* ptempNumber = newNumberInBase256(0);
-	while (1){
-		ptempNumber = addInBase256(ptempNumber, pNumber2);
-		if (isGreater(ptempNumber, pNumber1) == 0){
-			// incrementInBase256(pQuotient);
-			pQuotient = addInBase256(pQuotient, newNumberInBase256(1));
-		}
-		else return pQuotient;
-	}
-	return pQuotient;
+// you need make the test cases for these functions
+// pass by implementing the above functions
+//
+Base256Number *multiplyInBase256(Base256Number *pNumber1, Base256Number *pNumber2) {
+    Base256Number* result = newNumberInBase256(0);
+    Base256Number* count = newNumberInBase256(1);
+    
+    while (!isGreater(count, pNumber2)) {
+        result = addInBase256(result, pNumber1);
+        incrementInBase256(count);
+    }
+    return result;
 }
 
-//
-// Returns
-//  1 - yes
-//  0 - no
-//
-// check if the number is palindrome in base 256
-//
-int isPalindrome(Base256Number *number) {
-	if (number->numberOfDigits == 1)	return 1;
-	int start = 0, end = number->numberOfDigits - 1, mid = number->numberOfDigits / 2;
-	while (mid > 0){
-		if (number->digits[start] != number->digits[end])	return 0;
-		start++; end--; mid--;
-	}
-    return 1;
+Base256Number *integerDivisionInBase256(Base256Number *pNumber, Base256Number *pDiv) {
+    
+    Base256Number *pQuotient = newNumberInBase256(0);
+    Base256Number *pTempNumber = newNumberInBase256(0);
+    Base256Number *pOne = newNumberInBase256(1);
+
+    if (isGreater(pDiv, pNumber)) {
+        return pQuotient;
+    }
+    
+    pTempNumber = addInBase256(pTempNumber, pDiv);
+    while(isGreater(pNumber, pTempNumber)) {
+        pQuotient = addInBase256(pQuotient, pOne);
+        pTempNumber = addInBase256(pTempNumber, pDiv);
+    }
+    
+    if (areEqual(pNumber, pTempNumber)) {
+        pQuotient = addInBase256(pQuotient, pOne);
+    }
+    
+    return pQuotient;
 }
