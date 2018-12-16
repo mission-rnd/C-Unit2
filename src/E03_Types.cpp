@@ -126,30 +126,38 @@ int isGreater(Base256Number *pNumber1, Base256Number *pNumber2) {
 
 int areEqual(Base256Number *pNumber1, Base256Number *pNumber2) {
 	if ((pNumber1->numberOfDigits) != (pNumber2->numberOfDigits))	return 0;
-	for (int i = 0; i < (pNumber1->numberOfDigits); i++){
+	int numberOfDigits = pNumber1->numberOfDigits;
+	for (int i = 0; i < numberOfDigits; i++){
 		if ((pNumber1->digits[i]) != (pNumber2->digits[i]))	return 0;
 	}
 	return 1;
 }
 
 void incrementInBase256(Base256Number *pNumber) {
-	int len = pNumber->numberOfDigits;
-	if (pNumber->digits[len-1] == 255)
-	{
-X:
-		UInt8* digitsNew = (UInt8*)realloc(pNumber->digits, (len + 1)*sizeof(UInt8));
-		if (digitsNew != NULL){
-			pNumber->digits = digitsNew;
+	int start = 0;
+	while (1){
+		if ((pNumber->digits[start]) == 255){
+			if (start == ((pNumber->numberOfDigits) - 1)){
+				pNumber->numberOfDigits += 1;
+				UInt8* digitsNew = (UInt8*)malloc((pNumber->numberOfDigits)*sizeof(UInt8));
+				for (int i = 0; i < (pNumber->numberOfDigits); i++){
+					digitsNew[i] = pNumber->digits[i];
+				}
+				pNumber->digits = digitsNew;
+				pNumber->digits[start] = 0;
+				pNumber->digits[(start + 1)] = 1;
+				return;
+			}
+			else{
+				pNumber->digits[start] += 1;
+				start++;
+			}
 		}
 		else{
-			goto X;
+			pNumber->digits[start] += 1;
+			return;
 		}
-		pNumber->digits[len] = 1;
-		pNumber->digits[len - 1] = 0;
-		pNumber->numberOfDigits += 1;
-		return;
 	}
-	pNumber->digits[len - 1] += 1;
 	return;
 }
 
@@ -161,11 +169,14 @@ Base256Number *integerDivisionInBase256(Base256Number *pNumber1, Base256Number *
 	if (isGreater(pNumber2, pNumber1))	return 0;
     Base256Number *pQuotient = newNumberInBase256(0);
 	Base256Number *pTempNumber = newNumberInBase256(0);
-    while (isGreater(pNumber1, pTempNumber)) {
-        pTempNumber = addInBase256(pTempNumber, pNumber2);
-        incrementInBase256(pQuotient);
-    }
-	if (areEqual(pNumber1, pTempNumber))	incrementInBase256(pQuotient);
+	while (1){
+		pTempNumber = addInBase256(pTempNumber, pNumber2);
+		if (isGreater(pNumber1, pTempNumber) == 1)	incrementInBase256(pQuotient);
+		else break;
+	}
+	if (areEqual(pNumber1, pTempNumber) == 1){
+		incrementInBase256(pQuotient);
+	}
     return pQuotient;
 }
 
