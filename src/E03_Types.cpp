@@ -125,9 +125,13 @@ int isGreater(Base256Number *pNumber1, Base256Number *pNumber2) {
 }
 
 int areEqual(Base256Number *pNumber1, Base256Number *pNumber2) {
-	if ((pNumber1->numberOfDigits) != (pNumber2->numberOfDigits))	return 0;
+    if ((pNumber1->numberOfDigits) != (pNumber2->numberOfDigits)) {
+        return 0;
+    }
 	for (int i = 0; i < (pNumber1->numberOfDigits); i++){
-		if ((pNumber1->digits[i]) != (pNumber2->digits[i]))	return 0;
+        if ((pNumber1->digits[i]) != (pNumber2->digits[i])) {
+            return 0;
+        }
 	}
 	return 1;
 }
@@ -162,10 +166,16 @@ Base256Number *integerDivisionInBase256(Base256Number *pNumber1, Base256Number *
     Base256Number *pQuotient = newNumberInBase256(0);
 	Base256Number *pTempNumber = newNumberInBase256(0);
     
+    if (areEqual(pNumber1, pNumber2)) {
+        incrementInBase256(pQuotient);
+        return pQuotient;
+    }
+    
     if (isGreater(pNumber2, pNumber1)) {
         return pQuotient;
     }
     
+    pTempNumber = addInBase256(pTempNumber, pNumber2);
     while (isGreater(pNumber1, pTempNumber)) {
         pTempNumber = addInBase256(pTempNumber, pNumber2);
         incrementInBase256(pQuotient);
