@@ -802,8 +802,11 @@ namespace spec
 
 		[TestMethod, Timeout(3000)]
 		void TestincrementInBase256_08(){
-			unsigned int numberOfDigits1 = 3;
-			UInt8 digits1[] = { 255, 255, 255 };
+            unsigned int numberOfDigits1 = 3;
+            UInt8 *digits1 = (UInt8 *)malloc(3);
+            digits1[0] = 255;
+            digits1[1] = 255;
+            digits1[2] = 255;
 			unsigned int numberOfDigitsResult = 4;
 			UInt8 digitsResult[] = { 0, 0, 0, 1 };
 			struct base256Number actualOutput = { numberOfDigits1, digits1 };
@@ -840,7 +843,8 @@ namespace spec
         [TestMethod, Timeout(30000)] // 30 sec
         void TestintegerDivisionInBase256_02(){
             unsigned int numberOfDigits1 = 1;
-            UInt8 digits1[] = { 255 };
+            UInt8 *digits1 = (UInt8 *)malloc(1);
+            digits1[0] = 255;
             unsigned int numberOfDigits2 = 1;
             UInt8 digits2[] = { 2 };
             unsigned int numberOfDigitsQoutitent = 1;

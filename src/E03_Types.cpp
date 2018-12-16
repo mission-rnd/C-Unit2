@@ -209,7 +209,7 @@ int isGreater(Base256Number *pNumber1, Base256Number *pNumber2) {
 	int i = pNumber1->numberOfDigits - 1;
 	while (i >= 0){
 		if (pNumber1->digits[i] > pNumber2->digits[i])	return 1;
-		if (pNumber1->digits[i] < pNumber2->digits[i])	return 0;
+		if (pNumber2->digits[i] > pNumber1->digits[i])	return 0;
 		i--;
 	}
 	return 0;
@@ -225,31 +225,22 @@ int areEqual(Base256Number *pNumber1, Base256Number *pNumber2) {
 }
 
 void incrementInBase256(Base256Number *pNumber) {
-	int start = 0;
-	while (1){
-		if ((pNumber->digits[start]) == 255){
-			if (start == ((pNumber->numberOfDigits) - 1)){
-				pNumber->numberOfDigits += 1;
-				UInt8* digitsNew = (UInt8*)malloc((pNumber->numberOfDigits)*sizeof(UInt8));
-				for (int i = 0; i < (pNumber->numberOfDigits); i++){
-					digitsNew[i] = pNumber->digits[i];
-				}
-				pNumber->digits = digitsNew;
-				pNumber->digits[start] = 0;
-				pNumber->digits[(start + 1)] = 1;
-				return;
-			}
-			else{
-				pNumber->digits[start] += 1;
-				start++;
-			}
-		}
-		else{
-			pNumber->digits[start] += 1;
-			return;
-		}
-	}
-	return;
+    
+    // Add 1 to and keep the carry
+    // after the loop if carry is there, re-allocate and save the carry
+    
+    unsigned int carry = 1, sum = 0;
+    for (i = 0; i < pNumber->numberOfDigits; i++) {
+        sum = pNumber->digits[i] + carry;
+        pNumber->digits[i] = sum % 256;
+        carry = sum/256;
+    }
+    
+    if (carry > 0) {
+        pNumber->digits = (UInt8 *)realloc(pNumber->digits, pNumber->numberOfDigits+1);
+        pNumber->digits[pNumber->numberOfDigits] = carry;
+        pNumber->numberOfDigits += 1;
+    }
 }
 
 //
@@ -271,28 +262,24 @@ Base256Number *multiplyInBase256(Base256Number *pNumber1, Base256Number *pNumber
     return result;
 }
 
-Base256Number *integerDivisionInBase256(Base256Number *pNumber1, Base256Number *pNumber2) {
+Base256Number *integerDivisionInBase256(Base256Number *pNumber, Base256Number *pDiv) {
     
     Base256Number *pQuotient = newNumberInBase256(0);
     Base256Number *pTempNumber = newNumberInBase256(0);
-    
-    if (areEqual(pNumber1, pNumber2)) {
-        incrementInBase256(pQuotient);
+    Base256Number *pOne = newNumberInBase256(1);
+
+    if (isGreater(pDiv, pNumber)) {
         return pQuotient;
     }
     
-    if (isGreater(pNumber2, pNumber1)) {
-        return pQuotient;
+    pTempNumber = addInBase256(pTempNumber, pDiv);
+    while(isGreater(pNumber, pTempNumber)) {
+        pQuotient = addInBase256(pQuotient, pOne);
+        pTempNumber = addInBase256(pTempNumber, pDiv);
     }
     
-    pTempNumber = addInBase256(pTempNumber, pNumber2);
-    while (isGreater(pNumber1, pTempNumber)) {
-        pTempNumber = addInBase256(pTempNumber, pNumber2);
-        incrementInBase256(pQuotient);
-    }
-    
-    if (areEqual(pNumber1, pTempNumber)) {
-        incrementInBase256(pQuotient);
+    if (areEqual(pNumber, pTempNumber)) {
+        pQuotient = addInBase256(pQuotient, pOne);
     }
     
     return pQuotient;
