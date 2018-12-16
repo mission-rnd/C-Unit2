@@ -143,7 +143,7 @@ void incrementInBase256(Base256Number *pNumber) {
 				for (int i = 0; i < (pNumber->numberOfDigits); i++){
 					digitsNew[i] = pNumber->digits[i];
 				}
-				pNumber->digits = digitsNew;
+				*(pNumber->digits) = *digitsNew;
 				pNumber->digits[start] = 0;
 				pNumber->digits[(start + 1)] = 1;
 				return;
@@ -166,7 +166,19 @@ void incrementInBase256(Base256Number *pNumber) {
 // make the test cases pass, by implementing above functions
 //
 Base256Number *integerDivisionInBase256(Base256Number *pNumber1, Base256Number *pNumber2) {
-    return NULL;
+	if (isGreater(pNumber2, pNumber1))	return newNumberInBase256(0);
+	if (areEqual(pNumber1, pNumber2))	return newNumberInBase256(1);
+	Base256Number* pQuotient = newNumberInBase256(0);
+	Base256Number* ptempNumber = newNumberInBase256(0);
+	while (1){
+		ptempNumber = addInBase256(ptempNumber, pNumber2);
+		if (isGreater(ptempNumber, pNumber1) == 0){
+			// incrementInBase256(pQuotient);
+			pQuotient = addInBase256(pQuotient, newNumberInBase256(1));
+		}
+		else return pQuotient;
+	}
+	return pQuotient;
 }
 
 //
