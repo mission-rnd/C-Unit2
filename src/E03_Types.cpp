@@ -153,6 +153,13 @@ int isPalindrome(Base256Number *number) {
 }
 
 
+int max(int a, int b) {
+    if (a > b) {
+        return a;
+    }
+    return b;
+}
+
 //
 // add in base 256
 //
@@ -160,48 +167,39 @@ int isPalindrome(Base256Number *number) {
 //
 Base256Number *addInBase256(Base256Number *pNumber1, Base256Number *pNumber2) {
     int base = 256;
-	if (pNumber1 == NULL)return pNumber2;
-	if (pNumber2 == NULL)return pNumber1;
-	if ((pNumber1->numberOfDigits == 0) || (pNumber2->numberOfDigits == 0))	return NULL;
-	struct base256Number* result = (struct base256Number*)malloc(sizeof(base256Number));
-	if (pNumber1->numberOfDigits > pNumber2->numberOfDigits){
-		result->numberOfDigits = pNumber1->numberOfDigits;
-	}
-	else{
-		result->numberOfDigits = pNumber2->numberOfDigits;
-	}
-	UInt8 *digits = (UInt8*)malloc((result->numberOfDigits)*sizeof(UInt8));
-	UInt8 carry = 0;
-	int i = 0, current_sum = 0;
-	while ((i < pNumber1->numberOfDigits) && (i < pNumber2->numberOfDigits)){
-		current_sum = pNumber1->digits[i] + pNumber2->digits[i] + carry;
-		digits[i] = current_sum % base;
-		carry = current_sum / base;
-		i++;
-	}
-	if (pNumber1->numberOfDigits > pNumber2->numberOfDigits){
-		while (i < pNumber1->numberOfDigits){
-			current_sum = pNumber1->digits[i] + carry;
-			digits[i] = current_sum % base;
-			carry = current_sum / base;
-			i++;
-		}
-	}
-	else if (pNumber2->numberOfDigits > pNumber1->numberOfDigits){
-		while (i < pNumber2->numberOfDigits){
-			current_sum = pNumber2->digits[i] + carry;
-			digits[i] = current_sum % base;
-			carry = current_sum / base;
-			i++;
-		}
-	}
-	if (carry > 0){
-		result->numberOfDigits += 1;
-		digits = (UInt8*)realloc(digits, sizeof(UInt8) * (result->numberOfDigits));
-		digits[i] = carry;
-	}
-	result->digits = digits;
-	return result;
+    Base256Number *result = newNumberInBase256(0);
+    int digitsLen = max(pNumber1->numberOfDigits, pNumber2->numberOfDigits);
+    if (digitsLen > 1) {
+        result->digits = (UInt8 *)realloc(result->digits, digitsLen);
+        result->numberOfDigits = digitsLen;
+    }
+    
+    unsigned int pos;
+    unsigned int carry = 0, sum = 0;
+    for (pos = 0; pos < pNumber1->numberOfDigits && pos < pNumber2->numberOfDigits; pos++) {
+        sum = pNumber1->digits[pos] + pNumber2->digits[pos] + carry;
+        result->digits[pos] = sum % base;
+        carry = sum/base;
+    }
+    
+    for (;pos < pNumber1->numberOfDigits; pos++) {
+        sum = pNumber1->digits[pos] + carry;
+        result->digits[pos] = sum % base;
+        carry = sum/base;
+    }
+    
+    for (;pos < pNumber2->numberOfDigits; pos++) {
+        sum = pNumber2->digits[pos] + carry;
+        result->digits[pos] = sum % base;
+        carry = sum/base;
+    }
+    
+    if (carry > 0) {
+        result->digits = (UInt8 *)realloc(result->digits, digitsLen+1);
+        result->digits[digitsLen] = carry;
+        result->numberOfDigits = digitsLen + 1;
+    }
+    return result;
 }
 
 
