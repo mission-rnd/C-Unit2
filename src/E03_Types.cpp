@@ -14,28 +14,26 @@
 // and initialize with n in base-256
 //
 Base256Number *newNumberInBase256(int n) {
-	int noOfDigits = 0, dummy = n;
-	while (dummy > 0){
-		dummy /= 256;
-		noOfDigits++;
-	}
-	if (n == 0)noOfDigits = 1;
-	Base256Number* result = (Base256Number*)malloc(sizeof(Base256Number));
-	result->numberOfDigits = noOfDigits;
-	UInt8* digits = (UInt8*)malloc(noOfDigits * sizeof(UInt8));
-	dummy = 0;
-	if (n == 0){
-		digits[0] = 0;
-	}
-	while (n > 0){
-		digits[dummy] = n % 256;
-		n /= 256;
-		dummy++;
-	}
-	result->digits = digits;
-    return result;
+    int base = 256;
+    
+    int numberOfDigits = 0;
+    int number = n;
+    do {
+        numberOfDigits++;
+        number /= base;
+    } while (number > 0);
+    
+    Base256Number* base256Number = (Base256Number*)malloc(sizeof(Base256Number));
+    base256Number->numberOfDigits = numberOfDigits;
+    base256Number->digits = (UInt8*)malloc(numberOfDigits * sizeof(UInt8));
+    
+    for (int i = 0; i < numberOfDigits; i++) {
+        base256Number->digits[digitPos] = n % base;
+        n /= base;
+    }
+    
+    return base256Number;
 }
-
 
 //
 // Note: Each digit in base 256 is saved in reverse order
@@ -46,6 +44,17 @@ Base256Number *newNumberInBase256(int n) {
 
 char *printBase256Number(char *format, Base256Number *pNumber) {
     return NULL;
+}
+
+//
+// Returns
+//  1 - yes
+//  0 - no
+//
+// check if the number is palindrome in base 256
+//
+int isPalindrome(Base256Number *number) {
+    return -99;
 }
 
 
@@ -98,14 +107,7 @@ Base256Number *addInBase256(Base256Number *pNumber1, Base256Number *pNumber2) {
 	return result;
 }
 
-Base256Number *multiplyInBase256(Base256Number *pNumber1, Base256Number *pNumber2) {
-	if ((pNumber1 == NULL)||(pNumber2==NULL))return NULL;
-	if ((pNumber1->numberOfDigits == 0) || (pNumber2->numberOfDigits == 0))	return NULL;
-	struct base256Number* result = (struct base256Number*)malloc(sizeof(base256Number));
-	result->numberOfDigits = pNumber1->numberOfDigits + pNumber2->numberOfDigits;
-	UInt8 *digits = (UInt8*)malloc((result->numberOfDigits)*sizeof(UInt8));
-    return NULL;
-}
+
 
 //
 // Return
@@ -113,10 +115,12 @@ Base256Number *multiplyInBase256(Base256Number *pNumber1, Base256Number *pNumber
 //  0 - no
 //
 int isGreater(Base256Number *pNumber1, Base256Number *pNumber2) {
+    
 	if (pNumber1->numberOfDigits > pNumber2->numberOfDigits)	return 1;
 	if (pNumber2->numberOfDigits > pNumber1->numberOfDigits)	return 0;
+    
 	int i = pNumber1->numberOfDigits - 1;
-	while (i > 0){
+	while (i >= 0){
 		if (pNumber1->digits[i] > pNumber2->digits[i])	return 1;
 		if (pNumber1->digits[i] < pNumber2->digits[i])	return 0;
 		i--;
@@ -125,7 +129,7 @@ int isGreater(Base256Number *pNumber1, Base256Number *pNumber2) {
 }
 
 int areEqual(Base256Number *pNumber1, Base256Number *pNumber2) {
-	if ((pNumber1->numberOfDigits) != (pNumber2->numberOfDigits))	return 0;
+    if ((pNumber1->numberOfDigits) != (pNumber2->numberOfDigits)) 	return 0;
 	int numberOfDigits = pNumber1->numberOfDigits;
 	for (int i = 0; i < numberOfDigits; i++){
 		if ((pNumber1->digits[i]) != (pNumber2->digits[i]))	return 0;
@@ -162,26 +166,47 @@ void incrementInBase256(Base256Number *pNumber) {
 }
 
 //
-// Note: Don't change code of this function
-// make the test cases pass, by implementing above functions
+// Note: Don't change code of these last 2 functions
+// - multiplyInBase256
+// - integerDivisionInBase256
 //
-Base256Number *integerDivisionInBase256(Base256Number *pNumber1, Base256Number *pNumber2) {
-    return NULL;
+// you need make the test cases for these functions
+// pass by implementing the above functions
+//
+Base256Number *multiplyInBase256(Base256Number *pNumber1, Base256Number *pNumber2) {
+    Base256Number* result = newBase256Number(0);
+    Base256Number* count = newBase256Number(1);
+    
+    while (!isGreater(count, pNumber2)) {
+        result = addInBase256(result, pNumber1);
+        incrementInBase256(count);
+    }
+    return result;
 }
 
-//
-// Returns
-//  1 - yes
-//  0 - no
-//
-// check if the number is palindrome in base 256
-//
-int isPalindrome(Base256Number *number) {
-	if (number->numberOfDigits == 1)	return 1;
-	int start = 0, end = number->numberOfDigits - 1, mid = number->numberOfDigits / 2;
-	while (mid > 0){
-		if (number->digits[start] != number->digits[end])	return 0;
-		start++; end--; mid--;
-	}
-    return 1;
+Base256Number *integerDivisionInBase256(Base256Number *pNumber1, Base256Number *pNumber2) {
+    
+    Base256Number *pQuotient = newNumberInBase256(0);
+    Base256Number *pTempNumber = newNumberInBase256(0);
+    
+    if (areEqual(pNumber1, pNumber2)) {
+        incrementInBase256(pQuotient);
+        return pQuotient;
+    }
+    
+    if (isGreater(pNumber2, pNumber1)) {
+        return pQuotient;
+    }
+    
+    pTempNumber = addInBase256(pTempNumber, pNumber2);
+    while (isGreater(pNumber1, pTempNumber)) {
+        pTempNumber = addInBase256(pTempNumber, pNumber2);
+        incrementInBase256(pQuotient);
+    }
+    
+    if (areEqual(pNumber1, pTempNumber)) {
+        incrementInBase256(pQuotient);
+    }
+    
+    return pQuotient;
 }
