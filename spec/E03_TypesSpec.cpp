@@ -297,7 +297,7 @@ namespace spec
 			unsigned int numberOfDigits2 = 2;
 			UInt8 digits2[] = { 0, 255 };
 			unsigned int numberOfDigitsSum = 3;
-			UInt8 digitsSum[] = { 0, 0, 2 };
+			UInt8 digitsSum[] = { 0, 254, 1 };
 			struct base256Number pNumber1 = { numberOfDigits1, digits1 };
 			struct base256Number pNumber2 = { numberOfDigits2, digits2 };
 			struct base256Number* actualOutput = addInBase256(&pNumber1, &pNumber2);

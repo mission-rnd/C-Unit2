@@ -159,6 +159,7 @@ int isPalindrome(Base256Number *number) {
 // implement the function to add 2 base 256 numbers
 //
 Base256Number *addInBase256(Base256Number *pNumber1, Base256Number *pNumber2) {
+    int base = 256;
 	if (pNumber1 == NULL)return pNumber2;
 	if (pNumber2 == NULL)return pNumber1;
 	if ((pNumber1->numberOfDigits == 0) || (pNumber2->numberOfDigits == 0))	return NULL;
@@ -174,23 +175,23 @@ Base256Number *addInBase256(Base256Number *pNumber1, Base256Number *pNumber2) {
 	int i = 0, current_sum = 0;
 	while ((i < pNumber1->numberOfDigits) && (i < pNumber2->numberOfDigits)){
 		current_sum = pNumber1->digits[i] + pNumber2->digits[i] + carry;
-		digits[i] = current_sum % 255;
-		carry = current_sum / 255;
+		digits[i] = current_sum % base;
+		carry = current_sum / base;
 		i++;
 	}
 	if (pNumber1->numberOfDigits > pNumber2->numberOfDigits){
 		while (i < pNumber1->numberOfDigits){
 			current_sum = pNumber1->digits[i] + carry;
-			digits[i] = current_sum % 255;
-			carry = current_sum / 255;
+			digits[i] = current_sum % base;
+			carry = current_sum / base;
 			i++;
 		}
 	}
 	else if (pNumber2->numberOfDigits > pNumber1->numberOfDigits){
 		while (i < pNumber2->numberOfDigits){
 			current_sum = pNumber2->digits[i] + carry;
-			digits[i] = current_sum % 255;
-			carry = current_sum / 255;
+			digits[i] = current_sum % base;
+			carry = current_sum / base;
 			i++;
 		}
 	}
