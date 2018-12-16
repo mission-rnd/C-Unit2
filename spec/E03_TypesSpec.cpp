@@ -1123,7 +1123,87 @@ namespace spec
                              L"\nExpect: " + (gcnew String(eStr)) +
                              L"\nActual: " + (gcnew String(aStr)),
                              1, 2);
-        }
+		}
+
+		[TestMethod, Timeout(30000)] // 30 sec
+		void TestmultiplyInBase256_02(){
+			unsigned int numberOfDigits1 = 4;
+			UInt8 digits1[] = { 0, 123, 154, 75};
+			unsigned int numberOfDigits2 = 1;
+			UInt8 digits2[] = { 1 };
+			unsigned int productNumberOfDigits = 4;
+			UInt8 productDigits1[] = { 0, 123, 154, 75 };
+			struct base256Number pNumber1 = { numberOfDigits1, digits1 };
+			struct base256Number pNumber2 = { numberOfDigits2, digits2 };
+			struct base256Number* actualOutput = multiplyInBase256(&pNumber1, &pNumber2);
+			struct base256Number expectedOutput = { productNumberOfDigits, productDigits1 };
+			char *eStr = formatBase256Number(&expectedOutput);
+			char *aStr = formatBase256Number(actualOutput);
+			Assert::AreEqual(1, compare(actualOutput, &expectedOutput),
+				L"\nExpect: " + (gcnew String(eStr)) +
+				L"\nActual: " + (gcnew String(aStr)),
+				1, 2);
+		}
+
+		[TestMethod, Timeout(30000)] // 30 sec
+		void TestmultiplyInBase256_03(){
+			unsigned int numberOfDigits1 = 2;
+			UInt8 digits1[] = { 0, 2 };
+			unsigned int numberOfDigits2 = 2;
+			UInt8 digits2[] = { 0, 2 };
+			unsigned int productNumberOfDigits = 1;
+			UInt8 productDigits1[] = { 0, 0, 4 };
+			struct base256Number pNumber1 = { numberOfDigits1, digits1 };
+			struct base256Number pNumber2 = { numberOfDigits2, digits2 };
+			struct base256Number* actualOutput = multiplyInBase256(&pNumber1, &pNumber2);
+			struct base256Number expectedOutput = { productNumberOfDigits, productDigits1 };
+			char *eStr = formatBase256Number(&expectedOutput);
+			char *aStr = formatBase256Number(actualOutput);
+			Assert::AreEqual(1, compare(actualOutput, &expectedOutput),
+				L"\nExpect: " + (gcnew String(eStr)) +
+				L"\nActual: " + (gcnew String(aStr)),
+				1, 2);
+		}
+
+		[TestMethod, Timeout(30000)] // 30 sec
+		void TestmultiplyInBase256_04(){
+			unsigned int numberOfDigits1 = 2;
+			UInt8 digits1[] = { 0, 1 };
+			unsigned int numberOfDigits2 = 3;
+			UInt8 digits2[] = { 0, 1, 123 };
+			unsigned int productNumberOfDigits = 4;
+			UInt8 productDigits1[] = { 0, 255, 1, 123};
+			struct base256Number pNumber1 = { numberOfDigits1, digits1 };
+			struct base256Number pNumber2 = { numberOfDigits2, digits2 };
+			struct base256Number* actualOutput = multiplyInBase256(&pNumber1, &pNumber2);
+			struct base256Number expectedOutput = { productNumberOfDigits, productDigits1 };
+			char *eStr = formatBase256Number(&expectedOutput);
+			char *aStr = formatBase256Number(actualOutput);
+			Assert::AreEqual(1, compare(actualOutput, &expectedOutput),
+				L"\nExpect: " + (gcnew String(eStr)) +
+				L"\nActual: " + (gcnew String(aStr)),
+				1, 2);
+		}
+
+		[TestMethod, Timeout(30000)] // 30 sec
+		void TestmultiplyInBase256_05(){
+			unsigned int numberOfDigits1 = 3;
+			UInt8 digits1[] = { 0, 2, 3};
+			unsigned int numberOfDigits2 = 2;
+			UInt8 digits2[] = { 0, 1 };
+			unsigned int productNumberOfDigits = 4;
+			UInt8 productDigits1[] = { 0, 0, 2, 3 };
+			struct base256Number pNumber1 = { numberOfDigits1, digits1 };
+			struct base256Number pNumber2 = { numberOfDigits2, digits2 };
+			struct base256Number* actualOutput = multiplyInBase256(&pNumber1, &pNumber2);
+			struct base256Number expectedOutput = { productNumberOfDigits, productDigits1 };
+			char *eStr = formatBase256Number(&expectedOutput);
+			char *aStr = formatBase256Number(actualOutput);
+			Assert::AreEqual(1, compare(actualOutput, &expectedOutput),
+				L"\nExpect: " + (gcnew String(eStr)) +
+				L"\nActual: " + (gcnew String(aStr)),
+				1, 2);
+		}
     };
 }
 
