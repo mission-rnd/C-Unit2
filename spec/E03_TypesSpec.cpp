@@ -57,12 +57,6 @@ namespace spec
 			return 1;
 		}
         
-        String getFailureMsg(char *actual, char *expected) {
-            return L"Failed: Actual: " + (gcnew String(actual)) + L"\n Expected: " + (gcnew String(expected));
-        }
-        Assert::AreEqual(0, compareStrings(actualOutput, expectedOutput), L"Method: " + getFailureMsg(actualOutput, expectedOutput), 1, 2);
-    }
-
         // Print base 256
 		[TestMethod, Timeout(3000)]
 		void TestprintBase256Number_00(){
