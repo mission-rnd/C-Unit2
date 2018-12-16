@@ -46,25 +46,15 @@ namespace spec
         // test cases
 
 		int compare(Base256Number *num1, Base256Number *num2){
-			if (num1->numberOfDigits != num2->numberOfDigits)	return 0;
+            if (num1->numberOfDigits != num2->numberOfDigits) {
+                return 0;
+            }
 			for (unsigned int i = 0; i < num1->numberOfDigits; i++){
-				if (num1->digits[i] != num2->digits[i])	return 0;
+                if (num1->digits[i] != num2->digits[i]) {
+                    return 0;
+                }
 			}
 			return 1;
-		}
-
-		int compareStrings(char* str1, char* str2){
-			const unsigned char *s1 = (const unsigned char *)str1;
-			const unsigned char *s2 = (const unsigned char *)str2;
-			unsigned char c1, c2;
-			do
-			{
-				c1 = (unsigned char)*s1++;
-				c2 = (unsigned char)*s2++;
-				if (c1 == '\0')
-					return c1 - c2;
-			} while (c1 == c2);
-			return c1 - c2;
 		}
 
 		[TestMethod, Timeout(3000)]
@@ -75,7 +65,7 @@ namespace spec
 			Base256Number pNumber = { numberOfDigits, digits };
 			char expectedOutput[] = "IPV4: 255.255.0.15 oho";
 			char* actualOutput = printBase256Number(format, &pNumber);
-			Assert::AreEqual(0, compareStrings(actualOutput, expectedOutput), L"TestSumOfNodesSmall() failed", 1, 2);
+			Assert::AreEqual(true, areEqualStrings(actualOutput, expectedOutput), L"TestSumOfNodesSmall() failed", 1, 2);
 		}
 
 		[TestMethod, Timeout(3000)]
@@ -86,7 +76,7 @@ namespace spec
 			Base256Number pNumber = { numberOfDigits, digits };
 			char expectedOutput[] = "IPV6: ff:ff:00:0f:0a:0b ohk";
 			char* actualOutput = printBase256Number(format, &pNumber);
-			Assert::AreEqual(0, compareStrings(actualOutput, expectedOutput), L"TestSumOfNodesSmall() failed", 1, 2);
+			Assert::AreEqual(true, areEqualStrings(actualOutput, expectedOutput), L"TestSumOfNodesSmall() failed", 1, 2);
 		}
 
 		[TestMethod, Timeout(3000)]
@@ -97,7 +87,7 @@ namespace spec
 			Base256Number pNumber = { numberOfDigits, digits };
 			char expectedOutput[] = "IPV4: 255.25.0.145 oho";
 			char* actualOutput = printBase256Number(format, &pNumber);
-			Assert::AreEqual(0, compareStrings(actualOutput, expectedOutput), L"TestSumOfNodesSmall() failed", 1, 2);
+			Assert::AreEqual(true, areEqualStrings(actualOutput, expectedOutput), L"TestSumOfNodesSmall() failed", 1, 2);
 		}
 
 		[TestMethod, Timeout(3000)]
@@ -108,7 +98,7 @@ namespace spec
 			Base256Number pNumber = { numberOfDigits, digits };
 			char expectedOutput[] = "IPV6: ff:ff:ff:ff:ff:ff ohk";
 			char* actualOutput = printBase256Number(format, &pNumber);
-			Assert::AreEqual(0, compareStrings(actualOutput, expectedOutput), L"TestSumOfNodesSmall() failed", 1, 2);
+			Assert::AreEqual(true, areEqualStrings(actualOutput, expectedOutput), L"TestSumOfNodesSmall() failed", 1, 2);
 		}
 
 		[TestMethod, Timeout(3000)]
@@ -119,7 +109,7 @@ namespace spec
 			Base256Number pNumber = { numberOfDigits, digits };
 			char expectedOutput[] = "IPV4: 17.29.61.74 oho";
 			char* actualOutput = printBase256Number(format, &pNumber);
-			Assert::AreEqual(0, compareStrings(actualOutput, expectedOutput), L"TestSumOfNodesSmall() failed", 1, 2);
+			Assert::AreEqual(true, areEqualStrings(actualOutput, expectedOutput), L"TestSumOfNodesSmall() failed", 1, 2);
 		}
 
 		[TestMethod, Timeout(3000)]
@@ -130,7 +120,7 @@ namespace spec
 			Base256Number pNumber = { numberOfDigits, digits };
 			char expectedOutput[] = "IPV6: 00:ff:00:0f:00:00 ohk";
 			char* actualOutput = printBase256Number(format, &pNumber);
-			Assert::AreEqual(0, compareStrings(actualOutput, expectedOutput), L"TestSumOfNodesSmall() failed", 1, 2);
+			Assert::AreEqual(true, areEqualStrings(actualOutput, expectedOutput), L"TestSumOfNodesSmall() failed", 1, 2);
 		}
 
 		[TestMethod, Timeout(3000)]
