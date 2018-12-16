@@ -176,20 +176,14 @@ Base256Number *addInBase256(Base256Number *pNumber1, Base256Number *pNumber2) {
     
     unsigned int pos;
     unsigned int carry = 0, sum = 0;
-    for (pos = 0; pos < pNumber1->numberOfDigits && pos < pNumber2->numberOfDigits; pos++) {
-        sum = pNumber1->digits[pos] + pNumber2->digits[pos] + carry;
-        result->digits[pos] = sum % base;
-        carry = sum/base;
-    }
-    
-    for (;pos < pNumber1->numberOfDigits; pos++) {
-        sum = pNumber1->digits[pos] + carry;
-        result->digits[pos] = sum % base;
-        carry = sum/base;
-    }
-    
-    for (;pos < pNumber2->numberOfDigits; pos++) {
-        sum = pNumber2->digits[pos] + carry;
+    for (pos = 0; pos < pNumber1->numberOfDigits || pos < pNumber2->numberOfDigits; pos++) {
+        sum = carry;
+        if (pos < pNumber1->numberOfDigits) {
+            sum += pNumber1->digits[pos];
+        }
+        if (pos < pNumber2->numberOfDigits) {
+            sum += pNumber2->digits[pos];
+        }
         result->digits[pos] = sum % base;
         carry = sum/base;
     }
