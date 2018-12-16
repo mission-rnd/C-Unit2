@@ -278,10 +278,11 @@ void incrementInBase256(Base256Number *pNumber) {
 Base256Number *multiplyInBase256(Base256Number *pNumber1, Base256Number *pNumber2) {
     Base256Number* result = newNumberInBase256(0);
     Base256Number* count = newNumberInBase256(1);
+    Base256Number *pOne = newNumberInBase256(1);
     
     while (!isGreater(count, pNumber2)) {
         result = addInBase256(result, pNumber1);
-        incrementInBase256(count);
+        count = addInBase256(count, pOne);
     }
     return result;
 }
