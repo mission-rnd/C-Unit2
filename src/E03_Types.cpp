@@ -253,7 +253,7 @@ int areEqual(Base256Number *pNumber1, Base256Number *pNumber2) {
 // increments the given number by 1
 //
 void incrementInBase256(Base256Number *pNumber) {
-   
+
     // Add 1 to and keep the carry
     // after the loop if carry is there, re-allocate and save the carry
     
