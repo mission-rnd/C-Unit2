@@ -57,6 +57,80 @@ namespace spec
 			return 1;
 		}
         
+        int getNumberOfDigits(int n, int base) {
+            int numberOfDigits = 0;
+            do {
+                numberOfDigits++;
+                n /= base;
+            } while (n > 0);
+            
+            return numberOfDigits;
+        }
+        
+        int saveNumberInString(char *oStr, int n) {
+            char charDigit[16] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+            int nDigits = getNumberOfDigits(n, 10);
+            for (int pos = nDigits - 1; pos >= 0 ; pos--) {
+                oStr[pos] = charDigit[n % 10];
+                n /= 10;
+            }
+            return nDigits;
+        }
+        
+        // {4, [11, 254, 0, 15] }
+        char *formatBase256Number(Base256Number *pNumber) {
+            
+            // find the result string length
+            int totalStringLength = 7; // constants in format format: {%d, [%a] }
+            
+            totalStringLenght += getNumberOfDigits(pNumber->numberOfDigits, 10);
+            for (int i = 0; i < pNumber->numberOfDigits; i++) {
+                totalStringLength += getNumberOfDigits(pNumber->digits[i], 10);
+            }
+            
+            totalStringLength += 2*(pNumber->numberOfDigits - 1);
+            
+            // reserve memory
+            char *formatString = (char *)malloc(totalStringLength+1);
+            formatString[totalStringLength] = '\0';
+            
+            // copy first part
+            formatString[0] = '{';
+            
+            int currentPos = 1;
+            // fill the number in the given format
+            int numberOfDigits = pNumber->numberOfDigits;
+            
+            currentPos += saveNumberInString(&formatString[currentPos], numberOfDigits);
+            
+            formatString[currentPos] = ',';
+            formatString[currentPos + 1] = ' ';
+            formatString[currentPos + 2] = '[';
+            currentPos += 3;
+            
+            // now numbers in the array
+            for (int i = 0 ; i < numberOfDigits; i++) {
+                int b256Digit = pNumber->digits[i];
+                
+                currentPost += saveNumberInString(&formatString[currentPos], b256Digit);
+                formatString[currentPos] = ',';
+                formatString[currentPos + 1] = ' ';
+                currentPos += 2;
+            }
+            currentPos -= 2;
+            
+            // close array and end the string
+            formatString[currentPos] = ']';
+            formatString[currentPos + 1] = ' ';
+            formatString[currentPos + 2] = '}';
+            
+            // set the terminations char
+            formatString[totalStringLength] = '\0';
+            
+            return formatString;
+        }
+
+        
         // Print base 256
 		[TestMethod, Timeout(3000)]
 		void TestprintBase256Number_00(){
@@ -168,7 +242,12 @@ namespace spec
 			struct base256Number pNumber2 = { numberOfDigits2, digits2 };
 			struct base256Number* actualOutput = addInBase256(&pNumber1, &pNumber2);
 			struct base256Number expectedOutput = { numberOfDigitsSum, digitsSum };
-			Assert::AreEqual(1, compare(actualOutput, &expectedOutput), L"TestSumOfNodesSmall() failed", 1, 2);
+            char *eStr = formatBase256Number(expectedOutput);
+            char *aStr = formatBase256Number(actualOutput);
+            Assert::AreEqual(1, compare(actualOutput, &expectedOutput),
+                             L"\nExpect: \"" + (gcnew String(eStr)) +
+                             L"\"\nActual: \"" + (gcnew String(aStr)) + L"\"",
+                             1, 2);
 		}
 
 		[TestMethod, Timeout(3000)]
