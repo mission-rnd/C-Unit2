@@ -144,11 +144,11 @@ namespace spec
     
         [TestMethod, Timeout(3000)]
         void TestprintBase256Number_06(){
-            char format[] = "so %H looks like";
+            char format[] = "so %D looks like";
             unsigned int numberOfDigits = 3;
             UInt8 digits[] = {15, 0, 255 };
             Base256Number pNumber = { numberOfDigits, digits };
-            char expectedOutput[] = "so 255:0:15 looks like";
+            char expectedOutput[] = "so 255.0.15 looks like";
             char* actualOutput = printBase256Number(format, &pNumber);
             Assert::AreEqual(true, areEqualStrings(actualOutput, expectedOutput),
                              L"\nExpect: \"" + (gcnew String(expectedOutput)) +
