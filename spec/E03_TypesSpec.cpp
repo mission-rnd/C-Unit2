@@ -864,7 +864,7 @@ namespace spec
             unsigned int numberOfDigits2 = 3;
             UInt8 digits2[] = { 2, 240, 250 };
             unsigned int numberOfDigitsQoutitent = 1;
-            UInt8 digitsQoutitent[] = { 127 };
+            UInt8 digitsQoutitent[] = { 2 };
             struct base256Number pNumber1 = { numberOfDigits1, digits1 };
             struct base256Number pNumber2 = { numberOfDigits2, digits2 };
             struct base256Number* actualOutput = integerDivisionInBase256(&pNumber1, &pNumber2);
@@ -877,6 +877,67 @@ namespace spec
                              1, 2);
         }
 
+        [TestMethod, Timeout(30000)] // 30 sec
+        void TestintegerDivisionInBase256_04(){
+            unsigned int numberOfDigits1 = 4;
+            UInt8 digits1[] = { 0, 0, 0, 1 };
+            unsigned int numberOfDigits2 = 2;
+            UInt8 digits2[] = { 0, 1 };
+            unsigned int numberOfDigitsQoutitent = 3;
+            UInt8 digitsQoutitent[] = { 0, 0, 1 };
+            struct base256Number pNumber1 = { numberOfDigits1, digits1 };
+            struct base256Number pNumber2 = { numberOfDigits2, digits2 };
+            struct base256Number* actualOutput = integerDivisionInBase256(&pNumber1, &pNumber2);
+            struct base256Number expectedOutput = { numberOfDigitsQoutitent, digitsQoutitent };
+            char *eStr = formatBase256Number(&expectedOutput);
+            char *aStr = formatBase256Number(actualOutput);
+            Assert::AreEqual(1, compare(actualOutput, &expectedOutput),
+                             L"\nExpect: " + (gcnew String(eStr)) +
+                             L"\nActual: " + (gcnew String(aStr)),
+                             1, 2);
+        }
+        
+        // a/a = 1
+        [TestMethod, Timeout(30000)] // 30 sec
+        void TestintegerDivisionInBase256_05(){
+            unsigned int numberOfDigits1 = 4;
+            UInt8 digits1[] = { 0, 0, 0, 1 };
+            unsigned int numberOfDigits2 = 4;
+            UInt8 digits2[] = { 0, 0, 0, 1 };
+            unsigned int numberOfDigitsQoutitent = 1;
+            UInt8 digitsQoutitent[] = { 1 };
+            struct base256Number pNumber1 = { numberOfDigits1, digits1 };
+            struct base256Number pNumber2 = { numberOfDigits2, digits2 };
+            struct base256Number* actualOutput = integerDivisionInBase256(&pNumber1, &pNumber2);
+            struct base256Number expectedOutput = { numberOfDigitsQoutitent, digitsQoutitent };
+            char *eStr = formatBase256Number(&expectedOutput);
+            char *aStr = formatBase256Number(actualOutput);
+            Assert::AreEqual(1, compare(actualOutput, &expectedOutput),
+                             L"\nExpect: " + (gcnew String(eStr)) +
+                             L"\nActual: " + (gcnew String(aStr)),
+                             1, 2);
+        }
+        
+        // 0 / (some number)
+        [TestMethod, Timeout(30000)] // 30 sec
+        void TestintegerDivisionInBase256_06(){
+            unsigned int numberOfDigits1 = 1;
+            UInt8 digits1[] = { 0 };
+            unsigned int numberOfDigits2 = 4;
+            UInt8 digits2[] = { 0, 0, 0, 1 };
+            unsigned int numberOfDigitsQoutitent = 1;
+            UInt8 digitsQoutitent[] = { 0 };
+            struct base256Number pNumber1 = { numberOfDigits1, digits1 };
+            struct base256Number pNumber2 = { numberOfDigits2, digits2 };
+            struct base256Number* actualOutput = integerDivisionInBase256(&pNumber1, &pNumber2);
+            struct base256Number expectedOutput = { numberOfDigitsQoutitent, digitsQoutitent };
+            char *eStr = formatBase256Number(&expectedOutput);
+            char *aStr = formatBase256Number(actualOutput);
+            Assert::AreEqual(1, compare(actualOutput, &expectedOutput),
+                             L"\nExpect: " + (gcnew String(eStr)) +
+                             L"\nActual: " + (gcnew String(aStr)),
+                             1, 2);
+        }
     };
 }
 
