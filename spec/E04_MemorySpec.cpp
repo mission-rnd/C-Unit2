@@ -45,17 +45,6 @@ namespace spec
         
         // test cases
 		[TestMethod, Timeout(3000)]
-		void TestprimeFactorsInvalid(){
-			DynamicList *primes;
-			primes = primeFactors(0);
-			Assert::IsTrue(primes == NULL, L"TestprimeFactorsInvalid() failed", 1, 2);
-			primes = primeFactors(1);
-			Assert::IsTrue(primes == NULL, L"TestprimeFactorsInvalid() failed", 1, 2);
-			primes = primeFactors(-10);
-			Assert::IsTrue(primes == NULL, L"TestprimeFactorsInvalid() failed", 1, 2);	
-		}
-
-		[TestMethod, Timeout(3000)]
 		void TestprimeFactorsSmall(){
 			DynamicList *primes;
 			primes = primeFactors(10);

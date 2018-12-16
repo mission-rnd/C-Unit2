@@ -13,8 +13,6 @@
 
 #include "E01_Functions.h"
 
-typedef int (*CUSTOMFREE)(int, int);
-
 int sumOfNodes(TreeNode *root) {
     return -99;
 }

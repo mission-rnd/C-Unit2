@@ -21,6 +21,35 @@
  */
 
 #include "L02_Strings.h"
+
+//
+// Note:
+//
+// C language does not have String Data Type.
+//
+// It has a notation, called C String using
+// - character array
+// - termination character '\0'
+//
+// And string literals like
+// "Insight", "Integrity", "Inspire", "I"
+//
+// character literals are different from string literals
+// 'I' and "I" are not the same
+// "I" means {'I', '\0'} - array of 2 characters
+//
+
+//
+// Number of characters in the string
+//
+int stringLength(char *string) {
+    int length = 0;
+    while (string[length] != '\0') {
+        length++;
+    }
+    return length;
+}
+
 //
 // assumption: handles simple printf format specifiers
 //
@@ -35,16 +64,9 @@ int numberOfFormatSpecifiers(char *format) {
     return count;
 }
 
-int stringLength(char *string) {
-    int length = 0;
-    while (string[length] != '\0') {
-        length++;
-    }
-    return length;
-}
-
-
-// TODO: give all test cases with strings of length 4 and above.
+//
+// Note: name's length is atleast 4 characters.
+// 
 void stringMystery(char *name) {
     int len = stringLength(name);
     name[len/3] = '-';
@@ -52,12 +74,7 @@ void stringMystery(char *name) {
     name[len - 1] = '?';
 }
 
-// give string of length 12 to 16
-// but update only the first 4 characters
-// "impart confidence"
-// "jumpToMax"
-// "digDeeper"
-// "ThinkBigAndBigger"
+
 void stringMysteryAdd(char *str) {
     int len = stringLength(str);
     for (int i = 0; i < 5; i++) {
@@ -76,6 +93,23 @@ char *stringMysteryCreate(int n) {
 	str[n / 3] = '?';
 	str[n] = '\0';
     return str;
+}
+
+void numberCharMystery(char *str) {
+    *str   = '0';
+    str[1] = '0' + 1;
+    *(str + 2) = '0' + 2;
+    str[3] = '\0';
+}
+
+void abcMystery(char *str) {
+    *str = '0';
+    str = str + 1;
+    str[1] = '1';
+    str++;
+    str[2] = '2';
+    str += 1;
+    str[3] = '\0';
 }
 
 //
@@ -103,22 +137,6 @@ CustomString *addMystery(CustomString *one, CustomString *two) {
     return sum;
 }
 
-void numberCharMystery(char *str) {
-    *str   = '0';
-    str[1] = '0' + 1;
-    *(str + 2) = '0' + 2;
-    str[3] = '\0';
-}
-
-void abcMystery(char *str) {
-    *str = '0';
-    str = str + 1;
-    str[1] = '1';
-    str++;
-    str[2] = '2';
-    str += 1;
-    str[3] = '\0';
-}
 
 //
 // Note: the code is intentionally wrong.
@@ -148,60 +166,6 @@ char *concatMystery(char *s1, char *s2) {
     return combinedString;
 }
 
-//
-// Note: The caller must free the memory returned
-//
-/*
-char *generateString(char *format, ...) {
-    
-    int length = stringLength(format);
-    
-    // duplicate string
-    char *resultString = (char *)malloc(length * sizeof(char));
-    
-    int nFormatSpecifiers = numberOfFormatSpecifiers(format);
-    
-    va_list variableArgumentList;
-    
-    va_start(variableArgumentList, nFormatSpecifiers);
-    
-    int charPosition = 0;
-    int number = 0;
-    char ch;
-    while (format[charPosition] != '\0') {
-        if (format[charPosition] == '%') {
-            switch (format[charPosition+1]) {
-                case 'd':
-                    // replace %d with 2 digits of given number
-                    number = va_arg(variableArgumentList, int);
-                    resultString[charPosition] = (number/100)%10 + '0';
-                    resultString[charPosition+1] = number%10 + '0';
-                    break;
-                case 'c':
-                    // replace %d with 2 times of given character
-                    ch = va_arg(variableArgumentList, char);
-                    resultString[charPosition] = ch;
-                    resultString[charPosition+1] = ch;
-                    break;
-                    
-                default:
-                    break;
-            }
-            
-            // to skip the %c or %d
-            charPosition++;
-        }
-        charPosition++;
-    }
-    
-    // set the termination character
-    resultString[charPosition] = '\0';
-    
-    va_end(variableArgumentList);
-    
-    return resultString;
-}
-*/
 static void three_things_i_learnt() {
     /*
      -

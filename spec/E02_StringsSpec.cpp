@@ -75,32 +75,32 @@ namespace spec
 			a = "0";
 			b = "0";
 			c = sum(a, b);
-			Assert::AreEqual(false, areEqualStrings(c, "0"), L"sum(0,0)failed", 1, 2);
+			Assert::AreEqual(true, areEqualStrings(c, "0"), L"sum(0,0)failed", 1, 2);
 
 			a = "4534534";
 			b = "0";
 			c = sum(a, b);
-			Assert::AreEqual(false, areEqualStrings(c, "4534534"), L"sum(4534534,0)failed", 1, 2);
+			Assert::AreEqual(true, areEqualStrings(c, "4534534"), L"sum(4534534,0)failed", 1, 2);
 
 			a = "9";
 			b = "1";
 			c = sum(a, b);
-			Assert::AreEqual(false, areEqualStrings(c, "10"), L"sum(9,1)failed", 1, 2);
+			Assert::AreEqual(true, areEqualStrings(c, "10"), L"sum(9,1)failed", 1, 2);
 
 			a = "99";
 			b = "11";
 			c = sum(a, b);
-			Assert::AreEqual(false, areEqualStrings(c, "110"), L"sum(99,11)failed", 1, 2);
+			Assert::AreEqual(true, areEqualStrings(c, "110"), L"sum(99,11)failed", 1, 2);
 
 			a = "999999999999999999999999999";
 			b = "1";
 			c = sum(a, b);
-			Assert::AreEqual(false, areEqualStrings(c, "1000000000000000000000000000"), L"sum(999999999999999999999999999,1)failed", 1, 2);
+			Assert::AreEqual(true, areEqualStrings(c, "1000000000000000000000000000"), L"sum(999999999999999999999999999,1)failed", 1, 2);
 
 			a = "790383079289753282034840151177";
 			b = "728685578060233812895424995760";
 			c = sum(a, b);
-			Assert::AreEqual(false, areEqualStrings(c, "1519068657349987094930265146937"), L"sum(790383079289753282034840151177,728685578060233812895424995760)failed", 1, 2);
+			Assert::AreEqual(true, areEqualStrings(c, "1519068657349987094930265146937"), L"sum(790383079289753282034840151177,728685578060233812895424995760)failed", 1, 2);
 		}
 
 		[TestMethod, Timeout(3000)]
@@ -168,15 +168,15 @@ namespace spec
 			float res;
 			inp = "10.02";
 			res = scanfFloat(inp);
-			Assert::AreEqual(10.02, res, L"scanfFloat(3245345)failed", 1, 2);
+			Assert::AreEqual(10.02f, res, L"scanfFloat(10.02)failed", 1, 2);
 
 			inp = "23.354532";
 			res = scanfFloat(inp);
-			Assert::AreEqual(23.354532, res, L"scanfFloat(23.354532)failed", 1, 2);
+			Assert::AreEqual(23.35453f, res, L"scanfFloat(23.354532)failed", 1, 2);
 
 			inp = "0.0001";
 			res = scanfFloat(inp);
-			Assert::AreEqual(0.0001, res, L"scanfFloat(0.0001)failed", 1, 2);
+			Assert::AreEqual(0.0001f, res, L"scanfFloat(0.0001)failed", 1, 2);
 		}
 
 		[TestMethod, Timeout(3000)]
@@ -250,7 +250,7 @@ namespace spec
 			Assert::AreEqual(true, areEqualStrings(inp2, "vector[1] = tenTimes(vector[1]);"), L"removeSpaces() failed", 1, 2);
 			char inp3[100] = "#include          <  stdio.h>";
 			removeSpaces(inp3);
-			Assert::AreEqual(true, areEqualStrings(inp3, "#include <stdio.h>"), L"removeSpaces() failed", 1, 2);
+			Assert::AreEqual(true, areEqualStrings(inp3, "#include<stdio.h>"), L"removeSpaces() failed", 1, 2);
 		}
 
 		[TestMethod, Timeout(3000)]
@@ -264,7 +264,7 @@ namespace spec
 			b = "man";
 			Assert::AreEqual(0, strend(a, b), L"strend() failed", 1, 2);
 
-			a = "As he crossed toward the pharmacy at the corner he involuntarily turned his head because of a burst of light that had ricocheted from his temple, and saw, with that quick smile with which we greet a rainbow or a rose, a blindingly white parallelogram of sky being unloaded from the van—a dresser with mirrors across which, as across a cinema screen, passed a flawlessly clear reflection of boughs sliding and swaying not arboreally, but with a human vacillation, produced by the nature of those who were carrying this sky, these boughs, this gliding façade.";
+			a = "As he crossed toward the pharmacy at the corner he involuntarily turned his head because of a burst of light that had ricocheted from his temple, and saw, with that quick smile with which we greet a rainbow or a rose, a blindingly white parallelogram of sky being unloaded from the vanoa dresser with mirrors across which, as across a cinema screen, passed a flawlessly clear reflection of boughs sliding and swaying not arboreally, but with a human vacillation, produced by the nature of those who were carrying this sky, these boughs, this gliding facade.";
 			b = "gliding facade.";
 			Assert::AreEqual(1, strend(a, b), L"strend() failed", 1, 2);
 
