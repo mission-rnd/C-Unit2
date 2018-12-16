@@ -33,10 +33,10 @@ typedef int (*IsInOrderPeopleFunc)(struct people *record1, struct people *record
 void sort(struct people *peopleRecords[], int size, IsInOrderPeopleFunc isInOrder);
 
 // sort records based on age
-void sortByAge(struct people *peopleRecords[], int size);
+void sortByAgeNonAscending(struct people *peopleRecords[], int size);
 
 // sort records based on name
-void sortByName(struct people *peopleRecords[], int size);
+void sortByNameNonDecending(struct people *peopleRecords[], int size);
 
 int outputStringLength(char *format, char ch, int n);
 

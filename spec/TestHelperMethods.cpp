@@ -33,8 +33,10 @@ bool checkBits(int ans, int bits[32]){
 }
 
 void strcopy(char *a, char *b){
-	for (int i = 0; a[i] != '\0'&&b[i] != '\0'; i++)
+	int i;
+	for (i = 0; b[i] != '\0'; i++)
 		a[i] = b[i];
+	a[i] = b[i];
 }
 
 

@@ -295,13 +295,23 @@ namespace spec
 			Assert::AreEqual(1000, count, L"TestNumberofLeafNodesLarge() failed", 1, 2);
 		}
 
+        //
+        // people struct creation
+        //
+        // Helper method
+        struct people *newPeopleWith(char *name, int age, int pinCode) {
+            struct people *p = (struct people *)malloc(sizeof(struct people));
+            strcopy(p->name, name);
+            p->age = age;
+            p->pinCode = pinCode;
+            return p;
+        }
+        
 		[TestMethod, Timeout(3000)]
 		void TestisNonAscendingByAge(){
-			struct people *p1 = (struct people *)malloc(sizeof(struct people));
-			struct people *p2 = (struct people *)malloc(sizeof(struct people));
+            struct people *p1 = newPeopleWith("raju", 10, 530007);
+            struct people *p2 = newPeopleWith("pandu", 20, 530006);
 			int res;
-			p1->age = 10;
-			p2->age = 20;
 			res = isNonAscendingByAge(p1, p2);
 			Assert::AreEqual(0, res, L"TestisNonAscendingByAge(10,20) failed", 1, 2);
 			p1->age = 60;
@@ -312,49 +322,79 @@ namespace spec
 			p2->age = 40;
 			res = isNonAscendingByAge(p1, p2);
 			Assert::AreEqual(0, res, L"TestisNonAscendingByAge(40,40) failed", 1, 2);
+            
+            free(p1);
+            free(p2);
 		}
 
 		[TestMethod, Timeout(3000)]
 		void TestisNonDecendingByName(){
-			struct people *p1 = (struct people *)malloc(sizeof(struct people));
-			struct people *p2 = (struct people *)malloc(sizeof(struct people));
-			int res;
-			strcopy(p1->name, "aaaaaa");
-			strcopy(p2->name, "abaaaa");
+            struct people *p1 = newPeopleWith("raju", 10, 530007);
+            struct people *p2 = newPeopleWith("ramu", 20, 530006);
+            int res;
 			res = isNonDecendingByName(p1, p2);
-			Assert::AreEqual(1, res, L"TestisNonDecendingByName(aaaaaa,abaaaa) failed", 1, 2);
+			Assert::AreEqual(1, res, L"TestisNonDecendingByName(raju,ramu) failed", 1, 2);
 			strcopy(p1->name, "sheldon");
 			strcopy(p2->name, "leonord");
 			res = isNonDecendingByName(p1, p2);
 			Assert::AreEqual(0, res, L"TestisNonDecendingByName(sheldon,leonord) failed", 1, 2);
-			strcopy(p1->name, "same");
-			strcopy(p2->name, "same");
+			strcopy(p1->name, "venkat");
+			strcopy(p2->name, "venkat");
 			res = isNonDecendingByName(p1, p2);
-			Assert::AreEqual(0, res, L"TestisNonDecendingByName(40,40) failed", 1, 2);
-		}
+			Assert::AreEqual(0, res, L"TestisNonDecendingByName(venkat,venkat) failed", 1, 2);
+            
+            free(p1);
+            free(p2);
+        }
 
-        // test cases
-        // Number of leaf nodes
-//        6
-//        1
-//        1
-//        2
-//        1 2
-//        2
-//        2 1
-//        3
-//        1 2 3
-//        3
-//        2 1 3
-//        3
-//        3 2 1
-//
-//
-//        1
-//        1
-//        1
-//        1
-//        2
-//        1
+        // sort records based on age and name
+        [TestMethod, Timeout(3000)]
+        void TestsortByAgeAndName(){
+            struct people *records[4];
+            records[0] = newPeopleWith("raju", 5, 530007);
+            records[1] = newPeopleWith("ramu", 20, 530006);
+            records[2] = newPeopleWith("gopal", 10, 530005);
+            records[3] = newPeopleWith("ramu", 5, 530002);
+            
+            sortByAgeNonAscending(records, 4);
+            Assert::AreEqual(20, records[0]->age, L"TestsortByAgeNonAscending failed", 1, 2);
+            Assert::AreEqual(10, records[1]->age, L"TestsortByAgeNonAscending failed", 1, 2);
+            Assert::AreEqual(5, records[2]->age, L"TestsortByAgeNonAscending failed", 1, 2);
+            Assert::AreEqual(5, records[3]->age, L"TestsortByAgeNonAscending failed", 1, 2);
+            
+            
+            sortByNameNonDecending(records, 4);
+            Assert::AreEqual(true, areEqualStrings("gopal", records[0]->name), L"TestsortByNameNonDecending failed", 1, 2);
+            Assert::AreEqual(true, areEqualStrings("raju", records[1]->name), L"TestsortByNameNonDecending failed", 1, 2);
+            Assert::AreEqual(true, areEqualStrings("ramu", records[2]->name), L"TestsortByNameNonDecending failed", 1, 2);
+            Assert::AreEqual(true, areEqualStrings("ramu", records[3]->name), L"TestsortByNameNonDecending failed", 1, 2);
+            
+            for (int i = 0; i < 4; i++) {
+                free(records[i]);
+            }
+        }
+        
+		[TestMethod, Timeout(3000)]
+		void TestoutputStringLength(){
+			char *format;
+			int res;
+
+			format = "%c%d";
+			res = outputStringLength(format, 'a', 1);
+			Assert::AreEqual(2, res, L"outputStringLength() failed", 1, 2);
+
+			format = "hai%c%d";
+			res = outputStringLength(format, 'k', 15);
+			Assert::AreEqual(6, res, L"outputStringLength() failed", 1, 2);
+
+			format = "%c  %d ";
+			res = outputStringLength(format, 's', 13042);
+			Assert::AreEqual(9, res, L"outputStringLength() failed", 1, 2);
+
+			format = " %d this %c";
+			res = outputStringLength(format, 'p', 312);
+			Assert::AreEqual(11, res, L"outputStringLength() failed", 1, 2);
+
+		}
     };
 }

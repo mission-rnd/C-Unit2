@@ -166,18 +166,7 @@ void incrementInBase256(Base256Number *pNumber) {
 // make the test cases pass, by implementing above functions
 //
 Base256Number *integerDivisionInBase256(Base256Number *pNumber1, Base256Number *pNumber2) {
-	if (isGreater(pNumber2, pNumber1))	return 0;
-    Base256Number *pQuotient = newNumberInBase256(0);
-	Base256Number *pTempNumber = newNumberInBase256(0);
-	while (1){
-		pTempNumber = addInBase256(pTempNumber, pNumber2);
-		if (isGreater(pNumber1, pTempNumber) == 1)	incrementInBase256(pQuotient);
-		else break;
-	}
-	if (areEqual(pNumber1, pTempNumber) == 1){
-		incrementInBase256(pQuotient);
-	}
-    return pQuotient;
+    return NULL;
 }
 
 //
