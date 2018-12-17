@@ -72,11 +72,20 @@ float scanfFloat(char *input) {
 //
 // printf implementation
 //
-
+// e.g:
+// ("%d", 234) => "234"
+// ("%3d",  3)  => "  3"
+// ("%03d", 7) => "007"
+//
 char *printfInt(char *format, int n) {
     return NULL;
 }
 
+//
+// float format print
+// e.g:
+// ("%.2f", 2.34455f) => "2.34"
+// ("%f",0.123456f) => "0.123456"
 char *printfFloat(char *format, float n) {
     return NULL;
 }
@@ -103,13 +112,6 @@ char *getExecutableName(int argc, char *argv[]) {
 // e.g:
 // 'printf (   "compiler first removes unnessary spaces"  )  ;'  =>
 // 'printf("compiler first removes unnessary spaces");'
-//
-// Test cases:
-// "vector[0] = tenTimes         (vector[0]);"
-// "vector[1] = tenTimes  (     vector[1]   );"
-// "vector[2] = tenTimes(vector[2]);"
-// "vector[2]=tenTimes(vector[2]);"
-// 'addStrings ( "integrity and insight", "inpsire people" ) ;'
 //
 void removeSpaces(char *statement) {
     
