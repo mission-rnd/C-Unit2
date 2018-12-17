@@ -1063,7 +1063,7 @@ namespace spec
             unsigned int numberOfDigits2 = 1;
             UInt8 digits2[] = { 255 };
             unsigned int productNumberOfDigits = 3;
-            UInt8 productDigits1[] = { 1, 254, 254 };
+            UInt8 productDigits1[] = { 1, 255, 254 };
             Base256Number pNumber1 = { numberOfDigits1, digits1 };
             Base256Number pNumber2 = { numberOfDigits2, digits2 };
             Base256Number* actualOutput = multiplyInBase256(&pNumber1, &pNumber2);
