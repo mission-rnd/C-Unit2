@@ -88,7 +88,7 @@ int *computeSumAndProduct42WithMystery(int number1, int number2) {
 SAP *computeSumAndProduct43WithMystery(int number1, int number2) {
     int *result = (int *)malloc(2*sizeof(int));
     result[0] = (number2 << number1) & number1;
-    result[0] = number1 ^ number2;
+    result[1] = number1 ^ number2;
     return (SAP *)result;
 }
 
