@@ -242,10 +242,10 @@ namespace spec
 			res = youDoTheWork(numbers2, 2);
 			Assert::AreEqual(___, res, L"youDoTheWork() failed", 1, 2);
 
-			int numbers3[] = { 1, 2, 3, 4, 5, 6 };
-			res = youDoTheWork(numbers3, 6);
-			Assert::AreEqual(___, res, L"youDoTheWork() failed", 1, 2);
-
+            int numbers3[] = { 90,20 };
+            res = youDoTheWork(numbers3, 2);
+            Assert::AreEqual(___, res, L"youDoTheWork() failed", 1, 2);
+            
 			int numbers4[] = { 52 };
 			res = youDoTheWork(numbers4, 1);
 			Assert::AreEqual(___, res, L"youDoTheWork() failed", 1, 2);
@@ -258,9 +258,6 @@ namespace spec
 			res = youDoTheWork(numbers6, 1);
 			Assert::AreEqual(___, res, L"youDoTheWork() failed", 1, 2);
 
-			int numbers7[] = { 90,20 };
-			res = youDoTheWork(numbers7, 2);
-			Assert::AreEqual(___, res, L"youDoTheWork() failed", 1, 2);
 		}
         
         // luckyly these above functions does have dead-locked each other
