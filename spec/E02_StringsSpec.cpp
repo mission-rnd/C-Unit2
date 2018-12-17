@@ -250,7 +250,7 @@ namespace spec
 			Assert::AreEqual(true, areEqualStrings(inp1, "printf(\" hello wor ld\");"), L"removeSpaces() failed", 1, 2);
 			char inp2[100] = "vector[1] = tenTimes  (     vector[1]   );";
 			removeSpaces(inp2);
-			Assert::AreEqual(true, areEqualStrings(inp2, "vector[1] = tenTimes(vector[1]);"), L"removeSpaces() failed", 1, 2);
+			Assert::AreEqual(true, areEqualStrings(inp2, "vector[1]=tenTimes(vector[1]);"), L"removeSpaces() failed", 1, 2);
 			char inp3[100] = "#include          <  stdio.h>";
 			removeSpaces(inp3);
 			Assert::AreEqual(true, areEqualStrings(inp3, "#include<stdio.h>"), L"removeSpaces() failed", 1, 2);
