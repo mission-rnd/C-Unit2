@@ -288,10 +288,13 @@ void sort(int *numbers, int size, COMPARE isInOrder) {
                 positionToReplace = j;
             }
         }
-        // swap the numbers in position: i & positionToReplace
-        numbers[i]   = numbers[i] ^ numbers[positionToReplace];
-        numbers[positionToReplace] = numbers[i] ^ numbers[positionToReplace];
-        numbers[i]   = numbers[i] ^ numbers[positionToReplace];
+        if (i != positionToReplace) {
+            // swap the numbers in position: i & positionToReplace
+            numbers[i]   = numbers[i] ^ numbers[positionToReplace];
+            numbers[positionToReplace] = numbers[i] ^ numbers[positionToReplace];
+            numbers[i]   = numbers[i] ^ numbers[positionToReplace];
+            
+        }
     }
 }
 
