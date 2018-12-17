@@ -217,6 +217,9 @@ namespace spec
 		[TestMethod, Timeout(3000)]
 		void TestprintfInt(){
 			char *res;
+            res = printfInt("%d", 12345);
+            Assert::AreEqual(true, areEqualStrings("12345", res), L"printfInt() failed", 1, 2);
+
 			res = printfInt("%2d", 3);
 			Assert::AreEqual(true, areEqualStrings(" 3", res), L"printfInt() failed", 1, 2);
 
@@ -231,13 +234,13 @@ namespace spec
 		void TestprintfFloat(){
 			char *res;
 			res = printfFloat("%.2f", 1.24563f);
-			Assert::AreEqual(true, areEqualStrings("1.24", res), L"printfInt() failed", 1, 2);
+			Assert::AreEqual(true, areEqualStrings("1.24", res), L"printfFloat() failed", 1, 2);
 
 			res = printfFloat("%.4f", 0.53520f);
-			Assert::AreEqual(true, areEqualStrings("0.5352", res), L"printfInt() failed", 1, 2);
+			Assert::AreEqual(true, areEqualStrings("0.5352", res), L"printfFloat() failed", 1, 2);
 
 			res = printfFloat("%f", 9.1245324665545654f);
-			Assert::AreEqual(true, areEqualStrings("0.124532", res), L"printfInt() failed", 1, 2);
+			Assert::AreEqual(true, areEqualStrings("9.124532", res), L"printfFloat() failed", 1, 2);
 		}
 
 		[TestMethod, Timeout(3000)]
