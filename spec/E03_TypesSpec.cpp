@@ -646,57 +646,6 @@ namespace spec
         // Increment
 		[TestMethod, Timeout(3000)]
 		void TestincrementInBase256_00(){
-			unsigned int numberOfDigits1 = 3;
-			UInt8 digits1[] = { 0, 0, 1 };
-			unsigned int numberOfDigitsResult = 3;
-			UInt8 digitsResult[] = { 1, 0, 1 };
-			struct base256Number actualOutput = { numberOfDigits1, digits1 };
-			incrementInBase256(&actualOutput);
-			struct base256Number expectedOutput = { numberOfDigitsResult, digitsResult };
-            char *eStr = formatBase256Number(&expectedOutput);
-            char *aStr = formatBase256Number(&actualOutput);
-            Assert::AreEqual(1, compare(&actualOutput, &expectedOutput),
-                             L"\nExpect: " + (gcnew String(eStr)) +
-                             L"\nActual: " + (gcnew String(aStr)),
-                             1, 2);
-		}
-
-		[TestMethod, Timeout(3000)]
-		void TestincrementInBase256_01(){
-			unsigned int numberOfDigits1 = 2;
-			UInt8 digits1[] = { 0, 255 };
-			unsigned int numberOfDigitsResult = 2;
-			UInt8 digitsResult[] = { 1, 255 };
-			struct base256Number actualOutput = { numberOfDigits1, digits1 };
-			incrementInBase256(&actualOutput);
-			struct base256Number expectedOutput = { numberOfDigitsResult, digitsResult };
-            char *eStr = formatBase256Number(&expectedOutput);
-            char *aStr = formatBase256Number(&actualOutput);
-            Assert::AreEqual(1, compare(&actualOutput, &expectedOutput),
-                             L"\nExpect: " + (gcnew String(eStr)) +
-                             L"\nActual: " + (gcnew String(aStr)),
-                             1, 2);
-		}
-
-		[TestMethod, Timeout(3000)]
-		void TestincrementInBase256_02(){
-			unsigned int numberOfDigits1 = 3;
-			UInt8 digits1[] = { 0, 0, 234 };
-			unsigned int numberOfDigitsResult = 3;
-			UInt8 digitsResult[] = { 1, 0, 234 };
-			struct base256Number actualOutput = { numberOfDigits1, digits1 };
-			incrementInBase256(&actualOutput);
-			struct base256Number expectedOutput = { numberOfDigitsResult, digitsResult };
-            char *eStr = formatBase256Number(&expectedOutput);
-            char *aStr = formatBase256Number(&actualOutput);
-            Assert::AreEqual(1, compare(&actualOutput, &expectedOutput),
-                             L"\nExpect: " + (gcnew String(eStr)) +
-                             L"\nActual: " + (gcnew String(aStr)),
-                             1, 2);
-		}
-
-		[TestMethod, Timeout(3000)]
-		void TestincrementInBase256_03(){
 			unsigned int numberOfDigits1 = 1;
 			UInt8 digits1[] = { 0 };
 			unsigned int numberOfDigitsResult = 1;
@@ -713,11 +662,63 @@ namespace spec
 		}
 
 		[TestMethod, Timeout(3000)]
-		void TestincrementInBase256_04(){
-			unsigned int numberOfDigits1 = 3;
-			UInt8 digits1[] = { 255, 52, 85 };
-			unsigned int numberOfDigitsResult = 3;
-			UInt8 digitsResult[] = { 0, 53, 85 };
+		void TestincrementInBase256_01(){
+			unsigned int numberOfDigits1 = 1;
+			UInt8 digits1[] = { 254 };
+			unsigned int numberOfDigitsResult = 1;
+			UInt8 digitsResult[] = { 255 };
+			struct base256Number actualOutput = { numberOfDigits1, digits1 };
+			incrementInBase256(&actualOutput);
+			struct base256Number expectedOutput = { numberOfDigitsResult, digitsResult };
+            char *eStr = formatBase256Number(&expectedOutput);
+            char *aStr = formatBase256Number(&actualOutput);
+            Assert::AreEqual(1, compare(&actualOutput, &expectedOutput),
+                             L"\nExpect: " + (gcnew String(eStr)) +
+                             L"\nActual: " + (gcnew String(aStr)),
+                             1, 2);
+		}
+
+		[TestMethod, Timeout(3000)]
+		void TestincrementInBase256_02(){
+            unsigned int numberOfDigits1 = 1;
+            UInt8 *digits1 = (UInt8 *)malloc(1);
+            digits1[0] = 255;
+            unsigned int numberOfDigitsResult = 2;
+            UInt8 digitsResult[] = { 0, 1 };
+			struct base256Number actualOutput = { numberOfDigits1, digits1 };
+			incrementInBase256(&actualOutput);
+			struct base256Number expectedOutput = { numberOfDigitsResult, digitsResult };
+            char *eStr = formatBase256Number(&expectedOutput);
+            char *aStr = formatBase256Number(&actualOutput);
+            Assert::AreEqual(1, compare(&actualOutput, &expectedOutput),
+                             L"\nExpect: " + (gcnew String(eStr)) +
+                             L"\nActual: " + (gcnew String(aStr)),
+                             1, 2);
+		}
+
+		[TestMethod, Timeout(3000)]
+		void TestincrementInBase256_03(){
+            unsigned int numberOfDigits1 = 2;
+            UInt8 digits1[] = { 0, 255 };
+            unsigned int numberOfDigitsResult = 2;
+            UInt8 digitsResult[] = { 1, 255 };
+			struct base256Number actualOutput = { numberOfDigits1, digits1 };
+			incrementInBase256(&actualOutput);
+			struct base256Number expectedOutput = { numberOfDigitsResult, digitsResult };
+            char *eStr = formatBase256Number(&expectedOutput);
+            char *aStr = formatBase256Number(&actualOutput);
+            Assert::AreEqual(1, compare(&actualOutput, &expectedOutput),
+                             L"\nExpect: " + (gcnew String(eStr)) +
+                             L"\nActual: " + (gcnew String(aStr)),
+                             1, 2);
+		}
+
+		[TestMethod, Timeout(3000)]
+        void TestincrementInBase256_04(){
+            unsigned int numberOfDigits1 = 5;
+            UInt8 digits1[] = { 255, 255, 254, 255, 255 };
+            unsigned int numberOfDigitsResult = 5;
+            UInt8 digitsResult[] = { 0, 0, 255, 255, 255 };
 			struct base256Number actualOutput = { numberOfDigits1, digits1 };
 			incrementInBase256(&actualOutput);
 			struct base256Number expectedOutput = { numberOfDigitsResult, digitsResult };
@@ -731,10 +732,13 @@ namespace spec
 
 		[TestMethod, Timeout(3000)]
 		void TestincrementInBase256_05(){
-			unsigned int numberOfDigits1 = 5;
-			UInt8 digits1[] = { 255, 255, 254, 255, 255 };
-			unsigned int numberOfDigitsResult = 5;
-			UInt8 digitsResult[] = { 0, 0, 255, 255, 255 };
+            unsigned int numberOfDigits1 = 3;
+            UInt8 *digits1 = (UInt8 *)malloc(3);
+            digits1[0] = 255;
+            digits1[1] = 255;
+            digits1[2] = 255;
+            unsigned int numberOfDigitsResult = 4;
+            UInt8 digitsResult[] = { 0, 0, 0, 1 };
 			struct base256Number actualOutput = { numberOfDigits1, digits1 };
 			incrementInBase256(&actualOutput);
 			struct base256Number expectedOutput = { numberOfDigitsResult, digitsResult };
@@ -749,9 +753,9 @@ namespace spec
 		[TestMethod, Timeout(3000)]
 		void TestincrementInBase256_06(){
 			unsigned int numberOfDigits1 = 2;
-			UInt8 digits1[] = { 17, 29 };
+			UInt8 digits1[] = { 1, 255 };
 			unsigned int numberOfDigitsResult = 2;
-			UInt8 digitsResult[] = { 18, 29 };
+			UInt8 digitsResult[] = { 2, 255 };
 			struct base256Number actualOutput = { numberOfDigits1, digits1 };
 			incrementInBase256(&actualOutput);
 			struct base256Number expectedOutput = { numberOfDigitsResult, digitsResult };
@@ -765,10 +769,10 @@ namespace spec
 
 		[TestMethod, Timeout(3000)]
 		void TestincrementInBase256_07(){
-			unsigned int numberOfDigits1 = 3;
-			UInt8 digits1[] = { 17, 61, 29 };
-			unsigned int numberOfDigitsResult = 3;
-			UInt8 digitsResult[] = { 18, 61, 29 };
+            unsigned int numberOfDigits1 = 3;
+            UInt8 digits1[] = { 0, 0, 1 };
+            unsigned int numberOfDigitsResult = 3;
+            UInt8 digitsResult[] = { 1, 0, 1 };
 			struct base256Number actualOutput = { numberOfDigits1, digits1 };
 			incrementInBase256(&actualOutput);
 			struct base256Number expectedOutput = { numberOfDigitsResult, digitsResult };
@@ -800,6 +804,54 @@ namespace spec
                              1, 2);
 		}
 
+        [TestMethod, Timeout(3000)]
+        void TestincrementInBase256_09(){
+            unsigned int numberOfDigits1 = 2;
+            UInt8 digits1[] = { 0, 255 };
+            unsigned int numberOfDigitsResult = 2;
+            UInt8 digitsResult[] = { 1, 255};
+            struct base256Number actualOutput = { numberOfDigits1, digits1 };
+            incrementInBase256(&actualOutput);
+            struct base256Number expectedOutput = { numberOfDigitsResult, digitsResult };
+            Assert::AreEqual(1, compare(&actualOutput, &expectedOutput), L"TestSumOfNodesSmall() failed", 1, 2);
+        }
+        
+        [TestMethod, Timeout(3000)]
+        void TestincrementInBase256_10(){
+            unsigned int numberOfDigits1 = 3;
+            UInt8 digits1[] = { 255, 1, 255 };
+            unsigned int numberOfDigitsResult = 3;
+            UInt8 digitsResult[] = { 0, 2, 255 };
+            struct base256Number actualOutput = { numberOfDigits1, digits1 };
+            incrementInBase256(&actualOutput);
+            struct base256Number expectedOutput = { numberOfDigitsResult, digitsResult };
+            Assert::AreEqual(1, compare(&actualOutput, &expectedOutput), L"TestSumOfNodesSmall() failed", 1, 2);
+        }
+        
+        [TestMethod, Timeout(3000)]
+        void TestincrementInBase256_11(){
+            unsigned int numberOfDigits1 = 2;
+            UInt8 digits1[] = { 255, 20 };
+            unsigned int numberOfDigitsResult = 2;
+            UInt8 digitsResult[] = { 0, 21 };
+            struct base256Number actualOutput = { numberOfDigits1, digits1 };
+            incrementInBase256(&actualOutput);
+            struct base256Number expectedOutput = { numberOfDigitsResult, digitsResult };
+            Assert::AreEqual(1, compare(&actualOutput, &expectedOutput), L"TestSumOfNodesSmall() failed", 1, 2);
+        }
+        
+        [TestMethod, Timeout(3000)]
+        void TestincrementInBase256_12(){
+            unsigned int numberOfDigits1 = 8;
+            UInt8 digits1[] = { 255, 255, 255, 255, 255, 0, 17, 29};
+            unsigned int numberOfDigitsResult = 8;
+            UInt8 digitsResult[] = { 0, 0, 0, 0, 0, 1, 17, 29 };
+            struct base256Number actualOutput = { numberOfDigits1, digits1 };
+            incrementInBase256(&actualOutput);
+            struct base256Number expectedOutput = { numberOfDigitsResult, digitsResult };
+            Assert::AreEqual(1, compare(&actualOutput, &expectedOutput), L"TestSumOfNodesSmall() failed", 1, 2);
+        }
+        
         // DIV
 		[TestMethod, Timeout(30000)] // 30 sec
 		void TestintegerDivisionInBase256_00(){
