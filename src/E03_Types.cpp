@@ -10,8 +10,17 @@
 // Note: The digits in the Base256Number are saved in reverse order.
 //
 
+// Note:
+// In this file you should not modify 3 functions,
+// for which implementation is already given in this file
+// The 3 functions are:
+// - Base256Number *newNumberInBase256(int n);
+// - Base256Number *multiplyInBase256(Base256Number *pNumber1, Base256Number *pNumber2)
+// - Base256Number *integerDivisionInBase256(Base256Number *pNumber, Base256Number *pDiv)
+
+
 //
-// create a new structure for base 256 number
+// creates a new structure for base 256 number
 // and initialize with n in base-256
 //
 // DON'T MODIFY THE CODE OF THIS FUNCTION
@@ -200,8 +209,8 @@ Base256Number *addInBase256(Base256Number *pNumber1, Base256Number *pNumber2) {
 
 //
 // Return
-//  1 - yes
-//  0 - no
+//  1 - when pNumber1 > pNumber2
+//  0 - otherwise
 //
 int isGreater(Base256Number *pNumber1, Base256Number *pNumber2) {
     
@@ -227,8 +236,8 @@ int isGreater(Base256Number *pNumber1, Base256Number *pNumber2) {
 
 //
 // Return
-//  1 - yes
-//  0 - no
+//  1 - are equal
+//  0 - not equal
 //
 int areEqual(Base256Number *pNumber1, Base256Number *pNumber2) {
     if ((pNumber1->numberOfDigits) != (pNumber2->numberOfDigits)) {
@@ -245,6 +254,8 @@ int areEqual(Base256Number *pNumber1, Base256Number *pNumber2) {
 
 //
 // increments the given number by 1
+//
+// Note: Need to reallocate memory for pNumber->digits when needed
 //
 void incrementInBase256(Base256Number *pNumber) {
     
@@ -266,12 +277,13 @@ void incrementInBase256(Base256Number *pNumber) {
 }
 
 //
-// Note: Don't modify code of these last 2 functions
+// you need make the test cases for these last 2 functions
+// pass by implementing the above functions
 // - multiplyInBase256
 // - integerDivisionInBase256
 //
-// you need make the test cases for these functions
-// pass by implementing the above functions
+//
+// DON'T MODIFY THE CODE OF THIS FUNCTION
 //
 Base256Number *multiplyInBase256(Base256Number *pNumber1, Base256Number *pNumber2) {
     Base256Number* result = newNumberInBase256(0);
@@ -287,7 +299,10 @@ Base256Number *multiplyInBase256(Base256Number *pNumber1, Base256Number *pNumber
 
 //
 // integer division
-// 
+//
+//
+// DON'T MODIFY THE CODE OF THIS FUNCTION
+//
 Base256Number *integerDivisionInBase256(Base256Number *pNumber, Base256Number *pDiv) {
     
     Base256Number *pQuotient = newNumberInBase256(0);
