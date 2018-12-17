@@ -305,7 +305,7 @@ void sort(int *numbers, int size, COMPARE isInOrder) {
 // Ref: https://stackoverflow.com/questions/42444024/why-do-we-use-the-term-non-descending-instead-of-ascending-in-sorting-algori
 //
 void sortNonDescending(int *numbers, int size) {
-    sort(numbers, size, isGreater);
+    sort(numbers, size, isLesser);
 }
 
 //
@@ -313,7 +313,7 @@ void sortNonDescending(int *numbers, int size) {
 // Non-Ascending Vs Descending order?
 //
 void sortNonAscending(int *numbers, int size) {
-    sort(numbers, size, isLesser);
+    sort(numbers, size, isGreater);
 }
 
 //
