@@ -39,9 +39,7 @@
 // "I" means {'I', '\0'} - array of 2 characters
 //
 
-//
-// Number of characters in the string
-//
+
 int stringLength(char *string) {
     int length = 0;
     while (string[length] != '\0') {
@@ -50,9 +48,6 @@ int stringLength(char *string) {
     return length;
 }
 
-//
-// assumption: handles simple printf format specifiers
-//
 int numberOfFormatSpecifiers(char *format) {
     int count = 0;
     while (*format != '\0' /* not end of string */) {
@@ -64,9 +59,6 @@ int numberOfFormatSpecifiers(char *format) {
     return count;
 }
 
-//
-// Note: name's length is atleast 4 characters.
-// 
 void stringMystery(char *name) {
     int len = stringLength(name);
     name[len/3] = '-';
@@ -82,8 +74,6 @@ void stringMysteryAdd(char *str) {
     }
 }
 
-// give n
-// 2, 4, 8, 9.
 char *stringMysteryCreate(int n) {
     char *str = (char *)malloc(n+1);
     for (int i = n-1; i >=0; i--) {
@@ -114,6 +104,7 @@ void abcMystery(char *str) {
 
 //
 // What is the advantange of representing string like this?
+// - using CustomeString structure
 //
 CustomString *addMystery(CustomString *one, CustomString *two) {
     CustomString *sum = (CustomString *)malloc(sizeof(CustomString));
@@ -166,6 +157,10 @@ char *concatMystery(char *s1, char *s2) {
     return combinedString;
 }
 
+//
+// Write what you have learned with the above
+// examples?
+//
 static void three_things_i_learnt() {
     /*
      -

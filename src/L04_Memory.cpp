@@ -43,6 +43,10 @@ int ohISee() {
     return m;
 }
 
+//
+// Write what you have learned with the above
+// examples?
+//
 static void three_things_i_learnt() {
     /*
      -

@@ -93,7 +93,10 @@ SAP *computeSumAndProduct43WithMystery(int number1, int number2) {
 }
 
 
-
+//
+// Write what you have learned with the above
+// examples?
+//
 static void three_things_i_learnt() {
     /*
      -
