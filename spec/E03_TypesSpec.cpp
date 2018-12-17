@@ -84,7 +84,7 @@ namespace spec
             int totalStringLength = 7; // constants in format format: {%d, [%a] }
             
             totalStringLength += getNumberOfDigits(pNumber->numberOfDigits, 10);
-            for (int i = 0; i < pNumber->numberOfDigits; i++) {
+            for (unsigned int i = 0; i < pNumber->numberOfDigits; i++) {
                 totalStringLength += getNumberOfDigits(pNumber->digits[i], 10);
             }
             
