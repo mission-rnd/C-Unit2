@@ -321,7 +321,7 @@ namespace spec
 			p1->age = 40;
 			p2->age = 40;
 			res = isNonAscendingByAge(p1, p2);
-			Assert::AreEqual(0, res, L"TestisNonAscendingByAge(40,40) failed", 1, 2);
+			Assert::AreEqual(1, res, L"TestisNonAscendingByAge(40,40) failed", 1, 2);
             
             free(p1);
             free(p2);
@@ -341,7 +341,7 @@ namespace spec
 			strcopy(p1->name, "venkat");
 			strcopy(p2->name, "venkat");
 			res = isNonDecendingByName(p1, p2);
-			Assert::AreEqual(0, res, L"TestisNonDecendingByName(venkat,venkat) failed", 1, 2);
+			Assert::AreEqual(1, res, L"TestisNonDecendingByName(venkat,venkat) failed", 1, 2);
             
             free(p1);
             free(p2);
