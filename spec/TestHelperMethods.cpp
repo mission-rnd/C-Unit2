@@ -25,6 +25,15 @@ bool areEqualStrings(char a[], char b[]){
 	return false;
 }
 
+
+bool areEqualCharArrays(char a[], char b[], int size) {
+    for (int i = 0; i < size; i++){
+        if (a[i] != b[i])
+            return false;
+    }
+    return true;
+}
+
 bool checkBits(int ans, int bits[32]){
 	int a = 0;
 	for (int i = 0; i < 32; i++)

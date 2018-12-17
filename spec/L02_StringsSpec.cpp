@@ -190,7 +190,7 @@ namespace spec
 			two->length = 3;
 			res = addMystery(one, two);
 			Assert::AreEqual(___, res->length, L"addMystery() failed length incorrect", 1, 2);
-			Assert::AreEqual(true, areEqualArrays(____, res->str, res->length), L"addMystery() failed", 1, 2);
+			Assert::AreEqual(true, areEqualCharArrays(____, res->str, res->length), L"addMystery() failed", 1, 2);
 
 			strcopy(one->str, "CallStack");
 			strcopy(two->str, "ActivationRecord");
@@ -198,7 +198,7 @@ namespace spec
 			two->length = 16;
 			res = addMystery(one, two);
 			Assert::AreEqual(___, res->length, L"addMystery() failed length incorrect", 1, 2);
-			Assert::AreEqual(true, areEqualArrays(____, res->str, res->length), L"addMystery() failed", 1, 2);
+			Assert::AreEqual(true, areEqualCharArrays(____, res->str, res->length), L"addMystery() failed", 1, 2);
 			
 			strcopy(one->str, "local");
 			strcopy(two->str, "globe");
@@ -206,7 +206,7 @@ namespace spec
 			two->length = 5;
 			res = addMystery(one, two);
 			Assert::AreEqual(___, res->length, L"addMystery() failed length incorrect", 1, 2);
-			Assert::AreEqual(true, areEqualArrays(____, res->str, res->length), L"addMystery() failed", 1, 2);
+			Assert::AreEqual(true, areEqualCharArrays(____, res->str, res->length), L"addMystery() failed", 1, 2);
 		}
         
         // concat mystery
