@@ -47,16 +47,6 @@ Base256Number *newNumberInBase256(int n) {
     return base256Number;
 }
 
-int getNumberOfDigits(int n, int base) {
-    int numberOfDigits = 0;
-    do {
-        numberOfDigits++;
-        n /= base;
-    } while (n > 0);
-    
-    return numberOfDigits;
-}
-
 // Implement the function to
 // print the given base 256 number using the format sepcifiers
 // %D and %H
@@ -72,76 +62,7 @@ int getNumberOfDigits(int n, int base) {
 // Note: Each digit in base 256 is saved in reverse order
 //
 char *printBase256Number(char *format, Base256Number *pNumber) {
-    
-    // get the format specifier
-    char formatSpecifier;
-    int formatSpecifierPos = 0;
-    for (int i = 0; format[i] != '\0'; i++) {
-        if (format[i] == '%') {
-            formatSpecifierPos = i;
-            formatSpecifier = format[i+1];
-        }
-    }
-    
-    // find the result string length
-    int totalStringLength = stringLength(format) - 2; // remove fomat specifier characters
-    
-    if (formatSpecifier == 'D') {
-        for (int i = 0; i < pNumber->numberOfDigits; i++) {
-            totalStringLength += getNumberOfDigits(pNumber->digits[i], 10);
-        }
-    } else {
-        totalStringLength += 2 * pNumber->numberOfDigits;
-    }
-    
-    totalStringLength += pNumber->numberOfDigits - 1;
-    
-    
-    // reserve memory
-    char *formatString = (char *)malloc(totalStringLength+1);
-    formatString[totalStringLength] = '\0';
-    
-    // copy till formatSpecifierPos-1
-    for (int i = 0; i < formatSpecifierPos; i++) {
-        formatString[i] = format[i];
-    }
-    
-    int currentPos = formatSpecifierPos;
-    // fill the number in the given format
-    int numberOfDigits = pNumber->numberOfDigits;
-    
-    char hex[16] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
-    for (int i = numberOfDigits - 1 ; i >= 0; i--) {
-        int b256Digit = pNumber->digits[i];
-        if(formatSpecifier == 'D') {
-            int nDigits = getNumberOfDigits(b256Digit, 10);
-            for (int pos = nDigits - 1; pos >= 0 ; pos--) {
-                formatString[currentPos + pos] = hex[b256Digit % 10]; // (or) '0' + b256Digit % 10
-                b256Digit /= 10;
-            }
-            currentPos += nDigits;
-            formatString[currentPos] = '.';
-        } else {
-            formatString[currentPos] = hex[b256Digit/16];
-            formatString[currentPos + 1] = hex[b256Digit%16];
-            currentPos += 2;
-            formatString[currentPos] = ':';
-        }
-        currentPos++;
-    }
-    currentPos--;
-    
-    // copy the string after format specifier
-    for (int i = formatSpecifierPos + 2; format[i] != '\0'; i++) {
-        formatString[currentPos] = format[i];
-        currentPos++;
-    }
-    
-    // set the terminations char
-    formatString[totalStringLength] = '\0';
-    
-    return formatString;
-//    return "not-implemented";
+    return "not-implemented";
 }
 
 //
@@ -152,21 +73,7 @@ char *printBase256Number(char *format, Base256Number *pNumber) {
 // check if the base 256 number is palindrome or not
 //
 int isPalindrome(Base256Number *number) {
-    for (int i = 0; i < number->numberOfDigits/2; i++) {
-        if (number->digits[i] != number->digits[(number->numberOfDigits-1)-i]) {
-            return 0;
-        }
-    }
-    return 1;
-//    return -99;
-}
-
-
-int max(int a, int b) {
-    if (a > b) {
-        return a;
-    }
-    return b;
+    return -99;
 }
 
 //
@@ -175,37 +82,8 @@ int max(int a, int b) {
 // implement the function to add 2 base 256 numbers
 //
 Base256Number *addInBase256(Base256Number *pNumber1, Base256Number *pNumber2) {
-    int base = 256;
-    Base256Number *result = newNumberInBase256(0);
-    int digitsLen = max(pNumber1->numberOfDigits, pNumber2->numberOfDigits);
-    if (digitsLen > 1) {
-        result->digits = (UInt8 *)realloc(result->digits, digitsLen);
-        result->numberOfDigits = digitsLen;
-    }
-    
-    unsigned int pos;
-    unsigned int carry = 0, sum = 0;
-    for (pos = 0; pos < pNumber1->numberOfDigits || pos < pNumber2->numberOfDigits; pos++) {
-        sum = carry;
-        if (pos < pNumber1->numberOfDigits) {
-            sum += pNumber1->digits[pos];
-        }
-        if (pos < pNumber2->numberOfDigits) {
-            sum += pNumber2->digits[pos];
-        }
-        result->digits[pos] = sum % base;
-        carry = sum/base;
-    }
-    
-    if (carry > 0) {
-        result->digits = (UInt8 *)realloc(result->digits, digitsLen+1);
-        result->digits[digitsLen] = carry;
-        result->numberOfDigits = digitsLen + 1;
-    }
-    return result;
+    return newNumberInBase256(99);
 }
-
-
 
 //
 // Return
@@ -213,25 +91,7 @@ Base256Number *addInBase256(Base256Number *pNumber1, Base256Number *pNumber2) {
 //  0 - otherwise
 //
 int isGreater(Base256Number *pNumber1, Base256Number *pNumber2) {
-    
-    if (pNumber1->numberOfDigits > pNumber2->numberOfDigits) {
-        return 1;
-    }
-    if (pNumber2->numberOfDigits > pNumber1->numberOfDigits) {
-        return 0;
-    }
-    
-	int i = pNumber1->numberOfDigits - 1;
-	while (i >= 0){
-        if (pNumber1->digits[i] > pNumber2->digits[i]) {
-            return 1;
-        }
-        if (pNumber2->digits[i] > pNumber1->digits[i]) {
-            return 0;
-        }
-		i--;
-	}
-	return 0;
+	return -99;
 }
 
 //
@@ -240,16 +100,7 @@ int isGreater(Base256Number *pNumber1, Base256Number *pNumber2) {
 //  0 - not equal
 //
 int areEqual(Base256Number *pNumber1, Base256Number *pNumber2) {
-    if ((pNumber1->numberOfDigits) != (pNumber2->numberOfDigits)) {
-        return 0;
-    }
-	int numberOfDigits = pNumber1->numberOfDigits;
-	for (int i = 0; i < numberOfDigits; i++){
-        if ((pNumber1->digits[i]) != (pNumber2->digits[i])) {
-            return 0;
-        }
-	}
-	return 1;
+    return -99;
 }
 
 //
@@ -259,21 +110,6 @@ int areEqual(Base256Number *pNumber1, Base256Number *pNumber2) {
 //
 void incrementInBase256(Base256Number *pNumber) {
     
-    // Add 1 to and keep the carry
-    // after the loop if carry is there, re-allocate and save the carry
-    
-    unsigned int carry = 1, sum = 0;
-    for (int i = 0; i < pNumber->numberOfDigits; i++) {
-        sum = pNumber->digits[i] + carry;
-        pNumber->digits[i] = sum % 256;
-        carry = sum/256;
-    }
-    
-    if (carry > 0) {
-        pNumber->digits = (UInt8 *)realloc(pNumber->digits, pNumber->numberOfDigits+1);
-        pNumber->digits[pNumber->numberOfDigits] = carry;
-        pNumber->numberOfDigits += 1;
-    }
 }
 
 //
