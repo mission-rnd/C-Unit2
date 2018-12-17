@@ -279,19 +279,19 @@ int isLesser(int a, int b) {
 // and see the behaviour
 //
 void sort(int *numbers, int size, COMPARE isInOrder) {
-    
-    if (size <= 1) {
-        // already sorted
-        return;
-    }
-    
-    for (int i = 0; i < size-1; i++) {
-        if (isInOrder(numbers[i], numbers[i+1]) == 0) {
-            // swap numbers
-            numbers[i]   = numbers[i] ^ numbers[i+1];
-            numbers[i+1] = numbers[i] ^ numbers[i+1];
-            numbers[i]   = numbers[i] ^ numbers[i+1];
+    // implement simple sorting method
+    int positionToReplace;
+    for (int i = 0; i < size - 1; i++) {
+        positionToReplace = i;
+        for (int j = i+1; j < size; j++) {
+            if(!isInOrder(numbers[positionToReplace], numbers[j])) {
+                positionToReplace = j;
+            }
         }
+        // swap the numbers in position: i & positionToReplace
+        numbers[i]   = numbers[i] ^ numbers[positionToReplace];
+        numbers[positionToReplace] = numbers[i] ^ numbers[positionToReplace];
+        numbers[i]   = numbers[i] ^ numbers[positionToReplace];
     }
 }
 
