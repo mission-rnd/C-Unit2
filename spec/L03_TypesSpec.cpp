@@ -63,12 +63,12 @@ namespace spec
 			int sum = 0, product = 0;
 
 			computeSumAndProduct02(2, 0, sum, product);
-			Assert::AreEqual(___, sum, L"computeSumAndProduct02(2, 8) sum failed", 1, 2);
-			Assert::AreEqual(___, product, L"computeSumAndProduct02(2, 8) product failed", 1, 2);
+			Assert::AreEqual(___, sum, L"computeSumAndProduct02(2, 0) sum failed", 1, 2);
+			Assert::AreEqual(___, product, L"computeSumAndProduct02(2, 0) product failed", 1, 2);
 
 			computeSumAndProduct02(2, 4, sum, product);
-			Assert::AreEqual(___, sum, L"computeSumAndProduct02(2, 8) sum failed", 1, 2);
-			Assert::AreEqual(___, product, L"computeSumAndProduct02(2, 8) product failed", 1, 2);
+			Assert::AreEqual(___, sum, L"computeSumAndProduct02(2, 4) sum failed", 1, 2);
+			Assert::AreEqual(___, product, L"computeSumAndProduct02(2, 4) product failed", 1, 2);
 
 			computeSumAndProduct02(2, 8, sum, product);
 			Assert::AreEqual(___, sum, L"computeSumAndProduct02(2, 8) sum failed", 1, 2);
