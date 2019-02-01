@@ -239,8 +239,8 @@ namespace spec
 			res = printfFloat("%.4f", 0.53520f);
 			Assert::AreEqual(true, areEqualStrings("0.5352", res), L"printfFloat() failed", 1, 2);
 
-			res = printfFloat("%f", 9.1245324665545654f);
-			Assert::AreEqual(true, areEqualStrings("9.124532", res), L"printfFloat() failed", 1, 2);
+			res = printfFloat("%f", 0.1245324665545654f);
+			Assert::AreEqual(true, areEqualStrings("0.124532", res), L"printfFloat() failed", 1, 2);
 		}
 
 		[TestMethod, Timeout(3000)]
