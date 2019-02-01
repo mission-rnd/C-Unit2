@@ -82,7 +82,7 @@ int isPalindrome(Base256Number *number) {
 // implement the function to add 2 base 256 numbers
 //
 Base256Number *addInBase256(Base256Number *pNumber1, Base256Number *pNumber2) {
-    return newNumberInBase256(99);
+    return NULL;
 }
 
 //
